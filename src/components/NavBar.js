@@ -11,7 +11,6 @@ import logo from "../assets/inspyre_logo.png";
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
 import Dropdown from "react-bootstrap/Dropdown";
-import Image from "react-bootstrap/Image";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
@@ -27,6 +26,9 @@ import btnStyles from "../styles/Buttons.module.css";
 
 // Hooks
 import UseClickOutsideToggle from "../hooks/UseClickOutsideToggle";
+
+// Local Components
+import Avatar from "./Avatar";
 
 // Utils
 import { removeTokenTimestamp } from "../utils/utils";
@@ -66,12 +68,11 @@ const NavBar = () => {
           variant="link"
           className={`${styles.NavLinkAvatar} ${styles["dropdown-toggle"]}`}
         >
-          {/* <Avatar src={currentUser.avatarUrl || ''} height={45} /> */}
-          <Image
+          <Avatar
             src={currentUser?.profile_image}
-            roundedCircle
+            text=""
             height={40}
-            width={40}
+            className="m-2"
           />
         </Dropdown.Toggle>
 
