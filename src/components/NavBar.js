@@ -22,7 +22,6 @@ import {
 
 // CSS
 import styles from "../styles/NavBar.module.css";
-import btnStyles from "../styles/Buttons.module.css";
 
 // Hooks
 import UseClickOutsideToggle from "../hooks/UseClickOutsideToggle";
