@@ -7,7 +7,7 @@
 }
 
 .Btn {
-  font-weight: bold;
+  font-weight: 500;
   background: linear-gradient(to right, #ffa245, #88300f) !important;
   border: none;
 }
@@ -22,5 +22,69 @@
 
 .Btn:active,
 .Btn:focus {
+  box-shadow: none !important;
+}
+
+.BackBtn {
+  color: #ffebd8 !important;
+}
+
+.BackBtn:hover {
+  color: #ff7b00 !important;
+}
+
+.BackBtn:active,
+.BackBtn:focus {
+  box-shadow: none !important;
+}
+
+.ChangeBtn {
+  background-color: transparent !important;
+  color: #ffebd8 !important;
+}
+
+.ChangeBtn:hover {
+  color: #ff7b00 !important;
+}
+
+.CreateBtn {
+  font-weight: 500;
+  background: linear-gradient(to right, #00f3fb, #20d787) !important;
+  border: none;
+  color: #171717 !important;
+  margin-left: 1rem;
+}
+
+.CreateBtn:hover {
+  background: linear-gradient(to bottom, #49f9ff, #44ce92) !important;
+  color: #232323 !important;
+  box-shadow: none !important;
+  text-shadow: #ffffffc1 0px 0px 5px;
+  transition: 0.2s ease-in-out;
+}
+
+.CreateBtn:active,
+.CreateBtn:focus {
+  box-shadow: none !important;
+}
+
+.CancelBtn {
+  font-weight: 500;
+  background: linear-gradient(to right, #ffd56c, #ff4e4e) !important;
+  border: none;
+  color: #171717 !important;
+  margin-right: 1rem;
+}
+
+.CancelBtn:hover {
+  background: linear-gradient(to bottom, #ffde8a, #b23737) !important;
+  color: #232323 !important;
+  box-shadow: none !important;
+  text-shadow: #ffffffc1 0px 0px 5px;
+  transition: 0.2s ease-in-out;
+}
+
+.CancelBtn:active,
+.CancelBtn:focus {
   box-shadow: none !important;
 }

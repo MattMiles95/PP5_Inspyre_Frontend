@@ -23,28 +23,28 @@ import { UseRedirect } from "../../hooks/UseRedirect";
 // React Router
 import { useNavigate } from "react-router-dom";
 
-function PostTextForm() {
-  UseRedirect('loggedOut');
+function PostTextForm({ setPostType }) {
+  UseRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [postData, setPostData] = useState({
     title: "",
     content: "",
-    tags: ""
+    tags: "",
   });
   const { title, content, tags } = postData;
 
   const handleChange = (e) => {
     setPostData({
       ...postData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleTagsChange = (e) => {
     setPostData({
       ...postData,
-      tags: e.target.value
+      tags: e.target.value,
     });
   };
 
@@ -68,6 +68,14 @@ function PostTextForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Container className={`${appStyles.Content} ${styles.Container} mt-4`}>
+        <Button
+          variant="link"
+          className={`${btnStyles.BackBtn} mb-3 p-0 text-decoration-none d-flex align-items-center`}
+          onClick={() => setPostType(null)}
+          aria-label="Go back to post type selection"
+        >
+          <i className="fas fa-arrow-left me-2"></i> Go back
+        </Button>
         <Row className="mb-3">
           <Col md={{ span: 8, offset: 2 }}>
             <Form.Group>
@@ -128,20 +136,22 @@ function PostTextForm() {
         </Row>
 
         <Row>
-          <Col md={{ span: 8, offset: 2 }} className="d-flex justify-content-between">
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
-              onClick={() => navigate(-1)}
-              aria-label="Cancel post creation"
-            >
-              Cancel
-            </Button>
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
-              type="submit"
-            >
-              Create
-            </Button>
+          <Col
+            md={{ span: 8, offset: 2 }}
+            className="d-flex justify-content-between"
+          >
+            <div className="d-flex justify-content-center gap-3">
+              <Button
+                className={`${btnStyles.CancelBtn}`}
+                onClick={() => navigate(-1)}
+                aria-label="Cancel post creation"
+              >
+                Cancel
+              </Button>
+              <Button className={`${btnStyles.CreateBtn}`} type="submit">
+                Create
+              </Button>
+            </div>
           </Col>
         </Row>
       </Container>

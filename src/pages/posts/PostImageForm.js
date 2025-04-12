@@ -30,7 +30,7 @@ import Asset from "../../components/Asset";
 // React Router
 import { useNavigate } from "react-router-dom";
 
-function PostImageForm() {
+function PostImageForm({ setPostType }) {
   UseRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -96,6 +96,14 @@ function PostImageForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Container fluid className="mt-4">
+        <Button
+          variant="link"
+          className={`${btnStyles.BackBtn} mb-3 p-0 text-decoration-none d-flex align-items-center`}
+          onClick={() => setPostType(null)}
+          aria-label="Go back to post type selection"
+        >
+          <i className="fas fa-arrow-left me-2"></i> Go back
+        </Button>
         <Row>
           {/* Image upload section */}
           <Col md={6} className="mb-4">
@@ -108,10 +116,10 @@ function PostImageForm() {
                     </figure>
                     <div>
                       <Form.Label
-                        className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                        className={`${btnStyles.ChangeBtn} btn`}
                         htmlFor="image-upload"
                       >
-                        Change the image
+                        Change image
                       </Form.Label>
                     </div>
                   </>
@@ -120,7 +128,7 @@ function PostImageForm() {
                     className="d-flex justify-content-center"
                     htmlFor="image-upload"
                   >
-                    <Asset src={Upload} message="Upload image" />
+                    <Asset src={Upload} message="Upload your creation" />
                   </Form.Label>
                 )}
                 <Form.Control
@@ -190,18 +198,15 @@ function PostImageForm() {
                 ))}
               </Form.Group>
 
-              <div className="d-flex justify-content-between">
+              <div className="d-flex align-items-left gap-3">
                 <Button
-                  className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                  className={`${btnStyles.CancelBtn}`}
                   onClick={() => navigate(-1)}
                   aria-label="Cancel post creation"
                 >
                   Cancel
                 </Button>
-                <Button
-                  className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                  type="submit"
-                >
+                <Button className={`${btnStyles.CreateBtn}`} type="submit">
                   Create
                 </Button>
               </div>

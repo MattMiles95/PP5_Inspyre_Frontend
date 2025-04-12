@@ -56,14 +56,15 @@ const PostCreate = () => {
                   className={`w-100 ${styles.SelectButton}`}
                   onClick={() => handlePostTypeSelect("text")}
                 >
-                  Create Text Post
+                  Written Creation
                 </Button>
               </Col>
             </Row>
           )}
 
-          {postType === "image" && <PostImageForm />}
-          {postType === "text" && <PostTextForm />}
+          {postType === "image" && <PostImageForm setPostType={setPostType} />}
+          {postType === "text" && <PostTextForm setPostType={setPostType} />}
+          
         </Card.Body>
       </Card>
     </Container>
