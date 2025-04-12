@@ -1,0 +1,216 @@
+// React
+import React, { useState, useRef, useEffect } from "react";
+
+// API
+import { axiosReq } from "../../api/axiosDefaults";
+
+// Assets
+import Upload from "../../assets/upload.svg";
+
+// Bootstrap Components
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
+
+// CSS
+import styles from "../../styles/PostCreateForms.module.css";
+import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Buttons.module.css";
+
+// Hooks
+import { UseRedirect } from "../../hooks/UseRedirect";
+
+// Local Components
+import Asset from "../../components/Asset";
+
+// React Router
+import { useNavigate } from "react-router-dom";
+
+function PostImageForm() {
+  UseRedirect("loggedOut");
+  const [errors, setErrors] = useState({});
+  const navigate = useNavigate();
+  const imageInput = useRef(null);
+  const [postData, setPostData] = useState({
+    title: "",
+    content: "",
+    image: "",
+    imageFile: null,
+    tags: "",
+  });
+  const { title, content, image, imageFile, tags } = postData;
+
+  useEffect(() => {
+    return () => {
+      if (image) URL.revokeObjectURL(image);
+    };
+  }, [image]);
+
+  const handleChange = (e) => {
+    setPostData({
+      ...postData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleTagsChange = (e) => {
+    setPostData({
+      ...postData,
+      tags: e.target.value,
+    });
+  };
+
+  const handleChangeImage = (e) => {
+    if (e.target.files.length) {
+      const selectedFile = e.target.files[0];
+      setPostData({
+        ...postData,
+        image: URL.createObjectURL(selectedFile),
+        imageFile: selectedFile,
+      });
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("content", content);
+    formData.append("image", imageFile);
+    formData.append("tags", tags);
+
+    try {
+      const { data } = await axiosReq.post("/posts/", formData);
+      navigate(`/posts/${data.id}`);
+    } catch (err) {
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
+
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Container fluid className="mt-4">
+        <Row>
+          {/* Image upload section */}
+          <Col md={6} className="mb-4">
+            <Container className={`${appStyles.Content} ${styles.Container}`}>
+              <Form.Group className="text-center">
+                {image ? (
+                  <>
+                    <figure>
+                      <Image className={appStyles.Image} src={image} rounded />
+                    </figure>
+                    <div>
+                      <Form.Label
+                        className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                        htmlFor="image-upload"
+                      >
+                        Change the image
+                      </Form.Label>
+                    </div>
+                  </>
+                ) : (
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  >
+                    <Asset src={Upload} message="Upload image" />
+                  </Form.Label>
+                )}
+                <Form.Control
+                  type="file"
+                  id="image-upload"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  aria-label="Image upload"
+                  ref={imageInput}
+                />
+              </Form.Group>
+              {errors?.image?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
+            </Container>
+          </Col>
+
+          {/* Form fields section */}
+          <Col md={6}>
+            <Container className={`${appStyles.Content} ${styles.Container}`}>
+              <Form.Group className="mb-3">
+                <Form.Label>Title</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="title"
+                  value={title}
+                  onChange={handleChange}
+                />
+                {errors?.title?.map((message, idx) => (
+                  <Alert key={idx} variant="warning" className="mt-2">
+                    {message}
+                  </Alert>
+                ))}
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Content</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={6}
+                  name="content"
+                  value={content}
+                  onChange={handleChange}
+                />
+                {errors?.content?.map((message, idx) => (
+                  <Alert key={idx} variant="warning" className="mt-2">
+                    {message}
+                  </Alert>
+                ))}
+              </Form.Group>
+
+              <Form.Group className="mb-4">
+                <Form.Label>Tags (comma-separated)</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="tags"
+                  value={tags}
+                  onChange={handleTagsChange}
+                  placeholder="Enter tags separated by commas"
+                />
+                {errors?.tags?.map((message, idx) => (
+                  <Alert key={idx} variant="warning" className="mt-2">
+                    {message}
+                  </Alert>
+                ))}
+              </Form.Group>
+
+              <div className="d-flex justify-content-between">
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                  onClick={() => navigate(-1)}
+                  aria-label="Cancel post creation"
+                >
+                  Cancel
+                </Button>
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                  type="submit"
+                >
+                  Create
+                </Button>
+              </div>
+            </Container>
+          </Col>
+        </Row>
+      </Container>
+    </Form>
+  );
+}
+
+export default PostImageForm;

@@ -1,0 +1,70 @@
+.CreateContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.SelectionCard {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.SelectButton {
+  padding: 1.5rem;
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+
+.SelectButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .SelectionCard {
+    margin: 1rem;
+  }
+
+  .SelectButton {
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}
+
+.Container {
+  background-color: #171717;
+  padding: 10px;
+  border-radius: 2px;
+  border: 1px solid #000000;
+}
+
+.UploadPlaceholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  border: 2px dashed #444;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.UploadPlaceholder:hover {
+  background-color: #222;
+  border-color: #666;
+}
+
+.UploadPlaceholder i {
+  font-size: 2rem;
+  color: #666;
+}
+
+.UploadPlaceholder p {
+  margin-top: 1rem;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .Container {
+    margin: 1rem;
+  }
+}
