@@ -76,6 +76,11 @@ function PostImageForm({ setPostType, postType }) {
   };
 
   const handleSubmit = async (e) => {
+    if (!imageFile) {
+      setErrors({ image: ["You forgot to add your image!"] });
+      return;
+    }
+
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
@@ -116,7 +121,11 @@ function PostImageForm({ setPostType, postType }) {
                   {image ? (
                     <>
                       <figure>
-                        <Image className={appStyles.Image} src={image} rounded />
+                        <Image
+                          className={appStyles.Image}
+                          src={image}
+                          rounded
+                        />
                       </figure>
                       <div>
                         <Form.Label
@@ -132,7 +141,11 @@ function PostImageForm({ setPostType, postType }) {
                       className="d-flex justify-content-center"
                       htmlFor="image-upload"
                     >
-                      <Asset src={Upload} height={50} message="Upload your creation" />
+                      <Asset
+                        src={Upload}
+                        height={50}
+                        message="Upload your creation"
+                      />
                     </Form.Label>
                   )}
                   <Form.Control
@@ -206,13 +219,17 @@ function PostImageForm({ setPostType, postType }) {
 
                 <div className="d-flex align-items-left gap-3 mb-2">
                   <Button
-                    className={`${btnStyles.CancelBtn}`}
+                    className={btnStyles.CancelBtn}
                     onClick={() => navigate(-1)}
                     aria-label="Cancel post creation"
                   >
                     Cancel
                   </Button>
-                  <Button className={`${btnStyles.CreateBtn}`} type="submit">
+                  <Button
+                    className={btnStyles.CreateBtn}
+                    type="submit"
+                    disabled={!imageFile}
+                  >
                     Create
                   </Button>
                 </div>

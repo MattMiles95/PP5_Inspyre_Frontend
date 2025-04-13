@@ -78,6 +78,11 @@ function PostTextForm({ setPostType, postType }) {
   };
 
   const handleSubmit = async (e) => {
+    if (!content.trim()) {
+      setErrors({ content: ["You forgot to write something!"] });
+      return;
+    }
+
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
@@ -176,13 +181,17 @@ function PostTextForm({ setPostType, postType }) {
           <Col md={{ span: 12 }} className="d-flex justify-content-between">
             <div className="d-flex justify-content-center gap-3">
               <Button
-                className={`${btnStyles.CancelBtn}`}
+                className={btnStyles.CancelBtn}
                 onClick={() => navigate(-1)}
                 aria-label="Cancel post creation"
               >
                 Cancel
               </Button>
-              <Button className={`${btnStyles.CreateBtn}`} type="submit">
+              <Button
+                className={`${btnStyles.CreateBtn}`}
+                type="submit"
+                disabled={!content.trim()}
+              >
                 Create
               </Button>
             </div>
