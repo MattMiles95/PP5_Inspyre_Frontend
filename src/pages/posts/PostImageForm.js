@@ -30,7 +30,7 @@ import Asset from "../../components/Asset";
 // React Router
 import { useNavigate } from "react-router-dom";
 
-function PostImageForm({ setPostType }) {
+function PostImageForm({ setPostType, postType }) {
   UseRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
@@ -104,115 +104,122 @@ function PostImageForm({ setPostType }) {
         >
           <i className="fas fa-arrow-left me-2"></i> Go back
         </Button>
-        <Row>
-          {/* Image upload section */}
-          <Col md={6} className="mb-4">
-            <Container className={`${appStyles.Content} ${styles.Container}`}>
-              <Form.Group className="text-center">
-                {image ? (
-                  <>
-                    <figure>
-                      <Image className={appStyles.Image} src={image} rounded />
-                    </figure>
-                    <div>
-                      <Form.Label
-                        className={`${btnStyles.ChangeBtn} btn`}
-                        htmlFor="image-upload"
-                      >
-                        Change image
-                      </Form.Label>
-                    </div>
-                  </>
-                ) : (
-                  <Form.Label
-                    className="d-flex justify-content-center"
-                    htmlFor="image-upload"
+
+        {/* Only show the image section if the 'image' postType is selected */}
+        {postType === "image" && (
+          <Row>
+            <h2 className={styles.CenteredHeading}>Visual Creation</h2>
+            <Col xs={12}>
+              {/* Image upload section */}
+              <Container className={`${appStyles.Content} ${styles.Container}`}>
+                <Form.Group className="text-center">
+                  {image ? (
+                    <>
+                      <figure>
+                        <Image className={appStyles.Image} src={image} rounded />
+                      </figure>
+                      <div>
+                        <Form.Label
+                          className={`${btnStyles.ChangeBtn} btn`}
+                          htmlFor="image-upload"
+                        >
+                          Change image
+                        </Form.Label>
+                      </div>
+                    </>
+                  ) : (
+                    <Form.Label
+                      className="d-flex justify-content-center"
+                      htmlFor="image-upload"
+                    >
+                      <Asset src={Upload} height={50} message="Upload your creation" />
+                    </Form.Label>
+                  )}
+                  <Form.Control
+                    type="file"
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    aria-label="Image upload"
+                    ref={imageInput}
+                  />
+                </Form.Group>
+                {errors?.image?.map((message, idx) => (
+                  <Alert key={idx} variant="warning">
+                    {message}
+                  </Alert>
+                ))}
+              </Container>
+            </Col>
+
+            {/* Form fields section */}
+            <Col xs={12} className="mt-4">
+              <Container className={`${appStyles.Content} ${styles.Container}`}>
+                <Form.Group className="mb-3">
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Name your creation"
+                    name="title"
+                    value={title}
+                    onChange={handleChange}
+                  />
+                  {errors?.title?.map((message, idx) => (
+                    <Alert key={idx} variant="warning" className="mt-2">
+                      {message}
+                    </Alert>
+                  ))}
+                </Form.Group>
+
+                <Form.Group className="mb-3">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    placeholder="A picture tells a thousand words, but a few more never hurt..."
+                    rows={6}
+                    name="content"
+                    value={content}
+                    onChange={handleChange}
+                  />
+                  {errors?.content?.map((message, idx) => (
+                    <Alert key={idx} variant="warning" className="mt-2">
+                      {message}
+                    </Alert>
+                  ))}
+                </Form.Group>
+
+                <Form.Group className="mb-4">
+                  <Form.Label>Tags (comma-separated)</Form.Label>
+                  <Form.Control
+                    type="text"
+                    name="tags"
+                    value={tags}
+                    onChange={handleTagsChange}
+                    placeholder="Enter tags separated by commas"
+                  />
+                  {errors?.tags?.map((message, idx) => (
+                    <Alert key={idx} variant="warning" className="mt-2">
+                      {message}
+                    </Alert>
+                  ))}
+                </Form.Group>
+
+                <div className="d-flex align-items-left gap-3 mb-2">
+                  <Button
+                    className={`${btnStyles.CancelBtn}`}
+                    onClick={() => navigate(-1)}
+                    aria-label="Cancel post creation"
                   >
-                    <Asset src={Upload} message="Upload your creation" />
-                  </Form.Label>
-                )}
-                <Form.Control
-                  type="file"
-                  id="image-upload"
-                  accept="image/*"
-                  onChange={handleChangeImage}
-                  aria-label="Image upload"
-                  ref={imageInput}
-                />
-              </Form.Group>
-              {errors?.image?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-              ))}
-            </Container>
-          </Col>
-
-          {/* Form fields section */}
-          <Col md={6}>
-            <Container className={`${appStyles.Content} ${styles.Container}`}>
-              <Form.Group className="mb-3">
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="title"
-                  value={title}
-                  onChange={handleChange}
-                />
-                {errors?.title?.map((message, idx) => (
-                  <Alert key={idx} variant="warning" className="mt-2">
-                    {message}
-                  </Alert>
-                ))}
-              </Form.Group>
-
-              <Form.Group className="mb-3">
-                <Form.Label>Content</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={6}
-                  name="content"
-                  value={content}
-                  onChange={handleChange}
-                />
-                {errors?.content?.map((message, idx) => (
-                  <Alert key={idx} variant="warning" className="mt-2">
-                    {message}
-                  </Alert>
-                ))}
-              </Form.Group>
-
-              <Form.Group className="mb-4">
-                <Form.Label>Tags (comma-separated)</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="tags"
-                  value={tags}
-                  onChange={handleTagsChange}
-                  placeholder="Enter tags separated by commas"
-                />
-                {errors?.tags?.map((message, idx) => (
-                  <Alert key={idx} variant="warning" className="mt-2">
-                    {message}
-                  </Alert>
-                ))}
-              </Form.Group>
-
-              <div className="d-flex align-items-left gap-3">
-                <Button
-                  className={`${btnStyles.CancelBtn}`}
-                  onClick={() => navigate(-1)}
-                  aria-label="Cancel post creation"
-                >
-                  Cancel
-                </Button>
-                <Button className={`${btnStyles.CreateBtn}`} type="submit">
-                  Create
-                </Button>
-              </div>
-            </Container>
-          </Col>
-        </Row>
+                    Cancel
+                  </Button>
+                  <Button className={`${btnStyles.CreateBtn}`} type="submit">
+                    Create
+                  </Button>
+                </div>
+              </Container>
+            </Col>
+          </Row>
+        )}
       </Container>
     </Form>
   );

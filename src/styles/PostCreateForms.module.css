@@ -26,7 +26,7 @@
   font-weight: bold;
   background-image: linear-gradient(to right, #ff9532, #b85900);
   background-clip: text;
-  text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
   text-transform: uppercase;
 }
 
@@ -63,4 +63,15 @@
   color: #ffebd8;
   font-size: 0.95rem;
   opacity: 0.85;
+}
+
+.CenteredHeading {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  background-image: linear-gradient(to right, #ff9532, #b85900);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
 }

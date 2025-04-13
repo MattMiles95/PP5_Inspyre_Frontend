@@ -26,10 +26,13 @@ const PostCreate = () => {
     <Container className={`mt-4 ${styles.CreateContainer}`}>
       <Card className={styles.SelectionCard}>
         <Card.Body>
-          <div className={styles.HeaderSection}>
-            <h1>What Will You Create Today?</h1>
-            <h2>Choose your medium and let your creativity take the lead.</h2>
-          </div>
+          {/* Hide the headings when postType is selected */}
+          {!postType && (
+            <div className={styles.HeaderSection}>
+              <h1>What Will You Create Today?</h1>
+              <h2>Choose your medium and let your creativity take the lead.</h2>
+            </div>
+          )}
 
           {!postType && (
             <Row className="justify-content-around text-center">
@@ -62,9 +65,8 @@ const PostCreate = () => {
             </Row>
           )}
 
-          {postType === "image" && <PostImageForm setPostType={setPostType} />}
-          {postType === "text" && <PostTextForm setPostType={setPostType} />}
-          
+          {postType === "image" && <PostImageForm setPostType={setPostType} postType={postType} />}
+          {postType === "text" && <PostTextForm setPostType={setPostType} postType={postType} />}
         </Card.Body>
       </Card>
     </Container>
