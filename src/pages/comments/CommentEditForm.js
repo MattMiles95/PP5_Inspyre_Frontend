@@ -11,8 +11,7 @@ import Form from "react-bootstrap/Form";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 
 function CommentEditForm(props) {
-  const { id, content, setShowEditForm, setComments } = props;
-
+  const { id, content, setShowEditForm, setComments, approval_status } = props;
   const [formContent, setFormContent] = useState(content);
 
   const handleChange = (event) => {
@@ -43,6 +42,10 @@ function CommentEditForm(props) {
     }
   };
 
+  if (approval_status === 1) {
+    return <p className={styles.Reported}>This comment has been reported and cannot be edited.</p>;
+  }
+
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="pr-1">
@@ -64,7 +67,7 @@ function CommentEditForm(props) {
         </button>
         <button
           className={styles.Button}
-          disabled={!content.trim()}
+          disabled={!formContent.trim()}
           type="submit"
         >
           save

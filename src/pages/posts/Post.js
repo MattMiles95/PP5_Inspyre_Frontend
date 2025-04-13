@@ -1,4 +1,3 @@
-// React
 import React from "react";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -93,12 +92,13 @@ const Post = (props) => {
     <Card className={styles.Post}>
       <Card.Body>
         <div className="d-flex align-items-center justify-content-between">
-          <div className="d-flex align-items-center">
-            <Link to={`/profiles/${profile_id}`} className="d-flex align-items-center text-reset text-decoration-none">
-              <Avatar src={profile_image} height={55} />
-              <span className="ml-2 font-weight-bold">{owner}</span>
-            </Link>
-          </div>
+          <Link
+            to={`/profiles/${profile_id}`}
+            className="d-flex align-items-center text-reset text-decoration-none"
+          >
+            <Avatar src={profile_image} height={55} />
+            <span className="ml-2 font-weight-bold">{owner}</span>
+          </Link>
           {is_owner && postPage && (
             <PostDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
           )}
@@ -106,22 +106,21 @@ const Post = (props) => {
         <div className="text-muted small mt-1 text-right">{updated_at}</div>
       </Card.Body>
 
-      {image ? (
-        <Card.Img src={image} alt={title} className={styles.PostImage} />
-      ) : content ? (
-        <Card.Body>
-          <Card.Text>{content}</Card.Text>
-        </Card.Body>
-      ) : (
-        <Asset spinner />
-      )}
-
-      <Card.Body>
+      {/* Unified content block: title, image or content */}
+      <Card.Body className={styles.MediaContainer}>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
+
+        {image ? (
+          <Card.Img src={image} alt={title} className={styles.PostImage} />
+        ) : content ? (
+          <Card.Text dangerouslySetInnerHTML={{ __html: content }} />
+        ) : (
+          <Asset spinner />
+        )}
 
         {/* Tags */}
         {post_tags?.length > 0 && (
-          <div className={`${styles.Tags} mt-2 mb-3`}>
+          <div className={`${styles.Tags} mt-3`}>
             {post_tags.map((tag, index) => (
               <span key={index} className={styles.Tag}>
                 #{tag}
@@ -129,8 +128,10 @@ const Post = (props) => {
             ))}
           </div>
         )}
+      </Card.Body>
 
-        {/* Engagement bar */}
+      {/* Engagement bar */}
+      <Card.Body>
         <div className={styles.PostBar}>
           {is_owner ? (
             <OverlayTrigger

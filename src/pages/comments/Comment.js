@@ -8,7 +8,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import Card from "react-bootstrap/Card";
 
 // Context
-import { useCurrentUser } from "../../context/CurrentUserContext";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
 import styles from "../../styles/Comment.module.css";
@@ -16,7 +16,7 @@ import styles from "../../styles/Comment.module.css";
 // Local Components
 import Avatar from "../../components/Avatar";
 import CommentEditForm from "./CommentEditForm";
-import PostDropdown from "../../components/MoreDropdown";
+import PostDropdown from "../../components/PostDropdown";
 
 // React Router
 import { Link } from "react-router-dom";
@@ -31,6 +31,7 @@ const Comment = (props) => {
     id,
     setPost,
     setComments,
+    approval_status,
   } = props;
 
   const [showEditForm, setShowEditForm] = useState(false);
@@ -58,6 +59,24 @@ const Comment = (props) => {
     }
   };
 
+  const handleReport = async () => {
+    try {
+      await axiosRes.put(`/comments/${id}/`, {
+        approval_status: 1,
+      });
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) =>
+          comment.id === id
+            ? { ...comment, approval_status: 1 }
+            : comment
+        ),
+      }));
+    } catch (err) {
+      // console.error(err);
+    }
+  };
+
   return (
     <>
       <hr />
@@ -67,12 +86,11 @@ const Comment = (props) => {
             <Avatar src={profile_image} />
           </Link>
 
-          {/* Main content container */}
           <div className="flex-grow-1 d-flex justify-content-between align-items-start">
-            {/* Content column */}
             <div>
               <span className={styles.Owner}>{owner}</span>
               <span className={styles.Date}>{updated_at}</span>
+
               {showEditForm ? (
                 <CommentEditForm
                   id={id}
@@ -81,23 +99,27 @@ const Comment = (props) => {
                   profileImage={profile_image}
                   setComments={setComments}
                   setShowEditForm={setShowEditForm}
+                  approval_status={approval_status}
                 />
+              ) : approval_status === 1 ? (
+                <p className={styles.Reported}>This comment has been reported.</p>
               ) : (
                 <p>{content}</p>
               )}
             </div>
 
-            {/* MoreDropdown column */}
-            {is_owner && (
-              <div className="mt-1">
-                {" "}
-                {/* mt-1 to match baseline of owner/date spans */}
+            <div className="mt-1">
+              {is_owner ? (
                 <PostDropdown
                   handleEdit={() => setShowEditForm(true)}
                   handleDelete={handleDelete}
                 />
-              </div>
-            )}
+              ) : (
+                approval_status !== 1 && (
+                  <PostDropdown handleReport={handleReport} />
+                )
+              )}
+            </div>
           </div>
         </Card.Body>
       </Card>

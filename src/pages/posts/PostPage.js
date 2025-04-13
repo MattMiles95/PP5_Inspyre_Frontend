@@ -17,6 +17,8 @@ import appStyles from "../../App.module.css";
 
 // Local Components
 import Asset from "../../components/Asset";
+import Comment from "../comments/Comment";
+import CommentCreateForm from "../comments/CommentCreateForm";
 import Post from "./Post";
 import { fetchMoreData } from "../../utils/utils";
 
@@ -29,7 +31,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
-//   const [comments, setComments] = useState({ results: [] });
+  const [comments, setComments] = useState({ results: [] });
 
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
@@ -39,10 +41,10 @@ function PostPage() {
       try {
         const [{ data: postData }, { data: commentsData }] = await Promise.all([
           axiosReq.get(`/posts/${id}/`),
-        //   axiosReq.get(`/comments/?post=${id}`),
+          axiosReq.get(`/comments/?post=${id}`),
         ]);
         setPost({ results: [postData] });
-        // setComments(commentsData);
+        setComments(commentsData);
       } catch (err) {
         // console.error(err);
       }
@@ -62,7 +64,7 @@ function PostPage() {
           <Asset spinner />
         )}
 
-        {/* <Container className={appStyles.Content}>
+        <Container className={appStyles.Content}>
           {currentUser && (
             <CommentCreateForm
               profile_id={currentUser.profile_id}
@@ -94,7 +96,7 @@ function PostPage() {
           ) : (
             <span>No comments... yet!</span>
           )}
-        </Container> */}
+        </Container>
       </Col>
 
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">

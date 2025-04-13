@@ -46,7 +46,7 @@ function PostTextForm({ setPostType, postType }) {
         ["bold", "italic", "underline", "strike"],
         [{ color: [] }, { background: [] }],
         [{ list: "ordered" }, { list: "bullet" }],
-        [{ align: [] }],
+        [{ align: ["left", "center", "justify"] }],
         ["clean"], // remove formatting
       ],
     },

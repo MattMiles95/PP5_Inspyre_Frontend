@@ -1,35 +1,30 @@
+// React
+import React from "react";
+
 // Bootstrap Components
 import Dropdown from "react-bootstrap/Dropdown";
 
 // Bootstrap Icons
-import { ThreeDotsVertical } from "react-bootstrap-icons";
+import { ThreeDots } from "react-bootstrap-icons";
 
-// CSS
-import styles from "../styles/Post.module.css";
-
-function PostDropdown({ handleEdit, handleDelete }) {
+const PostDropdown = ({ handleEdit, handleDelete, handleReport }) => {
   return (
-    <Dropdown align="end">
-      <Dropdown.Toggle
-        as="div"
-        className={`d-flex align-items-center ${styles.PostDropdownToggle}`}
-      >
-        <ThreeDotsVertical role="button" />
+    <Dropdown>
+      <Dropdown.Toggle variant="link" bsPrefix="p-0">
+        <ThreeDots />
       </Dropdown.Toggle>
 
-      <Dropdown.Menu className={`text-center ${styles.PostDropdownMenu}`}>
-        <Dropdown.Item className={styles.DropdownItem} onClick={handleEdit}>
-          Edit
-        </Dropdown.Item>
-        <Dropdown.Item
-          className={`${styles.DropdownItem} text-danger`}
-          onClick={handleDelete}
-        >
-          Delete
-        </Dropdown.Item>
+      <Dropdown.Menu>
+        {handleEdit && <Dropdown.Item onClick={handleEdit}>Edit</Dropdown.Item>}
+        {handleDelete && (
+          <Dropdown.Item onClick={handleDelete}>Delete</Dropdown.Item>
+        )}
+        {handleReport && (
+          <Dropdown.Item onClick={handleReport}>Report</Dropdown.Item>
+        )}
       </Dropdown.Menu>
     </Dropdown>
   );
-}
+};
 
 export default PostDropdown;
