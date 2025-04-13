@@ -3,6 +3,10 @@
   border-bottom: 1px solid #000000;
 }
 
+.Logo {
+  height: 75px;
+}
+
 .NavLink {
   display: flex !important;
   align-items: center !important;
@@ -67,6 +71,11 @@
   color: #ff7b00 !important;
 }
 
+.Discover:hover {
+  color: #fff !important;
+  transition: 0.2s ease-in-out;
+}
+
 .NavLink:hover {
   color: #fff !important;
   transition: 0.2s ease-in-out;
@@ -122,4 +131,60 @@
 .Divider {
   font-size: 22px;
   color: #ffebd8;
+}
+
+@media only screen and (max-width: 520px) {
+
+  .NavLink {
+    margin-top: 0.5rem;
+    margin-right: 1rem !important;
+    padding: 0 !important;
+    font-size: 0.9rem;
+  }
+
+  .InspyreLink {
+    padding: 0.25rem 0.5rem !important;
+  }
+
+  .Discover {
+    margin-top: 0.5rem;
+    margin-right: 1rem !important;
+    padding: 0 !important;
+    font-size: 0.9rem;
+  }
+
+  .Logo {
+    height: 50px;
+  }
+
+  .LogoLink {
+    margin-bottom: 1rem !important;
+  }
+}
+
+
+@media only screen and (max-width: 440px) {
+
+  .Discover {
+    display: none !important;
+  }
+
+  .Divider {
+    display: none !important;
+  }
+
+  .Logo {
+    height: 60px;
+  }
+
+  .LogoLink {
+    margin-bottom: 12px !important;
+  }
+}
+
+  @media only screen and (max-width: 440px) {
+  
+    .Logo {
+      height: 50px;
+    }
 }

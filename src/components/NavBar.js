@@ -23,9 +23,6 @@ import {
 // CSS
 import styles from "../styles/NavBar.module.css";
 
-// Hooks
-import UseClickOutsideToggle from "../hooks/UseClickOutsideToggle";
-
 // Local Components
 import Avatar from "./Avatar";
 
@@ -35,8 +32,6 @@ import { removeTokenTimestamp } from "../utils/utils";
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-
-  const { expanded, setExpanded, ref } = UseClickOutsideToggle();
 
   const handleSignOut = async () => {
     try {
@@ -50,7 +45,6 @@ const NavBar = () => {
 
   const loggedInNavbar = (
     <>
-      {/* ADD POST */}
       <NavLink
         className={({ isActive }) =>
           `${styles.NavLink} mr-4 ${styles.InspyreLink} ${
@@ -86,7 +80,9 @@ const NavBar = () => {
               Profile
             </NavLink>
           </Dropdown.Item>
-          <Dropdown.Item className={`${styles.DropdownDivider} ${styles.DropdownItem} py-2 px-0 m-0`}>
+          <Dropdown.Item
+            className={`${styles.DropdownDivider} ${styles.DropdownItem} py-2 px-0 m-0`}
+          >
             <NavLink
               className={({ isActive }) =>
                 `${styles.MenuNavLink} ${isActive ? styles.ActiveMenu : ""}`
@@ -97,7 +93,10 @@ const NavBar = () => {
             </NavLink>
           </Dropdown.Item>
 
-          <Dropdown.Item className={`${styles.DropdownDivider} ${styles.MenuNavLink} ${styles.DropdownItem} py-3 pl-2 m-0`} onClick={handleSignOut}>
+          <Dropdown.Item
+            className={`${styles.DropdownDivider} ${styles.MenuNavLink} ${styles.DropdownItem} py-3 pl-2 m-0`}
+            onClick={handleSignOut}
+          >
             Logout
           </Dropdown.Item>
         </Dropdown.Menu>
@@ -107,7 +106,6 @@ const NavBar = () => {
 
   const loggedOutNavbar = (
     <>
-      {/* SIGN IN */}
       <NavLink
         className={({ isActive }) =>
           `${styles.NavLink} mr-4 ${isActive ? styles.Active : ""}`
@@ -117,9 +115,7 @@ const NavBar = () => {
         Login
       </NavLink>
 
-      {/* SIGN UP */}
       <NavLink
-        exact
         className={({ isActive }) =>
           `${styles.NavLink} mr-4 ${isActive ? styles.Active : ""}`
         }
@@ -131,43 +127,27 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar
-      className={styles.NavBar}
-      expanded={expanded}
-      expand="md"
-      fixed="top"
-      bg="dark"
-      variant="dark"
-    >
-      <Container>
+    <Navbar className={styles.NavBar} fixed="top" bg="dark" variant="dark">
+      <Container className="d-flex justify-content-between align-items-center flex-wrap">
         {/* Logo */}
-        <NavLink to="/">
+        <NavLink to="/" className={`${styles.LogoLink} d-flex align-items-center mb-2 mb-md-0`}>
           <Navbar.Brand>
-            <img src={logo} alt="logo" height="75" />
+            <img src={logo} alt="logo" className={styles.Logo} />
           </Navbar.Brand>
         </NavLink>
 
-        {/* Navbar Toggle */}
-        <Navbar.Toggle
-          ref={ref}
-          onClick={() => setExpanded(!expanded)}
-          aria-controls="basic-navbar-nav"
-        />
-        <Navbar.Collapse id="basic-navbar-nav" className="pt-3">
-          <Nav className="ml-auto text-left">
-            {/* Discover */}
-            <NavLink
-              className={({ isActive }) =>
-                `${styles.Discover} mr-4 ${isActive ? styles.Active : ""}`
-              }
-              to="/"
-            >
-              Discover
-            </NavLink>
-            <span className={`${styles.Divider} pr-3`}>|</span>
-            {currentUser ? loggedInNavbar : loggedOutNavbar}
-          </Nav>
-        </Navbar.Collapse>
+        <Nav className="d-flex align-items-center flex-wrap text-left">
+          <NavLink
+            className={({ isActive }) =>
+              `${styles.Discover} mr-4 ${isActive ? styles.Active : ""}`
+            }
+            to="/"
+          >
+            Discover
+          </NavLink>
+          <span className={`${styles.Divider} mr-4`}>|</span>
+          {currentUser ? loggedInNavbar : loggedOutNavbar}
+        </Nav>
       </Container>
     </Navbar>
   );
