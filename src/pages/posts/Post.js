@@ -1,51 +1,167 @@
 // React
 import React from "react";
+import { axiosRes } from "../../api/axiosDefaults";
 
 // Bootstrap Components
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+
+// Bootstrap Icons
+import { Chat, Heart, HeartFill } from "react-bootstrap-icons";
+
+// React Router
+import { Link, useNavigate } from "react-router-dom";
+
+// Context
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
 import styles from "../../styles/Post.module.css";
 
 // Local Components
 import Asset from "../../components/Asset";
-
-// React Router
-import { Link } from "react-router-dom";
+import Avatar from "../../components/Avatar";
+import PostDropdown from "../../components/PostDropdown";
 
 const Post = (props) => {
   const {
     id,
+    owner,
+    profile_id,
+    profile_image,
     title,
     content,
     image,
+    updated_at,
+    post_tags,
+    comments_count,
+    likes_count,
+    like_id,
+    is_owner,
+    postPage,
+    setPosts,
   } = props;
 
-  const renderPreview = () => {
-    if (image) {
-      return <Card.Img src={image} alt={title} className={styles.PostImage} />;
-    } else if (content) {
-      const previewText = content.split(" ").slice(0, 50).join(" ") + "...";
-      return (
-        <Card.Body>
-          <Card.Text className={styles.ContentPreview}>{previewText}</Card.Text>
-        </Card.Body>
-      );
+  const currentUser = useCurrentUser();
+  const navigate = useNavigate();
+
+  const handleEdit = () => navigate(`/posts/${id}/edit`);
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/posts/${id}/`);
+      navigate(-1);
+    } catch (err) {
+      // console.error(err);
     }
-    return <Asset spinner />;
+  };
+
+  const handleLike = async () => {
+    try {
+      const { data } = await axiosRes.post("/likes/", { post: id });
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) =>
+          post.id === id
+            ? { ...post, likes_count: post.likes_count + 1, like_id: data.id }
+            : post
+        ),
+      }));
+    } catch (err) {
+      // console.error(err);
+    }
+  };
+
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}/`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) =>
+          post.id === id
+            ? { ...post, likes_count: post.likes_count - 1, like_id: null }
+            : post
+        ),
+      }));
+    } catch (err) {
+      // console.error(err);
+    }
   };
 
   return (
-    <Link to={`/posts/${id}`} className="text-decoration-none text-reset">
-      <Card className={`${styles.Post} mb-4`}>
-        {renderPreview()}
-        {title && (
-          <Card.Body>
-            <Card.Title className="text-center mb-0">{title}</Card.Title>
-          </Card.Body>
+    <Card className={styles.Post}>
+      <Card.Body>
+        <div className="d-flex align-items-center justify-content-between">
+          <div className="d-flex align-items-center">
+            <Link to={`/profiles/${profile_id}`} className="d-flex align-items-center text-reset text-decoration-none">
+              <Avatar src={profile_image} height={55} />
+              <span className="ml-2 font-weight-bold">{owner}</span>
+            </Link>
+          </div>
+          {is_owner && postPage && (
+            <PostDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+          )}
+        </div>
+        <div className="text-muted small mt-1 text-right">{updated_at}</div>
+      </Card.Body>
+
+      {image ? (
+        <Card.Img src={image} alt={title} className={styles.PostImage} />
+      ) : content ? (
+        <Card.Body>
+          <Card.Text>{content}</Card.Text>
+        </Card.Body>
+      ) : (
+        <Asset spinner />
+      )}
+
+      <Card.Body>
+        {title && <Card.Title className="text-center">{title}</Card.Title>}
+
+        {/* Tags */}
+        {post_tags?.length > 0 && (
+          <div className={`${styles.Tags} mt-2 mb-3`}>
+            {post_tags.map((tag, index) => (
+              <span key={index} className={styles.Tag}>
+                #{tag}
+              </span>
+            ))}
+          </div>
         )}
-      </Card>
-    </Link>
+
+        {/* Engagement bar */}
+        <div className={styles.PostBar}>
+          {is_owner ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You can't like your own post!</Tooltip>}
+            >
+              <Heart className="mr-1" size={20} />
+            </OverlayTrigger>
+          ) : like_id ? (
+            <span onClick={handleUnlike}>
+              <HeartFill className={`mr-1 ${styles.Heart}`} size={20} />
+            </span>
+          ) : currentUser ? (
+            <span onClick={handleLike}>
+              <Heart className={`mr-1 ${styles.HeartOutline}`} size={20} />
+            </span>
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>Log in to like posts!</Tooltip>}
+            >
+              <Heart className="mr-1" size={20} />
+            </OverlayTrigger>
+          )}
+          {likes_count}
+
+          <Chat className="ml-4 mr-1" size={20} />
+          {comments_count}
+        </div>
+      </Card.Body>
+    </Card>
   );
 };
 
