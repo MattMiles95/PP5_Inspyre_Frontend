@@ -10,6 +10,7 @@ import styles from "./App.module.css";
 // Local Components
 import NavBar from './components/NavBar';
 import PostCreate from "./pages/posts/PostCreate";
+import PostPage from "./pages/posts/PostPage";
 import SignInForm from "./pages/auth/SignInForm";
 import SignUpForm from "./pages/auth/SignUpForm";
 
@@ -23,7 +24,8 @@ function App() {
       <Container className={styles.Main}>
         <Routes>
           <Route path="/" element={<h1>Discover</h1>} />
-          <Route path="/inspyre" element={<PostCreate />} />
+          <Route path="/posts/inspyre" element={<PostCreate />} />
+          <Route path="/posts/:id" element={<PostPage />} />
           <Route path="/sparks" element={<h1>Sparks</h1>} />
           <Route path="/profile" element={<h1>Profile</h1>} />
           <Route path="/signin" element={<SignInForm />} />

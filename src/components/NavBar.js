@@ -51,7 +51,7 @@ const NavBar = () => {
             isActive ? styles.ActiveBtn : ""
           }`
         }
-        to="/inspyre"
+        to="/posts/inspyre"
       >
         Inspyre +
       </NavLink>
