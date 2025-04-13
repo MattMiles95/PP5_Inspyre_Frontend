@@ -78,17 +78,28 @@ function PostTextForm({ setPostType, postType }) {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const validationErrors = {};
+  
+    if (!title.trim()) {
+      validationErrors.title = ["Don't forget to give your creation a title!"];
+    }
+  
     if (!content.trim()) {
-      setErrors({ content: ["You forgot to write something!"] });
+      validationErrors.content = ["Uh-oh - looks like you forgot to write something!"];
+    }
+  
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
-
-    e.preventDefault();
+  
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     formData.append("tags", tags);
-
+  
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       navigate(`/posts/${data.id}`);
@@ -98,6 +109,7 @@ function PostTextForm({ setPostType, postType }) {
       }
     }
   };
+  
 
   return (
     <Form onSubmit={handleSubmit}>

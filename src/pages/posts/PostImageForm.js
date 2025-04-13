@@ -76,18 +76,29 @@ function PostImageForm({ setPostType, postType }) {
   };
 
   const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const validationErrors = {};
+  
+    if (!title.trim()) {
+      validationErrors.title = ["Don't forget to give your creation a title!"];
+    }
+  
     if (!imageFile) {
-      setErrors({ image: ["You forgot to add your image!"] });
+      validationErrors.image = ["Uh-oh - you forgot to upload an image!"];
+    }
+  
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
       return;
     }
-
-    e.preventDefault();
+  
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     formData.append("image", imageFile);
     formData.append("tags", tags);
-
+  
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       navigate(`/posts/${data.id}`);
@@ -97,6 +108,7 @@ function PostImageForm({ setPostType, postType }) {
       }
     }
   };
+  
 
   return (
     <Form onSubmit={handleSubmit}>
