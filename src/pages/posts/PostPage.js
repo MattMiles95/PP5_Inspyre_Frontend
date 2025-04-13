@@ -92,7 +92,7 @@ function PostPage() {
               ))}
             </InfiniteScroll>
           ) : currentUser ? (
-            <span>Be the first to leave a comment!</span>
+            <span>No one has commented yet... be the first!</span>
           ) : (
             <span>No comments... yet!</span>
           )}
