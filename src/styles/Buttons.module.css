@@ -88,3 +88,16 @@
 .CancelBtn:focus {
   box-shadow: none !important;
 }
+
+.ReplyBtn {
+  background-color: transparent !important;
+  border: none;
+  color: #bcad9f !important;
+  font-size: .8rem;
+  font-weight: 500;
+}
+
+.ReplyBtn:hover {
+  color: #7e746a !important;
+  text-decoration: underline;
+}

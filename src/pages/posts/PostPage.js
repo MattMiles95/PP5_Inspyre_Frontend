@@ -55,14 +55,13 @@ function PostPage() {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <Col className="py-2 p-0 p-lg-2" lg={10}>
         {post.results.length ? (
           <Post {...post.results[0]} setPosts={setPost} postPage />
         ) : (
           <Asset spinner />
         )}
-      </Col>
-      <Col className="d-none d-lg-block p-0 p-lg-2" lg={4}>
+
         <Container className={appStyles.Content}>
           {currentUser && (
             <CommentCreateForm
@@ -85,6 +84,7 @@ function PostPage() {
                 <Comment
                   key={comment.id}
                   {...comment}
+                  postId={post.results[0]?.id}
                   setPost={setPost}
                   setComments={setComments}
                 />

@@ -12,77 +12,80 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
 import styles from "../../styles/Comment.module.css";
+import btnStyles from "../../styles/Buttons.module.css";
 
 // Local Components
 import Avatar from "../../components/Avatar";
 import CommentEditForm from "./CommentEditForm";
 import PostDropdown from "../../components/PostDropdown";
+import CommentReplyForm from "./CommentReplyForm";
 
 // React Router
 import { Link } from "react-router-dom";
 
-const Comment = (props) => {
-  const {
-    profile_id,
-    profile_image,
-    owner,
-    updated_at,
-    content,
-    id,
-    setPost,
-    setComments,
-    approval_status,
-  } = props;
-
+const Comment = ({
+  id,
+  profile_id,
+  profile_image,
+  owner,
+  updated_at,
+  content,
+  approval_status,
+  replies = [],
+  postId,
+  setPost,
+  setComments,
+  isReply = false, // Default to false
+}) => {
   const [showEditForm, setShowEditForm] = useState(false);
+  const [showReplyForm, setShowReplyForm] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
   const currentUser = useCurrentUser();
-  const is_owner = currentUser?.username === owner;
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/comments/${id}/`);
-      setPost((prevPost) => ({
-        results: [
-          {
-            ...prevPost.results[0],
-            comments_count: prevPost.results[0].comments_count - 1,
-          },
-        ],
-      }));
-
-      setComments((prevComments) => ({
-        ...prevComments,
-        results: prevComments.results.filter((comment) => comment.id !== id),
-      }));
+      setFadeOut(true);
+      setTimeout(async () => {
+        await axiosRes.delete(`/comments/${id}/`);
+        setPost((prev) => ({
+          results: [
+            {
+              ...prev.results[0],
+              comments_count: prev.results[0].comments_count - 1,
+            },
+          ],
+        }));
+        setComments((prev) => ({
+          ...prev,
+          results: prev.results.filter((comment) => comment.id !== id),
+        }));
+      }, 400);
     } catch (err) {
-      // console.error(err);
+      // Handle error
     }
   };
 
   const handleReport = async () => {
     try {
-      await axiosRes.put(`/comments/${id}/`, {
-        approval_status: 1,
-      });
-      setComments((prevComments) => ({
-        ...prevComments,
-        results: prevComments.results.map((comment) =>
-          comment.id === id
-            ? { ...comment, approval_status: 1 }
-            : comment
+      await axiosRes.put(`/comments/${id}/`, { approval_status: 1 });
+      setComments((prev) => ({
+        ...prev,
+        results: prev.results.map((comment) =>
+          comment.id === id ? { ...comment, approval_status: 1 } : comment
         ),
       }));
     } catch (err) {
-      // console.error(err);
+      // Handle error
     }
   };
 
   return (
-    <>
-      <hr />
-      <Card>
-        <Card.Body className="d-flex align-items-start">
-          <Link to={`/profiles/${profile_id}`} className="me-3">
+    <div
+      className={`${styles.CommentWrapper} ${fadeOut ? styles.FadeOut : ""}`}
+    >
+      <Card className={`${styles.CommentCard} ${isReply ? styles.Reply : ""}`}>
+        <Card.Body className="d-flex align-items-start p-0">
+          <Link to={`/profiles/${profile_id}`} className={styles.Avatar}>
             <Avatar src={profile_image} />
           </Link>
 
@@ -94,22 +97,44 @@ const Comment = (props) => {
               {showEditForm ? (
                 <CommentEditForm
                   id={id}
-                  profile_id={profile_id}
                   content={content}
-                  profileImage={profile_image}
                   setComments={setComments}
                   setShowEditForm={setShowEditForm}
                   approval_status={approval_status}
                 />
               ) : approval_status === 1 ? (
-                <p className={styles.Reported}>This comment has been reported.</p>
+                <p className={styles.Reported}>
+                  This comment has been reported.
+                </p>
               ) : (
-                <p>{content}</p>
+                <p className={styles.CommentText}>{content}</p>
+              )}
+
+              {/* Reply Button */}
+              {currentUser?.username !== owner &&
+                approval_status === 0 &&
+                !showReplyForm && (
+                  <button
+                    className={btnStyles.ReplyBtn}
+                    onClick={() => setShowReplyForm(true)}
+                  >
+                    Reply
+                  </button>
+                )}
+
+              {/* Reply Form */}
+              {showReplyForm && (
+                <CommentReplyForm
+                  parentId={id}
+                  postId={postId}
+                  setComments={setComments}
+                  setShowReplyForm={setShowReplyForm}
+                />
               )}
             </div>
 
-            <div className="mt-1">
-              {is_owner ? (
+            <div className={styles.Dropdown}>
+              {currentUser?.username === owner ? (
                 <PostDropdown
                   handleEdit={() => setShowEditForm(true)}
                   handleDelete={handleDelete}
@@ -123,7 +148,24 @@ const Comment = (props) => {
           </div>
         </Card.Body>
       </Card>
-    </>
+
+      {replies.length > 0 && (
+        <div className={styles.ReplyGroup}>
+          {replies.map((reply) => {
+            return (
+              <Comment
+                key={reply.id}
+                {...reply}
+                setPost={setPost}
+                setComments={setComments}
+                postId={postId}
+                isReply={true}
+              />
+            );
+          })}
+        </div>
+      )}
+    </div>
   );
 };
 

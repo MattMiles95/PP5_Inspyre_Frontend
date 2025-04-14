@@ -1,10 +1,92 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-10px);
+    height: 0;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.CommentWrapper {
+  animation: fadeInUp 0.4s ease-out both;
+  transition: all 0.4s ease;
+}
+
+.FadeOut {
+  animation: fadeOut 0.4s ease forwards;
+}
+
+.CommentCard {
+  border: none;
+  padding: 0.5rem;
+  border-radius: 20px;
+  color: #f0e6d2;
+  position: relative;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(255, 123, 0, 0.12);
+}
+
+.CommentCard::before {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  top: 100%;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+}
+
+.CommentCard {
+  background-color: #1e1e1e;
+  box-shadow: 0 0 8px rgba(255, 123, 0, 0.08);
+}
+
+.Reply {
+  background-color: #3c3c3c;
+  box-shadow: 0 0 8px rgba(255, 123, 0, 0.12);
+}
+
+.Avatar {
+  margin-right: 1rem;
+}
+
 .Owner {
-    font-weight: bold;
-    color: #2142b2;
-    margin-right: 8px;
-  }
-  
-  .Date {
-    font-weight: lighter;
-    color: #c1c1c5;
-  }
+  font-weight: bold;
+  color: #ff7b00;
+  font-size: 0.95rem;
+  margin-right: 0.5rem;
+}
+
+.Date {
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+.CommentText {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem !important;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.Reported {
+  font-style: italic;
+  color: #ff4e4e;
+  background-color: rgba(255, 78, 78, 0.08);
+  padding: 0.6rem 0.75rem;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}

@@ -11,7 +11,17 @@ import Form from "react-bootstrap/Form";
 import styles from "../../styles/CommentCreateEditForm.module.css";
 
 function CommentEditForm(props) {
-  const { id, content, setShowEditForm, setComments, approval_status } = props;
+  const {
+    id,
+    content = "", // default for replies
+    setShowEditForm,
+    setComments,
+    approval_status,
+    isReply = false,
+    handleSubmit: customSubmit,
+    cancelCallback,
+  } = props;
+
   const [formContent, setFormContent] = useState(content);
 
   const handleChange = (event) => {
@@ -20,30 +30,50 @@ function CommentEditForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const trimmedContent = formContent?.trim();
+    if (!trimmedContent) return;
+
     try {
+      // If we're replying, defer to the custom handler passed in
+      if (isReply && customSubmit) {
+        await customSubmit(trimmedContent);
+        setFormContent("");
+        return;
+      }
+
+      // Otherwise it's an edit
       await axiosRes.put(`/comments/${id}/`, {
-        content: formContent.trim(),
+        content: trimmedContent,
       });
+
       setComments((prevComments) => ({
         ...prevComments,
-        results: prevComments.results.map((comment) => {
-          return comment.id === id
+        results: prevComments.results.map((comment) =>
+          comment.id === id
             ? {
                 ...comment,
-                content: formContent.trim(),
+                content: trimmedContent,
                 updated_at: "now",
               }
-            : comment;
-        }),
+            : comment
+        ),
       }));
-      setShowEditForm(false);
+
+      if (setShowEditForm) {
+        setShowEditForm(false);
+      }
     } catch (err) {
-      // console.log(err);
+      // Handle or log error
     }
   };
 
-  if (approval_status === 1) {
-    return <p className={styles.Reported}>This comment has been reported and cannot be edited.</p>;
+  if (approval_status === 1 && !isReply) {
+    return (
+      <p className={styles.Reported}>
+        This comment has been reported and cannot be edited.
+      </p>
+    );
   }
 
   return (
@@ -60,7 +90,7 @@ function CommentEditForm(props) {
       <div className="text-right">
         <button
           className={styles.Button}
-          onClick={() => setShowEditForm(false)}
+          onClick={cancelCallback || (() => setShowEditForm?.(false))}
           type="button"
         >
           cancel
@@ -70,7 +100,7 @@ function CommentEditForm(props) {
           disabled={!formContent.trim()}
           type="submit"
         >
-          save
+          {isReply ? "reply" : "save"}
         </button>
       </div>
     </Form>
