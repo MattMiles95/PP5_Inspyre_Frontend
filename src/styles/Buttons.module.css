@@ -100,8 +100,8 @@
 }
 
 .CommentBtn:hover {
-  background-color: #fff;
-  color: #ff7b00;
+  background-color: #ff9b3d;
+  color: #fff;
 }
 
 .CommentBtn:disabled {
@@ -129,6 +129,7 @@
   font-weight: 500;
   border-radius: 8px;
   padding: 0.2rem 0.4rem;
+  margin: 8px 0 5px 8px;
 }
 
 .ReplyFormBtn:hover {

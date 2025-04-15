@@ -1,5 +1,5 @@
-//React
-import React, { useState } from "react";
+// React
+import React, { useState, useEffect, useRef } from "react";
 
 // API
 import { axiosRes } from "../../api/axiosDefaults";
@@ -14,6 +14,21 @@ import btnStyles from "../../styles/Buttons.module.css";
 
 const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
   const [content, setContent] = useState("");
+  const formRef = useRef(null);
+
+  // Detect outside clicks
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (formRef.current && !formRef.current.contains(e.target)) {
+        setShowReplyForm(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setShowReplyForm]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -55,7 +70,11 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className={`${styles.ReplyForm} mt-2`}>
+    <Form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      className={`${styles.ReplyForm} mt-2`}
+    >
       <Form.Group controlId="replyContent">
         <Form.Control
           as="textarea"
@@ -65,9 +84,25 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
           placeholder="Write a reply..."
         />
       </Form.Group>
-      <Button variant="primary" type="submit" size="sm" className={`${btnStyles.ReplyFormBtn} mt-1`}>
-        Post Reply
-      </Button>
+      <div className="d-flex justify-content-end gap-2 mt-1">
+        <Button
+          variant="secondary"
+          type="button"
+          size="sm"
+          className={btnStyles.ReplyFormBtn}
+          onClick={() => setShowReplyForm(false)}
+        >
+          Cancel
+        </Button>
+        <Button
+          variant="primary"
+          type="submit"
+          size="sm"
+          className={btnStyles.ReplyFormBtn}
+        >
+          Post Reply
+        </Button>
+      </div>
     </Form>
   );
 };
