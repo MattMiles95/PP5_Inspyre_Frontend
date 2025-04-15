@@ -35,12 +35,27 @@ const Comment = ({
   postId,
   setPost,
   setComments,
-  isReply = false, // Default to false
+  isReply = false,
 }) => {
   const [showEditForm, setShowEditForm] = useState(false);
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   const currentUser = useCurrentUser();
+
+  const updateCommentStatus = (comments, idToUpdate) => {
+    return comments.map((comment) => {
+      if (comment.id === idToUpdate) {
+        return { ...comment, approval_status: 1 };
+      }
+      if (comment.replies && comment.replies.length > 0) {
+        return {
+          ...comment,
+          replies: updateCommentStatus(comment.replies, idToUpdate),
+        };
+      }
+      return comment;
+    });
+  };
 
   const handleDelete = async () => {
     try {
@@ -66,17 +81,18 @@ const Comment = ({
   };
 
   const handleReport = async () => {
+    const confirmReport = window.confirm(
+      "Are you sure you want to report this comment?"
+    );
+    if (!confirmReport) return;
+
     try {
-      await axiosRes.put(`/comments/${id}/`, { approval_status: 1 });
+      await axiosRes.put(`/comments/${id}/report/`);
       setComments((prev) => ({
         ...prev,
-        results: prev.results.map((comment) =>
-          comment.id === id ? { ...comment, approval_status: 1 } : comment
-        ),
+        results: updateCommentStatus(prev.results, id),
       }));
-    } catch (err) {
-      // Handle error
-    }
+    } catch (err) {}
   };
 
   return (
