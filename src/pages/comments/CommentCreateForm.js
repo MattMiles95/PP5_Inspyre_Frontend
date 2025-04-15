@@ -10,6 +10,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 
 // CSS
 import styles from "../../styles/CommentCreateEditForm.module.css";
+import btnStyles from "../../styles/Buttons.module.css";
 
 // Local Components
 import Avatar from "../../components/Avatar";
@@ -68,7 +69,7 @@ function CommentCreateForm(props) {
         </InputGroup>
       </Form.Group>
       <button
-        className={`${styles.Button} btn d-block ml-auto`}
+        className={`${btnStyles.CommentBtn} btn d-block ml-auto`}
         disabled={!content.trim()}
         type="submit"
       >

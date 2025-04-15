@@ -8,6 +8,10 @@ import { axiosRes } from "../../api/axiosDefaults";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+// CSS
+import styles from "../../styles/CommentReplyForm.module.css";
+import btnStyles from "../../styles/Buttons.module.css";
+
 const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
   const [content, setContent] = useState("");
 
@@ -51,7 +55,7 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
   };
 
   return (
-    <Form onSubmit={handleSubmit} className="mt-2">
+    <Form onSubmit={handleSubmit} className={`${styles.ReplyForm} mt-2`}>
       <Form.Group controlId="replyContent">
         <Form.Control
           as="textarea"
@@ -61,7 +65,7 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
           placeholder="Write a reply..."
         />
       </Form.Group>
-      <Button variant="primary" type="submit" size="sm" className="mt-1">
+      <Button variant="primary" type="submit" size="sm" className={`${btnStyles.ReplyFormBtn} mt-1`}>
         Post Reply
       </Button>
     </Form>

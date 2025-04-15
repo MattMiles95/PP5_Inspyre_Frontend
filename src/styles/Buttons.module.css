@@ -89,6 +89,27 @@
   box-shadow: none !important;
 }
 
+.CommentBtn {
+  background-color: #ff7b00;
+  color: #fff;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.2rem 0.4rem;
+  margin: 5px 0 15px;
+}
+
+.CommentBtn:hover {
+  background-color: #fff;
+  color: #ff7b00;
+}
+
+.CommentBtn:disabled {
+  background-color: #696969;
+  color: #e0e0e0;
+  cursor: not-allowed;
+}
+
 .ReplyBtn {
   background-color: transparent !important;
   border: none;
@@ -100,4 +121,16 @@
 .ReplyBtn:hover {
   color: #7e746a !important;
   text-decoration: underline;
+}
+
+.ReplyFormBtn {
+  background-color: #ff7b00;
+  border: none;
+  font-weight: 500;
+  border-radius: 8px;
+  padding: 0.2rem 0.4rem;
+}
+
+.ReplyFormBtn:hover {
+  background-color: #ff9b3d;
 }
