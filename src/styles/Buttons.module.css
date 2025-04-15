@@ -123,8 +123,9 @@
   text-decoration: underline;
 }
 
-.ReplyFormBtn {
+.CommentFormBtn {
   background-color: #ff7b00;
+  color: #fff;
   border: none;
   font-weight: 500;
   border-radius: 8px;
@@ -132,6 +133,6 @@
   margin: 8px 0 5px 8px;
 }
 
-.ReplyFormBtn:hover {
+.CommentFormBtn:hover {
   background-color: #ff9b3d;
 }

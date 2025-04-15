@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 
 // CSS
 import styles from "../../styles/CommentCreateEditForm.module.css";
+import btnStyles from "../../styles/Buttons.module.css";
 
 function CommentEditForm(props) {
   const {
@@ -35,30 +36,39 @@ function CommentEditForm(props) {
     if (!trimmedContent) return;
 
     try {
-      // If we're replying, defer to the custom handler passed in
       if (isReply && customSubmit) {
         await customSubmit(trimmedContent);
         setFormContent("");
         return;
       }
 
-      // Otherwise it's an edit
       await axiosRes.put(`/comments/${id}/`, {
         content: trimmedContent,
       });
 
       setComments((prevComments) => ({
         ...prevComments,
-        results: prevComments.results.map((comment) =>
-          comment.id === id
-            ? {
-                ...comment,
-                content: trimmedContent,
-                updated_at: "now",
-              }
-            : comment
-        ),
+        results: updateCommentContent(prevComments.results, id, trimmedContent),
       }));
+
+      const updateCommentContent = (comments, idToUpdate, newContent) => {
+        return comments.map((comment) => {
+          if (comment.id === idToUpdate) {
+            return { ...comment, content: newContent, updated_at: "now" };
+          }
+          if (comment.replies && comment.replies.length > 0) {
+            return {
+              ...comment,
+              replies: updateCommentContent(
+                comment.replies,
+                idToUpdate,
+                newContent
+              ),
+            };
+          }
+          return comment;
+        });
+      };
 
       if (setShowEditForm) {
         setShowEditForm(false);
@@ -89,14 +99,14 @@ function CommentEditForm(props) {
       </Form.Group>
       <div className="text-right">
         <button
-          className={styles.Button}
+          className={btnStyles.CommentFormBtn}
           onClick={cancelCallback || (() => setShowEditForm?.(false))}
           type="button"
         >
           cancel
         </button>
         <button
-          className={styles.Button}
+          className={btnStyles.CommentFormBtn}
           disabled={!formContent.trim()}
           type="submit"
         >

@@ -89,7 +89,7 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
           variant="secondary"
           type="button"
           size="sm"
-          className={btnStyles.ReplyFormBtn}
+          className={btnStyles.CommentFormBtn}
           onClick={() => setShowReplyForm(false)}
         >
           Cancel
@@ -98,7 +98,7 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
           variant="primary"
           type="submit"
           size="sm"
-          className={btnStyles.ReplyFormBtn}
+          className={btnStyles.CommentFormBtn}
         >
           Post Reply
         </Button>
