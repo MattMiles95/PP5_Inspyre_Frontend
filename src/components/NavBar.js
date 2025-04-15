@@ -1,6 +1,5 @@
 // React
 import React from "react";
-import { NavLink } from "react-router-dom";
 
 // API
 import axios from "axios";
@@ -25,6 +24,9 @@ import styles from "../styles/NavBar.module.css";
 
 // Local Components
 import Avatar from "./Avatar";
+
+// React Router
+import { NavLink } from "react-router-dom";
 
 // Utils
 import { removeTokenTimestamp } from "../utils/utils";
@@ -69,8 +71,8 @@ const NavBar = () => {
           />
         </Dropdown.Toggle>
 
-        <Dropdown.Menu align="end" className="p-0">
-          <Dropdown.Item className={`${styles.DropdownItem} py-2 px-0 m-0`}>
+        <Dropdown.Menu align="end" className={styles.NavbarDropdownMenu}>
+          <Dropdown.Item className={`${styles.NavbarDropdownItem} py-2 px-0 m-0`}>
             <NavLink
               className={({ isActive }) =>
                 `${styles.MenuNavLink} ${isActive ? styles.ActiveMenu : ""}`
@@ -80,9 +82,8 @@ const NavBar = () => {
               Profile
             </NavLink>
           </Dropdown.Item>
-          <Dropdown.Item
-            className={`${styles.DropdownDivider} ${styles.DropdownItem} py-2 px-0 m-0`}
-          >
+
+          <Dropdown.Item className={`${styles.NavbarDropdownItem} py-2 px-0 m-0`}>
             <NavLink
               className={({ isActive }) =>
                 `${styles.MenuNavLink} ${isActive ? styles.ActiveMenu : ""}`
@@ -93,8 +94,10 @@ const NavBar = () => {
             </NavLink>
           </Dropdown.Item>
 
+          <Dropdown.Divider className={styles.DropdownDivider} />
+
           <Dropdown.Item
-            className={`${styles.DropdownDivider} ${styles.MenuNavLink} ${styles.DropdownItem} py-3 pl-2 m-0`}
+            className={`${styles.NavbarDropdownItem} py-3 pl-2 m-0`}
             onClick={handleSignOut}
           >
             Logout
@@ -130,7 +133,10 @@ const NavBar = () => {
     <Navbar className={styles.NavBar} fixed="top" bg="dark" variant="dark">
       <Container className="d-flex justify-content-between align-items-center flex-wrap">
         {/* Logo */}
-        <NavLink to="/" className={`${styles.LogoLink} d-flex align-items-center mb-2 mb-md-0`}>
+        <NavLink
+          to="/"
+          className={`${styles.LogoLink} d-flex align-items-center mb-2 mb-md-0`}
+        >
           <Navbar.Brand>
             <img src={logo} alt="logo" className={styles.Logo} />
           </Navbar.Brand>
