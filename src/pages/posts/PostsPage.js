@@ -53,10 +53,8 @@ function PostsPage({ message, filter = "" }) {
 
     const fetchTrending = async () => {
       try {
-        const { data } = await axiosReq.get(
-          `/posts/?ordering=-likes_count&page_size=10`
-        );
-        setTrendingPosts(data.results);
+        const { data } = await axiosReq.get(`/posts/trending/`);
+        setTrendingPosts(data);
       } catch (err) {}
     };
 
@@ -90,30 +88,33 @@ function PostsPage({ message, filter = "" }) {
           </div>
         </Col>
 
-        {/* Trending Row */}
-        {trendingPosts.length > 0 && (
-          <div className={styles.TrendingRow}>
-            {trendingPosts.map((post) => (
-              <Link
-                to={`/posts/${post.id}`}
-                key={post.id}
-                className={styles.TrendingThumbWrapper}
-              >
-                {post.image ? (
-                  <div className={styles.TrendingThumbContainer}>
-                    <img
-                      src={post.image}
-                      alt="Trending Post"
-                      className={styles.TrendingThumb}
-                    />
-                  </div>
-                ) : (
-                  <div className={styles.TextThumbTrending}>
-                    {truncateText(stripHtmlTags(post.title), 20)}
-                  </div>
-                )}
-              </Link>
-            ))}
+        {/* Trending Section */}
+        {Array.isArray(trendingPosts) && trendingPosts.length > 0 && (
+          <div className={styles.TrendingSection}>
+            <h5 className={styles.TrendingTitle}>Trending Right Now</h5>
+            <div className={styles.TrendingRow}>
+              {trendingPosts.map((post) => (
+                <Link
+                  to={`/posts/${post.id}`}
+                  key={post.id}
+                  className={styles.TrendingThumbWrapper}
+                >
+                  {post.image ? (
+                    <div className={styles.TrendingThumbContainer}>
+                      <img
+                        src={post.image}
+                        alt="Trending Post"
+                        className={styles.TrendingThumb}
+                      />
+                    </div>
+                  ) : (
+                    <div className={styles.TextThumbTrending}>
+                      {truncateText(stripHtmlTags(post.title), 20)}
+                    </div>
+                  )}
+                </Link>
+              ))}
+            </div>
           </div>
         )}
 
