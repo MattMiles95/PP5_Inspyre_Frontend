@@ -72,6 +72,32 @@ figure {
   font-weight: bold;
 }
 
+.avatar {
+  position: relative;
+  top: -50px;
+}
+
+.NoResultContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.NoResult {
+  height: 100px;
+  cursor: none;
+}
+
+.NoResultText {
+  width: 50%;
+  padding: 1rem;
+  border-radius: 10px;
+  text-align: center;
+  color: #ffbb7f;
+  font-weight: 900;
+}
+
 /* scrollbar */
 *::-webkit-scrollbar {
   width: 5px;
@@ -84,9 +110,4 @@ figure {
 }
 *::-webkit-scrollbar-thumb:hover {
   background: #555;
-}
-
-.avatar {
-  position: relative;
-  top: -50px;
 }

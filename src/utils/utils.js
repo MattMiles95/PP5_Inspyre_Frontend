@@ -4,6 +4,7 @@ import { axiosReq } from "../api/axiosDefaults";
 // Auth Token
 import { jwtDecode } from "jwt-decode";
 
+// FetchMoreData Function
 export const fetchMoreData = async (resource, setResource) => {
   try {
     const { data } = await axiosReq.get(resource.next);
@@ -27,6 +28,7 @@ export const fetchMoreData = async (resource, setResource) => {
   }
 };
 
+// Token Timestamp Management
 export const setTokenTimestamp = (data) => {
   const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
   localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
@@ -38,4 +40,18 @@ export const shouldRefreshToken = () => {
 
 export const removeTokenTimestamp = () => {
   localStorage.removeItem("refreshTokenTimestamp");
+};
+
+// truncateText Function, for text-based post previews
+export const truncateText = (text, wordLimit = 30) => {
+  const words = text.split(" ");
+  if (words.length <= wordLimit) return text;
+  return words.slice(0, wordLimit).join(" ") + "...";
+};
+
+// stripHtmlTags Function, for text-based post previews
+export const stripHtmlTags = (html) => {
+  const div = document.createElement("div");
+  div.innerHTML = html;
+  return div.textContent || div.innerText || "";
 };
