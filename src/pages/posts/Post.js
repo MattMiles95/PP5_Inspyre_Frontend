@@ -1,4 +1,7 @@
+// React
 import React from "react";
+
+// API
 import { axiosRes } from "../../api/axiosDefaults";
 
 // Bootstrap Components
@@ -8,9 +11,6 @@ import Tooltip from "react-bootstrap/Tooltip";
 
 // Bootstrap Icons
 import { Chat, Heart, HeartFill } from "react-bootstrap-icons";
-
-// React Router
-import { Link, useNavigate } from "react-router-dom";
 
 // Context
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -22,6 +22,9 @@ import styles from "../../styles/Post.module.css";
 import Asset from "../../components/Asset";
 import Avatar from "../../components/Avatar";
 import PostDropdown from "../../components/PostDropdown";
+
+// React Router
+import { Link, useNavigate } from "react-router-dom";
 
 const Post = (props) => {
   const {
@@ -111,7 +114,9 @@ const Post = (props) => {
         {title && <Card.Title className="text-center">{title}</Card.Title>}
 
         {image ? (
-          <Card.Img src={image} alt={title} className={styles.PostImage} />
+          <div className={styles.ImageWrapper}>
+            <Card.Img src={image} alt={title} className={styles.PostImage} />
+          </div>
         ) : content ? (
           <Card.Text dangerouslySetInnerHTML={{ __html: content }} />
         ) : (
@@ -123,7 +128,7 @@ const Post = (props) => {
           <div className={`${styles.Tags} mt-3`}>
             {post_tags.map((tag, index) => (
               <span key={index} className={styles.Tag}>
-                #{tag}
+                #{tag.name}
               </span>
             ))}
           </div>

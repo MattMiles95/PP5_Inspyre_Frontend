@@ -10,6 +10,7 @@ import styles from "./App.module.css";
 // Local Components
 import NavBar from './components/NavBar';
 import PostCreate from "./pages/posts/PostCreate";
+import PostEditFormBase from "./pages/posts/PostEditFormBase";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
 import SignInForm from "./pages/auth/SignInForm";
@@ -27,6 +28,7 @@ function App() {
           <Route path="/" element={<PostsPage />} />
           <Route path="/posts/inspyre" element={<PostCreate />} />
           <Route path="/posts/:id" element={<PostPage />} />
+          <Route path="/posts/:id/edit" element={<PostEditFormBase />} />
           <Route path="/sparks" element={<h1>Sparks</h1>} />
           <Route path="/profile" element={<h1>Profile</h1>} />
           <Route path="/signin" element={<SignInForm />} />

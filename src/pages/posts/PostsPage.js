@@ -7,13 +7,6 @@ import { axiosReq } from "../../api/axiosDefaults";
 // Assets
 import NoResults from "../../assets/no-results.png";
 
-// Context
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
-// CSS
-import styles from "../../styles/PostsPage.module.css";
-import appStyles from "../../App.module.css";
-
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
@@ -23,6 +16,13 @@ import Col from "react-bootstrap/Col";
 
 // Bootstrap Icons
 import Search from "react-bootstrap-icons/dist/icons/search";
+
+// Context
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
+// CSS
+import styles from "../../styles/PostsPage.module.css";
+import appStyles from "../../App.module.css";
 
 // Local Components
 import Asset from "../../components/Asset";

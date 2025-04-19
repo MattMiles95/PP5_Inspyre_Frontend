@@ -1,6 +1,6 @@
 .SearchWrapper {
   position: relative;
-  margin: 1rem 0;
+  margin: 0;
 }
 
 .SearchIcon {
@@ -17,7 +17,7 @@
   border-radius: 10px;
   background-color: #1c1c1c;
   border: 1px solid #333;
-  color: #fff;
+  color: #fff !important;
   transition: border 0.2s ease-in-out;
 }
 
@@ -138,7 +138,7 @@
   display: flex;
   overflow-x: auto;
   gap: 1rem;
-  padding-bottom: .5rem;
+  padding-bottom: 0.5rem;
   margin-left: -0.5rem;
   margin-right: -0.5rem;
   padding-left: 0.5rem;
@@ -193,9 +193,10 @@
 /* Improve Trending UX on mobile devices */
 
 .TrendingRow::-webkit-scrollbar {
-    height: 8px;
-  }
-  .TrendingRow::-webkit-scrollbar-thumb {
-    background: #444;
-    border-radius: 10px;
-  }
+  height: 8px;
+}
+
+.TrendingRow::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}

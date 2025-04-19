@@ -2,18 +2,18 @@
 import React, { useState } from "react";
 
 // Bootstrap Components
+import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
-import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Row from "react-bootstrap/Row";
+
+// CSS
+import styles from "../../styles/PostCreateForms.module.css";
 
 // Local Components
 import PostImageForm from "./PostImageForm";
 import PostTextForm from "./PostTextForm";
-
-// CSS
-import styles from "../../styles/PostCreateForms.module.css";
 
 const PostCreate = () => {
   const [postType, setPostType] = useState(null);

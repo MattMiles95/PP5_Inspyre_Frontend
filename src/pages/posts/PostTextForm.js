@@ -20,12 +20,12 @@ import btnStyles from "../../styles/Buttons.module.css";
 // Hooks
 import { UseRedirect } from "../../hooks/UseRedirect";
 
-// React Router
-import { useNavigate } from "react-router-dom";
-
-// Quill Editor
+// React Quill Editor
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
+
+// React Router
+import { useNavigate } from "react-router-dom";
 
 function PostTextForm({ setPostType, postType }) {
   UseRedirect("loggedOut");
