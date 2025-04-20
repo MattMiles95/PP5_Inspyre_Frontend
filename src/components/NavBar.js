@@ -77,7 +77,7 @@ const NavBar = () => {
               className={({ isActive }) =>
                 `${styles.MenuNavLink} ${isActive ? styles.ActiveMenu : ""}`
               }
-              to="/profile"
+              to="/profile-page"
             >
               Profile
             </NavLink>

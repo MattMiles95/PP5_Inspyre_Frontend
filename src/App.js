@@ -13,7 +13,6 @@ import PostCreate from "./pages/posts/PostCreate";
 import PostEditFormBase from "./pages/posts/PostEditFormBase";
 import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
-import Profile from "./pages/profiles/Profiles";
 import SignInForm from "./pages/auth/SignInForm";
 import SignUpForm from "./pages/auth/SignUpForm";
 
@@ -31,7 +30,7 @@ function App() {
           <Route path="/posts/:id" element={<PostPage />} />
           <Route path="/posts/:id/edit" element={<PostEditFormBase />} />
           <Route path="/sparks" element={<h1>Sparks</h1>} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile-page" element={<h1>Profile Page</h1>} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
         </Routes>
