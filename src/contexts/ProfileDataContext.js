@@ -3,7 +3,7 @@ import { axiosReq, axiosRes } from "../api/axiosDefaults";
 
 // React Context
 import { createContext, useContext, useEffect, useState } from "react";
-import { useCurrentUser } from "../context/CurrentUserContext";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 // Utils
 import { followHelper, unfollowHelper } from "../utils/utils";
