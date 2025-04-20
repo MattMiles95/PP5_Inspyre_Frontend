@@ -21,7 +21,7 @@ import Search from "react-bootstrap-icons/dist/icons/search";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
-import styles from "../../styles/PostsPage.module.css";
+import styles from "../../styles/PostsGallery.module.css";
 import appStyles from "../../App.module.css";
 
 // Local Components

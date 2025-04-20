@@ -1,0 +1,70 @@
+.ProfileHeaderWrapper {
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 1rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ProfileHeader {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.ProfileImage {
+  object-fit: cover;
+  height: 150px;
+  width: 150px;
+  border: 3px solid #ff7b00;
+}
+
+.ProfileInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.Username {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.Stats {
+  display: flex;
+  gap: 1.25rem;
+  font-size: 1rem;
+  color: #aaa;
+}
+
+.Tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.Tag {
+  background-color: #333;
+  color: #ffa726;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.GalleryWrapper {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 0.5rem;
+}
+
+.GalleryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
