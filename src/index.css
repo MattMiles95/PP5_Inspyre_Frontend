@@ -10,3 +10,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/* Enable Quill alignment classes */
+.Post .ql-align-center {
+  text-align: center !important;
+}
+.Post .ql-align-right {
+  text-align: right !important;
+}
+.Post .ql-align-left {
+  text-align: left !important;
+}

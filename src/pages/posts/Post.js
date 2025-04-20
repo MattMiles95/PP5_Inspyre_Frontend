@@ -17,6 +17,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
 import styles from "../../styles/Post.module.css";
+import "../../index.css";
 
 // Local Components
 import Asset from "../../components/Asset";
@@ -118,7 +119,10 @@ const Post = (props) => {
             <Card.Img src={image} alt={title} className={styles.PostImage} />
           </div>
         ) : content ? (
-          <Card.Text dangerouslySetInnerHTML={{ __html: content }} />
+          <div
+            className="ql-editor"
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
         ) : (
           <Asset spinner />
         )}
