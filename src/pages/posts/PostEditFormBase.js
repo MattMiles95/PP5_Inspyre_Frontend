@@ -88,7 +88,7 @@ function PostEditFormBase() {
 
     formData.append("title", title);
     formData.append("content", content);
-    formData.append("post_tags", tags);
+    formData.append("tags", tags);
 
     if (imageInput.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
