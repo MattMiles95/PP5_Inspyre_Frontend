@@ -3,6 +3,7 @@ import React from "react";
 
 // Context
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
+import { ProfileDataProvider } from "./contexts/ProfileDataContext";
 
 // CSS
 import "./index.css";
@@ -20,7 +21,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
     <CurrentUserProvider>
-      <App />
+      <ProfileDataProvider>
+        <App />
+      </ProfileDataProvider>
     </CurrentUserProvider>
   </Router>
 );
