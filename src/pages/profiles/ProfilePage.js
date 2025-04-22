@@ -1,6 +1,3 @@
-// React
-import React, { useEffect, useState } from "react";
-
 // API
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -25,6 +22,9 @@ import styles from "../../styles/ProfilePage.module.css";
 
 // Local Components
 import Asset from "../../components/Asset";
+
+// React
+import React, { useEffect, useState } from "react";
 
 // React Components
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -93,23 +93,34 @@ function ProfilePage() {
             ))}
           </div>
         )}
-        {currentUser &&
-          !is_owner &&
-          (profile?.following_id ? (
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-              onClick={() => handleUnfollow(profile)}
+
+        {/* Follow/Unfollow or Edit Profile Button */}
+        <div className="mt-3">
+          {is_owner ? (
+            <Link
+              to={`/profiles/${id}/edit`}
+              className={`${btnStyles.Btn}`}
             >
-              unfollow
-            </Button>
-          ) : (
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Black}`}
-              onClick={() => handleFollow(profile)}
-            >
-              follow
-            </Button>
-          ))}
+              Edit Profile
+            </Link>
+          ) : currentUser ? (
+            profile?.following_id ? (
+              <Button
+                className={`${btnStyles.Btn}`}
+                onClick={() => handleUnfollow(profile)}
+              >
+                unfollow
+              </Button>
+            ) : (
+              <Button
+                className={`${btnStyles.Btn}`}
+                onClick={() => handleFollow(profile)}
+              >
+                follow
+              </Button>
+            )
+          ) : null}
+        </div>
       </div>
     </div>
   );
