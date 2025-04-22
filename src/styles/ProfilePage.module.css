@@ -68,3 +68,16 @@
   gap: 1rem;
   justify-content: center;
 }
+
+.HeaderTopRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.Username {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+}

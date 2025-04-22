@@ -76,7 +76,31 @@ function ProfilePage() {
         src={profile?.image}
       />
       <div className={styles.ProfileInfo}>
-        <h2 className={styles.Username}>{profile?.owner}</h2>
+        <div className={styles.HeaderTopRow}>
+          <h2 className={styles.Username}>{profile?.owner}</h2>
+          {is_owner ? (
+            <Link to={`/profiles/${id}/edit`} className={`${btnStyles.Btn} ml-2`}>
+              Edit Profile
+            </Link>
+          ) : currentUser ? (
+            profile?.following_id ? (
+              <Button
+                className={`${btnStyles.Btn} ml-2`}
+                onClick={() => handleUnfollow(profile)}
+              >
+                unfollow
+              </Button>
+            ) : (
+              <Button
+                className={`${btnStyles.Btn} ml-2`}
+                onClick={() => handleFollow(profile)}
+              >
+                follow
+              </Button>
+            )
+          ) : null}
+        </div>
+
         <div className={styles.Stats}>
           <span>{profile?.posts_count} posts </span>
           <span>|</span>
@@ -84,6 +108,7 @@ function ProfilePage() {
           <span>|</span>
           <span>{profile?.following_count} following</span>
         </div>
+
         {profile?.profile_tags?.length > 0 && (
           <div className={styles.Tags}>
             {profile.profile_tags.map((tag, index) => (
@@ -94,33 +119,11 @@ function ProfilePage() {
           </div>
         )}
 
-        {/* Follow/Unfollow or Edit Profile Button */}
-        <div className="mt-3">
-          {is_owner ? (
-            <Link
-              to={`/profiles/${id}/edit`}
-              className={`${btnStyles.Btn}`}
-            >
-              Edit Profile
-            </Link>
-          ) : currentUser ? (
-            profile?.following_id ? (
-              <Button
-                className={`${btnStyles.Btn}`}
-                onClick={() => handleUnfollow(profile)}
-              >
-                unfollow
-              </Button>
-            ) : (
-              <Button
-                className={`${btnStyles.Btn}`}
-                onClick={() => handleFollow(profile)}
-              >
-                follow
-              </Button>
-            )
-          ) : null}
-        </div>
+        {profile?.content && (
+          <div className={styles.Bio}>
+            <p>{profile.content}</p>
+          </div>
+        )}
       </div>
     </div>
   );
