@@ -83,7 +83,7 @@ function ProfilePage() {
               to={`/profiles/${id}/edit`}
               className={`${btnStyles.EditProfileBtn} ml-2`}
             >
-              <i class="fa-solid fa-gears"></i> Edit
+              <i className="fa-solid fa-gears"></i> Edit
             </Link>
           ) : currentUser ? (
             profile?.following_id ? (

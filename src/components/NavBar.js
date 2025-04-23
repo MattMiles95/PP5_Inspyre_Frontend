@@ -72,26 +72,20 @@ const NavBar = () => {
         </Dropdown.Toggle>
 
         <Dropdown.Menu align="end" className={styles.NavbarDropdownMenu}>
-          <Dropdown.Item className={`${styles.NavbarDropdownItem} py-2 px-0 m-0`}>
-            <NavLink
-              className={({ isActive }) =>
-                `${styles.MenuNavLink} ${isActive ? styles.ActiveMenu : ""}`
-              }
-              to={`/profiles/${currentUser?.profile_id}`}
-            >
-              Profile
-            </NavLink>
+          <Dropdown.Item
+            as={NavLink}
+            to={`/profiles/${currentUser?.profile_id}`}
+            className={`${styles.NavbarDropdownItem} py-2 px-0 m-0 ${styles.MenuNavLink}`}
+          >
+            Profile
           </Dropdown.Item>
 
-          <Dropdown.Item className={`${styles.NavbarDropdownItem} py-2 px-0 m-0`}>
-            <NavLink
-              className={({ isActive }) =>
-                `${styles.MenuNavLink} ${isActive ? styles.ActiveMenu : ""}`
-              }
-              to="/sparks"
-            >
-              Sparks
-            </NavLink>
+          <Dropdown.Item
+            as={NavLink}
+            to="/sparks"
+            className={`${styles.NavbarDropdownItem} py-2 px-0 m-0 ${styles.MenuNavLink}`}
+          >
+            Sparks
           </Dropdown.Item>
 
           <Dropdown.Divider className={styles.DropdownDivider} />
