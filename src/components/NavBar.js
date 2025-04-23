@@ -75,7 +75,7 @@ const NavBar = () => {
           <Dropdown.Item
             as={NavLink}
             to={`/profiles/${currentUser?.profile_id}`}
-            className={`${styles.NavbarDropdownItem} py-2 px-0 m-0 ${styles.MenuNavLink}`}
+            className={`${styles.NavbarDropdownItem} py-2 m-0 ${styles.MenuNavLink}`}
           >
             Profile
           </Dropdown.Item>
@@ -83,15 +83,13 @@ const NavBar = () => {
           <Dropdown.Item
             as={NavLink}
             to="/sparks"
-            className={`${styles.NavbarDropdownItem} py-2 px-0 m-0 ${styles.MenuNavLink}`}
+            className={`${styles.NavbarDropdownItem} py-2 m-0 ${styles.MenuNavLink}`}
           >
             Sparks
           </Dropdown.Item>
 
-          <Dropdown.Divider className={styles.DropdownDivider} />
-
           <Dropdown.Item
-            className={`${styles.NavbarDropdownItem} py-3 pl-2 m-0`}
+            className={`${styles.NavbarDropdownItem} py-2 m-0`}
             onClick={handleSignOut}
           >
             Logout
