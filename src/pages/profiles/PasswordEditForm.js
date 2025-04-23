@@ -11,6 +11,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
 import btnStyles from "../../styles/Buttons.module.css";
+import styles from "../../styles/ProfileEditor.module.css";
 
 // React
 import React, { useEffect, useState } from "react";
@@ -58,6 +59,7 @@ const PasswordEditForm = () => {
           name="new_password1"
           value={new_password1}
           onChange={handleChange}
+          className={styles.FormInput}
         />
       </Form.Group>
       {errors?.new_password1?.map((msg, idx) => (
@@ -70,6 +72,7 @@ const PasswordEditForm = () => {
           name="new_password2"
           value={new_password2}
           onChange={handleChange}
+          className={styles.FormInput}
         />
       </Form.Group>
       {errors?.new_password2?.map((msg, idx) => (

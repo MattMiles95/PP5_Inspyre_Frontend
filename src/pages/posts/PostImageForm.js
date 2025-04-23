@@ -119,7 +119,7 @@ function PostImageForm({ setPostType, postType }) {
           onClick={() => setPostType(null)}
           aria-label="Go back to post type selection"
         >
-          <i className="fas fa-arrow-left me-2"></i> Go back
+          <i className={`${appStyles.BackArrow} fas fa-arrow-left me-2`}></i> Go back
         </Button>
 
         {/* Only show the image section if the 'image' postType is selected */}

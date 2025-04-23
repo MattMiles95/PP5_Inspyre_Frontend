@@ -5,6 +5,7 @@ import Tabs from "react-bootstrap/Tabs";
 
 // CSS
 import appStyles from "../../App.module.css";
+import styles from "../../styles/ProfileEditor.module.css";
 
 // Local Components
 import ProfileEditDetails from "./DetailsEditForm";
@@ -17,14 +18,19 @@ import React from "react";
 const ProfileEditForm = () => {
   return (
     <Container className={appStyles.Content}>
-      <Tabs defaultActiveKey="profile" id="profile-edit-tabs" className="mb-3" fill>
-        <Tab eventKey="profile" title="Profile Info">
+      <Tabs
+        defaultActiveKey="profile"
+        id="profile-edit-tabs"
+        className={`mb-3 custom-tabs`}
+        fill
+      >
+        <Tab eventKey="profile" title="Profile">
           <ProfileEditDetails />
         </Tab>
-        <Tab eventKey="username" title="Change Username">
+        <Tab eventKey="username" title="Username">
           <UsernameEditForm />
         </Tab>
-        <Tab eventKey="password" title="Change Password">
+        <Tab eventKey="password" title="Password">
           <PasswordEditForm />
         </Tab>
       </Tabs>

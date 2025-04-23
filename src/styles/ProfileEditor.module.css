@@ -1,0 +1,94 @@
+.FormLabel {
+  color: #ffebd8;
+  font-weight: 600;
+  margin-top: 1rem;
+  display: block;
+  text-align: left;
+}
+
+.FormControl {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #555;
+  border-radius: 0.5rem;
+}
+
+.FormInput {
+    width: 300px;
+}
+
+.ProfilePicPreview {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ff7b00;
+  margin-bottom: 0.5rem;
+}
+
+.ImageUploadLabel {
+  display: inline-block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  background-color: #ff7b00;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.ImageUploadLabel:hover {
+  background-color: #1e1e1e;
+  color: #ff7b00;
+}
+
+.TagList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.TagCheckbox {
+  display: inline-block;
+  background-color: #1e1e1e;
+  color: #ff7b00;
+  padding: 0.4rem 1rem;
+  border: 1px solid #ff7b00;
+  border-radius: 2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.TagCheckbox input {
+  display: none;
+}
+
+.TagCheckbox:hover {
+  background-color: #2a2a2a;
+}
+
+.TagCheckbox.checked {
+  background-color: #ff7b00;
+  color: #1e1e1e;
+  font-weight: 600;
+}
+
+.ProfileTagsContainer {
+  margin: 0.25rem;
+}
+
+.FormSection {
+  margin-top: 2rem;
+}
+
+.SaveCancelButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+}

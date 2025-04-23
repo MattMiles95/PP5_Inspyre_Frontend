@@ -7,7 +7,7 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -20,4 +20,31 @@ code {
 }
 .Post .ql-align-left {
   text-align: left !important;
+}
+
+/* Custom tabs - overrides Bootstrap default styles */
+.custom-tabs .nav-item {
+  flex: 1;
+  text-align: center;
+}
+.custom-tabs .nav-link {
+  background-color: #dcdcdc;
+  color: #1e1e1e;
+  border: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.custom-tabs .nav-link.active {
+  background-color: #ff7b00;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.custom-tabs .nav-link:hover {
+  background-color: #ff7b00;
+  color: #1e1e1e;
+  font-weight: 700;
 }

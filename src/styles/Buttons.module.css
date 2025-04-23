@@ -10,6 +10,7 @@
   font-weight: 500;
   background: linear-gradient(to right, #ffa245, #88300f) !important;
   border: none;
+  transition: 0.2s ease-in-out;
 }
 
 .Btn:hover {
@@ -17,7 +18,6 @@
   color: #ea5722 !important;
   box-shadow: none !important;
   text-shadow: #fff 0px 0px 5px;
-  transition: 0.2s ease-in-out;
 }
 
 .Btn:active,
@@ -41,10 +41,12 @@
 .ChangeBtn {
   background-color: transparent !important;
   color: #ffebd8 !important;
+  transition: all 0.2s ease-in-out;
 }
 
 .ChangeBtn:hover {
   color: #ff7b00 !important;
+  cursor: pointer;
 }
 
 .CreateBtn {
@@ -114,7 +116,7 @@
   background-color: transparent !important;
   border: none;
   color: #bcad9f !important;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 500;
 }
 
@@ -135,4 +137,20 @@
 
 .CommentFormBtn:hover {
   background-color: #ff9b3d;
+}
+
+.EditProfileBtn {
+  background-color: #333333;
+  color: #aaa !important;
+  border: none;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.EditProfileBtn:hover {
+  background-color: #4a4a4a;
+  color: #dddddd !important;
 }

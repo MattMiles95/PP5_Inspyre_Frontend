@@ -11,6 +11,7 @@ import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserCon
 
 // CSS
 import btnStyles from "../../styles/Buttons.module.css";
+import styles from "../../styles/ProfileEditor.module.css";
 
 // React
 import React, { useEffect, useState } from "react";
@@ -48,11 +49,12 @@ const UsernameEditForm = () => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group>
-        <Form.Label>New Username</Form.Label>
+        <Form.Label>Choose a new Username</Form.Label>
         <Form.Control
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className={styles.FormInput}
         />
       </Form.Group>
       {errors?.username?.map((msg, idx) => (

@@ -79,8 +79,11 @@ function ProfilePage() {
         <div className={styles.HeaderTopRow}>
           <h2 className={styles.Username}>{profile?.owner}</h2>
           {is_owner ? (
-            <Link to={`/profiles/${id}/edit`} className={`${btnStyles.Btn} ml-2`}>
-              Edit Profile
+            <Link
+              to={`/profiles/${id}/edit`}
+              className={`${btnStyles.EditProfileBtn} ml-2`}
+            >
+              <i class="fa-solid fa-gears"></i> Edit
             </Link>
           ) : currentUser ? (
             profile?.following_id ? (
@@ -109,11 +112,11 @@ function ProfilePage() {
           <span>{profile?.following_count} following</span>
         </div>
 
-        {profile?.profile_tags?.length > 0 && (
+        {profile?.profile_tags_display?.length > 0 && (
           <div className={styles.Tags}>
-            {profile.profile_tags.map((tag, index) => (
+            {profile.profile_tags_display.map((tag, index) => (
               <span key={index} className={styles.Tag}>
-                {tag}
+                {tag.name} {/* Use tag.name to display the tag's name */}
               </span>
             ))}
           </div>

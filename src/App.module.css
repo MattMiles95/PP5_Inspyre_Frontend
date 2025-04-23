@@ -43,26 +43,15 @@ a:hover {
   text-decoration: none;
 }
 
-a:hover i {
-  color: #ea5722;
-  transition: color ease-in-out 0.3s;
-}
-
 input[type="file"] {
   display: none;
 }
 
-i {
+.BackArrow {
   color: #ea5722;
   font-size: 1.6rem;
   padding: 7px;
   vertical-align: middle;
-}
-
-i:hover {
-  cursor: pointer;
-  transition: color ease-in-out 0.3s;
-  color: #ea5722;
 }
 
 figure {

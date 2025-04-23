@@ -11,11 +11,15 @@ import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 
 // Context
-import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../../contexts/CurrentUserContext";
 
 // CSS
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
+import styles from "../../styles/ProfileEditor.module.css";
 
 // React
 import React, { useState, useEffect, useRef } from "react";
@@ -23,7 +27,7 @@ import React, { useState, useEffect, useRef } from "react";
 // React Router
 import { useNavigate, useParams } from "react-router-dom";
 
-const ProfileEditDetails = () => {
+const DetailsEditForm = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
@@ -52,7 +56,7 @@ const ProfileEditDetails = () => {
           setProfileData({
             content: profile.content,
             image: profile.image,
-            profile_tags: profile.profile_tags.map((tag) => tag.id),
+            profile_tags: profile.profile_tags_display.map((tag) => tag.id),
           });
           setAvailableTags(tags.results || tags);
         } catch (err) {
@@ -112,51 +116,64 @@ const ProfileEditDetails = () => {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label>Bio</Form.Label>
+        <Form.Label className={styles.FormLabel}>
+          Tell us about yourself
+        </Form.Label>
         <Form.Control
           as="textarea"
           rows={5}
           value={content}
           onChange={handleChange}
           name="content"
+          className={styles.FormControl}
         />
       </Form.Group>
       {errors?.content?.map((message, idx) => (
-        <Alert key={idx} variant="warning">{message}</Alert>
+        <Alert key={idx} variant="warning">
+          {message}
+        </Alert>
       ))}
 
-      <Form.Group>
-        <Form.Label>Profile Tags</Form.Label>
-        <div>
-          {availableTags.map((tag) => (
-            <Form.Check
-              inline
-              key={tag.id}
-              label={tag.name}
-              type="checkbox"
-              value={tag.id}
-              checked={profile_tags.includes(tag.id)}
-              onChange={handleTagChange}
-            />
-          ))}
+      <Form.Group className={styles.FormSection}>
+        <Form.Label className={styles.FormLabel}>
+          What kind of creator are you?
+        </Form.Label>
+        <div className={styles.TagList}>
+          {availableTags.map((tag) => {
+            const isChecked = profile_tags.includes(tag.id);
+            return (
+              <label
+                key={tag.id}
+                className={`${styles.TagCheckbox} ${
+                  isChecked ? styles.checked : ""
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  value={tag.id}
+                  checked={isChecked}
+                  onChange={handleTagChange}
+                />
+                {tag.name}
+              </label>
+            );
+          })}
         </div>
         {errors?.profile_tags?.map((message, idx) => (
-          <Alert key={idx} variant="warning">{message}</Alert>
+          <Alert key={idx} variant="warning">
+            {message}
+          </Alert>
         ))}
       </Form.Group>
 
-      <Button
-        className={`${btnStyles.Btn}`}
-        onClick={() => navigate(-1)}
-      >
-        cancel
-      </Button>
-      <Button
-        className={`${btnStyles.Btn}`}
-        type="submit"
-      >
-        save
-      </Button>
+      <div className={styles.SaveCancelButtons}>
+        <Button className={btnStyles.Btn} onClick={() => navigate(-1)}>
+          cancel
+        </Button>
+        <Button className={btnStyles.Btn} type="submit">
+          save
+        </Button>
+      </div>
     </>
   );
 
@@ -164,22 +181,25 @@ const ProfileEditDetails = () => {
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col md={7} lg={6} className="py-2 p-0 p-md-2 text-center">
-          <Container className={appStyles.Content}>
+          <Container className={`${appStyles.Content} border-0`}>
             <Form.Group>
               {image && (
-                <figure>
-                  <Image src={image} fluid rounded />
-                </figure>
+                <div className="d-flex flex-column align-items-center">
+                  <Image src={image} className={styles.ProfilePicPreview} />
+                  <Form.Label
+                    htmlFor="image-upload"
+                    className={btnStyles.ChangeBtn}
+                  >
+                    Change image
+                  </Form.Label>
+                </div>
               )}
               {errors?.image?.map((message, idx) => (
-                <Alert key={idx} variant="warning">{message}</Alert>
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
               ))}
-              <Form.Label
-                htmlFor="image-upload"
-                className={`${btnStyles.Btn} btn my-auto`}
-              >
-                Change image
-              </Form.Label>
+
               <Form.Control
                 type="file"
                 id="image-upload"
@@ -199,11 +219,13 @@ const ProfileEditDetails = () => {
           </Container>
         </Col>
         <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">
-          <Container className={appStyles.Content}>{textFields}</Container>
+          <Container className={`${appStyles.Content} border-0`}>
+            {textFields}
+          </Container>
         </Col>
       </Row>
     </Form>
   );
 };
 
-export default ProfileEditDetails;
+export default DetailsEditForm;
