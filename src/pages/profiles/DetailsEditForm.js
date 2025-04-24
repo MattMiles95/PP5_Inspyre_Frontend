@@ -45,6 +45,8 @@ const DetailsEditForm = () => {
 
   const { content, image, profile_tags } = profileData;
 
+  const [showConfirm, setShowConfirm] = useState(false);
+
   useEffect(() => {
     const handleMount = async () => {
       if (currentUser?.profile_id?.toString() === id) {
@@ -113,6 +115,16 @@ const DetailsEditForm = () => {
     }
   };
 
+  const handleAccountDelete = async () => {
+    try {
+      await axiosReq.delete("/users/delete/");
+      setCurrentUser(null);
+      navigate("/");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
+  
   const textFields = (
     <>
       <Form.Group>
@@ -224,6 +236,41 @@ const DetailsEditForm = () => {
           </Container>
         </Col>
       </Row>
+
+      <div className={styles.DeleteAccountSection}>
+        {!showConfirm ? (
+          <Button
+            variant="danger"
+            className={styles.DeleteBtn}
+            onClick={() => setShowConfirm(true)}
+          >
+            Delete Account
+          </Button>
+        ) : (
+          <div className={styles.DeleteConfirmBox}>
+            <p className={styles.ConfirmText}>
+              Are you sure you want to delete your account? This will remove
+              your profile, posts, followers, and login credentials permanently.
+            </p>
+            <div className={styles.ConfirmButtons}>
+              <Button
+                variant="danger"
+                className={styles.ConfirmDeleteBtn}
+                onClick={handleAccountDelete}
+              >
+                Yes, delete my account
+              </Button>
+              <Button
+                variant="secondary"
+                className={styles.CancelDeleteBtn}
+                onClick={() => setShowConfirm(false)}
+              >
+                Cancel
+              </Button>
+            </div>
+          </div>
+        )}
+      </div>
     </Form>
   );
 };

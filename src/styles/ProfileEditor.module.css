@@ -14,7 +14,7 @@
 }
 
 .FormInput {
-    width: 300px;
+  width: 300px;
 }
 
 .ProfilePicPreview {
@@ -91,4 +91,72 @@
   justify-content: center;
   gap: 1rem;
   margin-top: 2rem;
+}
+
+.DeleteAccountSection {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.DeleteBtn {
+  background: linear-gradient(to right, #ff4e4e, #b23737);
+  border: none;
+  font-weight: 600;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.DeleteBtn:hover {
+  background: linear-gradient(to bottom, #ff6c6c, #a32929);
+  color: #fff;
+}
+
+.DeleteConfirmBox {
+  background-color: #2a2a2a;
+  border: 1px solid #ff4e4e;
+  border-radius: 10px;
+  padding: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.ConfirmText {
+  color: #ffebd8;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.ConfirmButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.ConfirmDeleteBtn {
+  background-color: #b23737;
+  border: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  border-radius: 6px;
+}
+
+.ConfirmDeleteBtn:hover {
+  background-color: #8e1c1c;
+}
+
+.CancelDeleteBtn {
+  background-color: #444;
+  color: #ffebd8;
+  border: none;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.CancelDeleteBtn:hover {
+  background-color: #5e5e5e;
+  color: #fff;
 }
