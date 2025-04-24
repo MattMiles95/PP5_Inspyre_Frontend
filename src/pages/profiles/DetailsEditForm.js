@@ -119,6 +119,7 @@ const DetailsEditForm = () => {
     try {
       await axiosReq.delete("/users/delete/");
       setCurrentUser(null);
+      localStorage.removeItem("access_token");
       navigate("/");
     } catch (err) {
       setErrors(err.response?.data);

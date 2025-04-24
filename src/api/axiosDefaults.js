@@ -1,10 +1,39 @@
-// API
+// API 
 import axios from "axios";
 
+// Set base URL
 axios.defaults.baseURL =
   "https://inspyre-api-6e178387b3cb.herokuapp.com/";
+
+// Default headers
 axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
 
+// Create Axios instances for request and response
 export const axiosReq = axios.create();
 export const axiosRes = axios.create();
+
+// Add request interceptor to attach JWT token to requests
+axiosReq.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("access_token"); // Or check for cookies if you're using cookies for JWT
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
+// Add response interceptor to handle expired token or unauthorized responses
+axiosReq.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status === 401) {
+      localStorage.removeItem("access_token");
+    }
+    return Promise.reject(error);
+  }
+);

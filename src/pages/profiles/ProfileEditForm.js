@@ -5,7 +5,6 @@ import Tabs from "react-bootstrap/Tabs";
 
 // CSS
 import appStyles from "../../App.module.css";
-import styles from "../../styles/ProfileEditor.module.css";
 
 // Local Components
 import ProfileEditDetails from "./DetailsEditForm";
