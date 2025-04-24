@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useState } from "react";
 
 // API
 import { axiosRes } from "../../api/axiosDefaults";
@@ -48,6 +48,8 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
+
+  const [showConfirm, setShowConfirm] = useState(false);
 
   const handleEdit = () => navigate(`/posts/${id}/edit`);
 
@@ -104,16 +106,17 @@ const Post = (props) => {
             <span className="ml-2 font-weight-bold">{owner}</span>
           </Link>
           {is_owner && postPage && (
-            <PostDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+            <PostDropdown
+              handleEdit={handleEdit}
+              handleDelete={() => setShowConfirm(true)}
+            />
           )}
         </div>
         <div className="text-muted small mt-1 text-right">{updated_at}</div>
       </Card.Body>
 
-      {/* Unified content block: title, image or content */}
       <Card.Body className={styles.MediaContainer}>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
-
         {image ? (
           <div className={styles.ImageWrapper}>
             <Card.Img src={image} alt={title} className={styles.PostImage} />
@@ -127,7 +130,6 @@ const Post = (props) => {
           <Asset spinner />
         )}
 
-        {/* Tags */}
         {post_tags?.length > 0 && (
           <div className={`${styles.Tags} mt-3`}>
             {post_tags.map((tag, index) => (
@@ -139,7 +141,6 @@ const Post = (props) => {
         )}
       </Card.Body>
 
-      {/* Engagement bar */}
       <Card.Body>
         <div className={styles.PostBar}>
           {is_owner ? (
@@ -171,6 +172,32 @@ const Post = (props) => {
           {comments_count}
         </div>
       </Card.Body>
+
+      {/* Deletion Confirmation Overlay */}
+      {showConfirm && (
+        <div className={styles.ConfirmationOverlay}>
+          <div className={styles.ConfirmBox}>
+            <p>
+              Are you sure you want to delete this post? This action cannot be
+              undone.
+            </p>
+            <div className={styles.ConfirmButtons}>
+              <button
+                className={`${styles.ConfirmDeleteBtn} btn btn-danger`}
+                onClick={handleDelete}
+              >
+                Delete Post
+              </button>
+              <button
+                className={`${styles.CancelDeleteBtn} btn btn-secondary`}
+                onClick={() => setShowConfirm(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </Card>
   );
 };

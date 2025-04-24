@@ -85,3 +85,72 @@
   transform: scale(1.2);
   color: #ea5722;
 }
+
+.ConfirmationOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.ConfirmBox {
+  background-color: #1e1e1e;
+  border: 2px solid #ea5722;
+  border-radius: 10px;
+  padding: 1.5rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(234, 87, 34, 0.5);
+  color: #fff;
+}
+
+.ConfirmBox p {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.ConfirmButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.ConfirmDeleteBtn {
+  background-color: #ea5722;
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 1;
+}
+
+.ConfirmDeleteBtn:hover {
+  background-color: #ff7b00;
+}
+
+.CancelDeleteBtn {
+  background-color: #555;
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex: 1;
+}
+
+.CancelDeleteBtn:hover {
+  background-color: #333;
+}
