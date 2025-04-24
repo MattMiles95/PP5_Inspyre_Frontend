@@ -35,7 +35,7 @@ function App() {
         <Routes>
           <Route path="/" element={<PostsPage />} />
           <Route
-            path="/inspyrations"
+            path="/pyres"
             element={
               <PostsPage
                 message="No results found. Try searching for something, or give someone a follow!"

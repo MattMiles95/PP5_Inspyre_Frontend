@@ -64,26 +64,30 @@
   font-weight: 500;
 }
 
-.Heart {
+.LikedFlame {
   color: #ea5722;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
 
-.Heart:hover {
+.LikedFlame:hover {
   transform: scale(1.2);
   color: #ff7b00;
 }
 
-.HeartOutline {
+.UnlikedFlame {
   color: #ffb26a;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
 
-.HeartOutline:hover {
+.UnlikedFlame:hover {
   transform: scale(1.2);
   color: #ea5722;
+}
+
+.OwnerFlame {
+  color: #e5cfae;
 }
 
 .ConfirmationOverlay {

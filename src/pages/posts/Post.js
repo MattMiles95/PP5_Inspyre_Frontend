@@ -10,7 +10,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
 // Bootstrap Icons
-import { Chat, Heart, HeartFill } from "react-bootstrap-icons";
+import { Chat, Fire } from "react-bootstrap-icons";
 
 // Context
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -148,22 +148,22 @@ const Post = (props) => {
               placement="top"
               overlay={<Tooltip>You can't like your own post!</Tooltip>}
             >
-              <Heart className="mr-1" size={20} />
+              <Fire className={styles.OwnerFlame} size={20} />
             </OverlayTrigger>
           ) : like_id ? (
             <span onClick={handleUnlike}>
-              <HeartFill className={`mr-1 ${styles.Heart}`} size={20} />
+              <Fire className={styles.LikedFlame} size={20} />
             </span>
           ) : currentUser ? (
             <span onClick={handleLike}>
-              <Heart className={`mr-1 ${styles.HeartOutline}`} size={20} />
+              <Fire className={styles.UnlikedFlame} size={20} />
             </span>
           ) : (
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>Log in to like posts!</Tooltip>}
             >
-              <Heart className="mr-1" size={20} />
+              <Fire className={styles.OwnerFlame} size={20} />
             </OverlayTrigger>
           )}
           {likes_count}

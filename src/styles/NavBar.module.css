@@ -62,7 +62,7 @@
 
 .NavbarDropdownItem {
   color: #ea5722 !important;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   font-size: 0.95rem;
   transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
   background-color: transparent !important;

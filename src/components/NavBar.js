@@ -82,10 +82,10 @@ const NavBar = () => {
 
           <Dropdown.Item
             as={NavLink}
-            to="/inspyrations"
+            to="/pyres"
             className={`${styles.NavbarDropdownItem} py-2 m-0 ${styles.MenuNavLink}`}
           >
-            Inspyrations
+            Pyres
           </Dropdown.Item>
 
           <Dropdown.Item
