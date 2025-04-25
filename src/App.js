@@ -1,5 +1,6 @@
 // API
 import "./api/axiosDefaults";
+import { axiosReq, axiosRes } from "./api/axiosDefaults";
 
 // Bootstrap Components
 import Container from "react-bootstrap/Container";
@@ -21,12 +22,30 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import SignInForm from "./pages/auth/SignInForm";
 import SignUpForm from "./pages/auth/SignUpForm";
 
+// Error Pages
+import Unauthorized from "./pages/errors/401Unauthorized";
+import Forbidden from "./pages/errors/403Forbidden";
+import NotFound from "./pages/errors/404NotFound";
+import ServiceUnavailable from "./pages/errors/503ServiceUnavailable";
+
+// React
+import { useEffect } from "react";
+
 // React Router
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
+  const location = useLocation();
+
+  useEffect(() => {
+    // Reset redirect lock whenever the route changes
+    if (axiosReq && axiosRes) {
+      axiosReq.isRedirecting = false;
+      axiosRes.isRedirecting = false;
+    }
+  }, [location]);
 
   return (
     <div className={styles.App}>
@@ -59,6 +78,11 @@ function App() {
           <Route path="/profiles/:id/edit" element={<ProfileEditForm />} />
           <Route path="/signin" element={<SignInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
+          {/* Custom Error Pages */}
+          <Route path="/401" element={<Unauthorized />} />
+          <Route path="/403" element={<Forbidden />} />
+          <Route path="/503" element={<ServiceUnavailable />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Container>
     </div>
