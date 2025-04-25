@@ -24,6 +24,9 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import styles from "../../styles/SignInUpForm.module.css";
 
+// Hooks
+import { useRedirect } from "../../hooks/useRedirect";
+
 // React Router
 import { Link, useNavigate } from "react-router-dom";
 
@@ -32,6 +35,7 @@ import { setTokenTimestamp } from "../../utils/utils";
 
 const SignInForm = () => {
   const setCurrentUser = useSetCurrentUser();
+  useRedirect("loggedIn");
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",

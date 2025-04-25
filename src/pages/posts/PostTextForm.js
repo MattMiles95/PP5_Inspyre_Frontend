@@ -18,7 +18,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 
 // Hooks
-import { UseRedirect } from "../../hooks/UseRedirect";
+import { useRedirect } from "../../hooks/useRedirect";
 
 // React Quill Editor
 import { useQuill } from "react-quilljs";
@@ -28,7 +28,7 @@ import "quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
 
 function PostTextForm({ setPostType, postType }) {
-  UseRedirect("loggedOut");
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [postData, setPostData] = useState({

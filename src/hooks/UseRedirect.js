@@ -7,7 +7,7 @@ import axios from "axios"
 // React Router
 import { useNavigate } from "react-router-dom"
 
-export const UseRedirect = (userAuthStatus) => {
+export const useRedirect = (userAuthStatus) => {
     const navigate = useNavigate();
 
     useEffect(() => {

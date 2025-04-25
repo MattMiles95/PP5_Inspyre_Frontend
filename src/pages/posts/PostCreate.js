@@ -11,11 +11,15 @@ import Row from "react-bootstrap/Row";
 // CSS
 import styles from "../../styles/PostCreateForms.module.css";
 
+// Hooks
+import { useRedirect } from "../../hooks/useRedirect";
+
 // Local Components
 import PostImageForm from "./PostImageForm";
 import PostTextForm from "./PostTextForm";
 
 const PostCreate = () => {
+  useRedirect("loggedOut");
   const [postType, setPostType] = useState(null);
 
   const handlePostTypeSelect = (type) => {

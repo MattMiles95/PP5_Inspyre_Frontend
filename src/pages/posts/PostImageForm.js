@@ -22,7 +22,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 
 // Hooks
-import { UseRedirect } from "../../hooks/UseRedirect";
+import { useRedirect } from "../../hooks/useRedirect";
 
 // Local Components
 import Asset from "../../components/Asset";
@@ -31,7 +31,7 @@ import Asset from "../../components/Asset";
 import { useNavigate } from "react-router-dom";
 
 function PostImageForm({ setPostType, postType }) {
-  UseRedirect("loggedOut");
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const imageInput = useRef(null);
