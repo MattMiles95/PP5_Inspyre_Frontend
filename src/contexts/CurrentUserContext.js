@@ -22,12 +22,14 @@ export const CurrentUserProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const handleMount = async () => {
+    const hasRefreshToken = !!localStorage.getItem("refresh_token");
+    if (!hasRefreshToken) return;
+
     try {
       const { data } = await axiosRes.get("/dj-rest-auth/user/");
       setCurrentUser(data);
     } catch (err) {
-      if (err.response?.status === 401) return; // no user logged in
-      // console.error(err);
+      if (err.response?.status === 401) return;
     }
   };
 
@@ -38,7 +40,8 @@ export const CurrentUserProvider = ({ children }) => {
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {
-        if (shouldRefreshToken()) {
+        const hasRefreshToken = !!localStorage.getItem("refresh_token");
+        if (shouldRefreshToken() && hasRefreshToken) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (err) {
@@ -49,14 +52,11 @@ export const CurrentUserProvider = ({ children }) => {
               return null;
             });
             removeTokenTimestamp();
-            return config;
           }
         }
         return config;
       },
-      (err) => {
-        return Promise.reject(err);
-      }
+      (err) => Promise.reject(err)
     );
 
     // response interceptor to refresh token if response is 401
@@ -83,22 +83,22 @@ export const CurrentUserProvider = ({ children }) => {
   }, [navigate]);
 
   useEffect(() => {
-    const interval = setInterval(
-      async () => {
-        // console.log("Pinging refresh endpoint...");
-        try {
-          await axios.post("/dj-rest-auth/token/refresh/");
-          // console.log("Token refreshed via ping");
-        } catch (err) {
-          // console.error("Error refreshing token:", err);
-          setCurrentUser(null);
-          navigate("/signin");
-        }
-      },
-      4 * 60 * 1000
-    ); // every 4 minutes
+    const interval = setInterval(async () => {
+      const hasRefreshToken = !!localStorage.getItem("refresh_token");
+      if (!hasRefreshToken) {
+        clearInterval(interval);
+        return;
+      }
 
-    return () => clearInterval(interval); // clean up on unmount
+      try {
+        await axios.post("/dj-rest-auth/token/refresh/");
+      } catch (err) {
+        setCurrentUser(null);
+        navigate("/signin");
+      }
+    }, 4 * 60 * 1000);
+
+    return () => clearInterval(interval);
   }, [navigate]);
 
   return (
@@ -107,5 +107,5 @@ export const CurrentUserProvider = ({ children }) => {
         {children}
       </SetCurrentUserContext.Provider>
     </CurrentUserContext.Provider>
-  )
+  );
 };
