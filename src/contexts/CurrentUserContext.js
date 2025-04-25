@@ -9,7 +9,11 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // Utils
-import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
+import {
+  removeTokenTimestamp,
+  shouldRefreshToken,
+  hasTokenTimestamp,
+} from "../utils/utils";
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -22,8 +26,7 @@ export const CurrentUserProvider = ({ children }) => {
   const navigate = useNavigate();
 
   const handleMount = async () => {
-    const hasRefreshToken = !!localStorage.getItem("refresh_token");
-    if (!hasRefreshToken) return;
+    if (!hasTokenTimestamp()) return;
 
     try {
       const { data } = await axiosRes.get("/dj-rest-auth/user/");
@@ -40,8 +43,7 @@ export const CurrentUserProvider = ({ children }) => {
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {
-        const hasRefreshToken = !!localStorage.getItem("refresh_token");
-        if (shouldRefreshToken() && hasRefreshToken) {
+        if (shouldRefreshToken() && hasTokenTimestamp()) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (err) {
@@ -52,11 +54,14 @@ export const CurrentUserProvider = ({ children }) => {
               return null;
             });
             removeTokenTimestamp();
+            return config;
           }
         }
         return config;
       },
-      (err) => Promise.reject(err)
+      (err) => {
+        return Promise.reject(err);
+      }
     );
 
     // response interceptor to refresh token if response is 401
@@ -84,11 +89,7 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     const interval = setInterval(async () => {
-      const hasRefreshToken = !!localStorage.getItem("refresh_token");
-      if (!hasRefreshToken) {
-        clearInterval(interval);
-        return;
-      }
+      if (!hasTokenTimestamp()) return;
 
       try {
         await axios.post("/dj-rest-auth/token/refresh/");

@@ -83,3 +83,7 @@ export const unfollowHelper = (profile, clickedProfile) => {
       }
     : profile;
 };
+
+export const hasTokenTimestamp = () => {
+  return !!localStorage.getItem("refreshTokenTimestamp");
+};

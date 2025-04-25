@@ -7,14 +7,15 @@ import axios from "axios";
 // React Router
 import { useNavigate } from "react-router-dom";
 
+// Utils
+import { hasTokenTimestamp } from "../utils/utils";
+
 export const useRedirect = (userAuthStatus) => {
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleMount = async () => {
-      const hasRefreshToken = !!localStorage.getItem("refresh_token");
-
-      if (!hasRefreshToken) {
+      if (!hasTokenTimestamp()) {
         if (userAuthStatus === "loggedOut") {
           navigate("/signin");
         }
