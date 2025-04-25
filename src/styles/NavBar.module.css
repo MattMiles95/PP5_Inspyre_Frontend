@@ -113,6 +113,11 @@
   color: #fff !important;
 }
 
+.Divider {
+  font-size: 22px;
+  color: #ffebd8;
+}
+
 .InspyreLink {
   display: inline-block;
   padding: 0.25rem 0.5rem;
@@ -138,9 +143,25 @@
   text-shadow: #fff 0px 0px 5px;
 }
 
-.Divider {
-  font-size: 22px;
-  color: #ffebd8;
+.MessageIcon {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  line-height: 1.5;
+  font-size: 1.5rem;
+  background-color: none !important;
+  color: #ff7b00 !important;
+  border: none;
+  border-radius: 0.25rem;
+  transition: all 0.15s ease-in-out;
+}
+
+.MessageIcon:hover {
+  color: #fff !important;
+}
+
+.ActiveIcon,
+.MessageIcon:focus {
+  color: #fff !important;
 }
 
 /* ------------------------------------------ MEDIA QUERIES */

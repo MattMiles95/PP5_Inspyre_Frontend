@@ -58,6 +58,17 @@ const NavBar = () => {
         Inspyre +
       </NavLink>
 
+      <NavLink
+        className={({ isActive }) =>
+          `${styles.NavLink} mr-4 ${styles.MessageIcon} ${
+            isActive ? styles.ActiveIcon : ""
+          }`
+        }
+        to="/conversations"
+      >
+        <i className="fa-solid fa-comments"></i>
+      </NavLink>
+
       <Dropdown>
         <Dropdown.Toggle
           variant="link"

@@ -118,6 +118,7 @@ function PostsPage({ message, filter = "" }) {
           </div>
         )}
 
+        {/* Gallery Section */}
         <Col xs={12}>
           {hasLoaded ? (
             posts.results.length ? (
