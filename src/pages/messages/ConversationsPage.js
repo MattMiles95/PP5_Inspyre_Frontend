@@ -95,7 +95,6 @@ const ConversationsPage = () => {
           receiver: user.id,
           content: "👋",
         });
-
         navigate(`/messages/conversation/${newMessage.data.conversation}`);
       }
     } catch (err) {
@@ -115,7 +114,6 @@ const ConversationsPage = () => {
     <Container className={`${styles.ConversationsContainer} mt-5 pt-3`}>
       <h3 className={styles.MessagesTitle}>Messages</h3>
 
-      {/* Start New Conversation Button */}
       {!searchMode && (
         <Button
           variant="primary"
@@ -126,7 +124,6 @@ const ConversationsPage = () => {
         </Button>
       )}
 
-      {/* Search Mode */}
       {searchMode && (
         <>
           <Button
@@ -179,8 +176,10 @@ const ConversationsPage = () => {
           {conversations.length ? (
             conversations.map((conversation) => {
               const otherUser = conversation.participants.find(
-                (p) => p.id !== currentUser?.id
+                (participant) => participant.id !== currentUser?.id
               );
+
+              if (!otherUser) return null;
 
               return (
                 <ListGroup.Item
@@ -190,7 +189,7 @@ const ConversationsPage = () => {
                   to={`/messages/conversation/${conversation.id}`}
                   className={styles.ConversationItem}
                 >
-                  <strong>{otherUser?.username}</strong>
+                  <strong>{otherUser.username}</strong>
                   <br />
                   <small className="text-muted">
                     {conversation.latest_message?.preview || "No messages yet"}
