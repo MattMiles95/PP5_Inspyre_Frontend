@@ -26,7 +26,7 @@ import styles from "../styles/NavBar.module.css";
 import Avatar from "./Avatar";
 
 // React Router
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 
 // Utils
 import { removeTokenTimestamp } from "../utils/utils";
@@ -35,6 +35,7 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignOut = async () => {
     try {
@@ -61,11 +62,14 @@ const NavBar = () => {
       </NavLink>
 
       <NavLink
-        className={({ isActive }) =>
-          `${styles.NavLink} mr-4 ${styles.MessageIcon} ${
-            isActive ? styles.ActiveIcon : ""
-          }`
-        }
+        className={({ isActive }) => {
+          const isMessagesPage =
+            location.pathname.startsWith("/messages/conversation") ||
+            location.pathname.startsWith("/conversations");
+          return `${styles.NavLink} mr-4 ${styles.MessageIcon} ${
+            isMessagesPage ? styles.ActiveIcon : ""
+          }`;
+        }}
         to="/conversations"
       >
         <i className="fa-solid fa-comments"></i>
