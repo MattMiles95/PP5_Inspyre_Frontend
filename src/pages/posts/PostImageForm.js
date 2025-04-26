@@ -77,30 +77,33 @@ function PostImageForm({ setPostType, postType }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const validationErrors = {};
-  
+
     if (!title.trim()) {
       validationErrors.title = ["Don't forget to give your creation a title!"];
     }
-  
+
     if (!imageFile) {
       validationErrors.image = ["Uh-oh - you forgot to upload an image!"];
     }
-  
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     formData.append("image", imageFile);
     formData.append("tags", tags);
-  
+
     try {
-      const { data } = await axiosReq.post("/posts/", formData);
+      const { data } = await axiosReq.post("/posts/", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
+
       navigate(`/posts/${data.id}`);
     } catch (err) {
       if (err.response?.status !== 401) {
@@ -108,7 +111,6 @@ function PostImageForm({ setPostType, postType }) {
       }
     }
   };
-  
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -119,7 +121,8 @@ function PostImageForm({ setPostType, postType }) {
           onClick={() => setPostType(null)}
           aria-label="Go back to post type selection"
         >
-          <i className={`${appStyles.BackArrow} fas fa-arrow-left me-2`}></i> Go back
+          <i className={`${appStyles.BackArrow} fas fa-arrow-left me-2`}></i> Go
+          back
         </Button>
 
         {/* Only show the image section if the 'image' postType is selected */}

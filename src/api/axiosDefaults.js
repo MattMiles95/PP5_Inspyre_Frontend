@@ -5,7 +5,6 @@ import axios from "axios";
 axios.defaults.baseURL = "https://inspyre-api-6e178387b3cb.herokuapp.com/";
 
 // Default headers
-axios.defaults.headers.post["Content-Type"] = "multipart/form-data";
 axios.defaults.withCredentials = true;
 
 // Create Axios instances for request and response
