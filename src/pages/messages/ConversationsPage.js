@@ -87,9 +87,15 @@ const ConversationsPage = () => {
 
   const handleUserSelect = async (user) => {
     try {
-      const { data } = await axiosReq.get(`/messages/?receiver=${user.id}`);
-      if (data.length > 0) {
-        navigate(`/messages/conversation/${data[0].conversation}`);
+      const { data: conversationsData } = await axiosReq.get("/conversations/");
+      const existingConversation = (
+        conversationsData.results || conversationsData
+      ).find((conversation) =>
+        conversation.participants.some((p) => p.id === user.id)
+      );
+
+      if (existingConversation) {
+        navigate(`/messages/conversation/${existingConversation.id}`);
       } else {
         const newMessage = await axiosReq.post("/messages/", {
           receiver: user.id,
