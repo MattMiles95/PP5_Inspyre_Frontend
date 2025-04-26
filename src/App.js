@@ -12,6 +12,7 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import styles from "./App.module.css";
 
 // Local Components
+import ConversationPage from "./pages/messages/ConversationPage";
 import ConversationsPage from "./pages/messages/ConversationsPage";
 import NavBar from "./components/NavBar";
 import PostCreate from "./pages/posts/PostCreate";
@@ -53,7 +54,6 @@ function App() {
       <NavBar />
       <Container className={styles.Main}>
         <Routes>
-          <Route path="/conversations" element={<ConversationsPage />} />
           <Route path="/" element={<PostsPage />} />
           <Route
             path="/pyres"
@@ -73,6 +73,12 @@ function App() {
               />
             }
           />
+          <Route path="/conversations" element={<ConversationsPage />} />
+          <Route
+            path="/messages/conversation/:id"
+            element={<ConversationPage />}
+          />
+
           <Route path="/posts/inspyre" element={<PostCreate />} />
           <Route path="/posts/:id" element={<PostPage />} />
           <Route path="/posts/:id/edit" element={<PostEditFormBase />} />
