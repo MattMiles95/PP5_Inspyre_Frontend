@@ -76,6 +76,13 @@ const ConversationsPage = () => {
     setSearchResults([]);
   };
 
+  // Cancel Search (resume conversations view)
+  const handleCancelSearch = () => {
+    setSearchMode(false);
+    setSearchQuery("");
+    setSearchResults([]);
+  };
+
   const handleUserSelect = async (user) => {
     try {
       const { data } = await axiosReq.get(`/messages/?receiver=${user.id}`);
@@ -120,6 +127,14 @@ const ConversationsPage = () => {
       {/* Search Mode */}
       {searchMode && (
         <>
+          <Button
+            variant="secondary"
+            className="mb-3"
+            onClick={handleCancelSearch}
+          >
+            Back
+          </Button>
+          
           <Form className="mb-3">
             <Form.Control
               type="text"
