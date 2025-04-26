@@ -79,7 +79,7 @@ const ConversationsPage = () => {
     setSearchResults([]);
   };
 
-  const handleBackToConversations = () => {
+  const handleBack = () => {
     setSearchMode(false);
     setSearchQuery("");
     setSearchResults([]);
@@ -135,9 +135,9 @@ const ConversationsPage = () => {
           <Button
             variant="link"
             className={`${btnStyles.BackBtn} mb-3 p-0`}
-            onClick={handleBackToConversations}
+            onClick={handleBack}
           >
-            <i className="fas fa-arrow-left me-2"></i> Back to Conversations
+            <i className="fas fa-arrow-left me-2"></i> Back
           </Button>
 
           <Form className="mb-3">
