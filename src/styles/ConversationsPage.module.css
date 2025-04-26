@@ -1,0 +1,80 @@
+.ConversationsContainer {
+  background-color: rgba(23, 23, 23, 0.85);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0px 0px 10px rgba(255, 122, 0, 0.2);
+  color: #ffebd8;
+}
+
+.MessagesTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  background-image: linear-gradient(to right, #ff9532, #b85900);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.StartConversationBtn {
+  background: linear-gradient(to right, #ff7b00, #88300f) !important;
+  color: #fff !important;
+  border: none;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  transition: 0.2s ease-in-out;
+}
+
+.StartConversationBtn:hover {
+  background: linear-gradient(to right, #ffffff, #ffffff) !important;
+  color: #ea5722 !important;
+  text-shadow: 0px 0px 5px #ffffff;
+}
+
+.SearchInput {
+  background-color: #1c1c1c;
+  color: #ffebd8;
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 0.6rem;
+}
+
+.SearchInput:focus {
+  background-color: #1c1c1c;
+  color: #ffffff;
+  border-color: #ff7b00;
+  box-shadow: 0 0 5px rgba(255, 123, 0, 0.5);
+}
+
+.SearchResultsList {
+  margin-top: 1rem;
+}
+
+.SearchResultItem {
+  background-color: #232323;
+  color: #ffebd8;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.SearchResultItem:hover {
+  background-color: #333;
+  color: #ff7b00;
+}
+
+.ConversationItem {
+  background-color: #1c1c1c;
+  color: #ffebd8;
+  transition: background 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+.ConversationItem:hover {
+  background-color: #333;
+  color: #ff7b00;
+}
+
+.EmptyState {
+  text-align: center;
+  margin-top: 2rem;
+  color: #aaa;
+  font-size: 1rem;
+}

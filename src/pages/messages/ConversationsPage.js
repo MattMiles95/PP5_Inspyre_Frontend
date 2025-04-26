@@ -6,13 +6,16 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
-import Spinner from "react-bootstrap/Spinner";
 
 // Context
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
 import styles from "../../styles/ConversationsPage.module.css";
+import btnStyles from "../../styles/Buttons.module.css";
+
+// Local Components
+import Asset from "../../components/Asset";
 
 // React
 import { useState, useEffect } from "react";
@@ -76,8 +79,7 @@ const ConversationsPage = () => {
     setSearchResults([]);
   };
 
-  // Cancel Search (resume conversations view)
-  const handleCancelSearch = () => {
+  const handleBackToConversations = () => {
     setSearchMode(false);
     setSearchQuery("");
     setSearchResults([]);
@@ -104,20 +106,20 @@ const ConversationsPage = () => {
   if (loading) {
     return (
       <Container className="text-center mt-5">
-        <Spinner animation="border" />
+        <Asset spinner />
       </Container>
     );
   }
 
   return (
-    <Container className="mt-5 pt-3">
-      <h3 className="mb-4">Messages</h3>
+    <Container className={`${styles.ConversationsContainer} mt-5 pt-3`}>
+      <h3 className={styles.MessagesTitle}>Messages</h3>
 
       {/* Start New Conversation Button */}
       {!searchMode && (
         <Button
           variant="primary"
-          className="mb-4"
+          className={`${styles.StartConversationBtn}`}
           onClick={handleStartNewConversation}
         >
           Start New Conversation
@@ -128,41 +130,45 @@ const ConversationsPage = () => {
       {searchMode && (
         <>
           <Button
-            variant="secondary"
-            className="mb-3"
-            onClick={handleCancelSearch}
+            variant="link"
+            className={`${btnStyles.BackBtn} mb-3 p-0`}
+            onClick={handleBackToConversations}
           >
-            Back
+            <i className="fas fa-arrow-left me-2"></i> Back to Conversations
           </Button>
-          
+
           <Form className="mb-3">
             <Form.Control
               type="text"
               placeholder="Search by username..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              className={styles.SearchInput}
             />
           </Form>
 
           {searchLoading && (
             <div className="text-center my-3">
-              <Spinner animation="border" size="sm" />
+              <Asset spinner size="sm" />
             </div>
           )}
 
-          <ListGroup>
+          <ListGroup className={styles.SearchResultsList}>
             {searchResults.length
               ? searchResults.map((user) => (
                   <ListGroup.Item
                     key={user.id}
                     action
                     onClick={() => handleUserSelect(user)}
+                    className={styles.SearchResultItem}
                   >
                     {user.username}
                   </ListGroup.Item>
                 ))
               : searchQuery.trim() !== "" &&
-                !searchLoading && <p>No users found.</p>}
+                !searchLoading && (
+                  <div className={styles.EmptyState}>No users found.</div>
+                )}
           </ListGroup>
         </>
       )}
@@ -182,6 +188,7 @@ const ConversationsPage = () => {
                   action
                   as={Link}
                   to={`/messages/conversation/${conversation.id}`}
+                  className={styles.ConversationItem}
                 >
                   <strong>{otherUser?.username}</strong>
                   <br />
@@ -192,7 +199,7 @@ const ConversationsPage = () => {
               );
             })
           ) : (
-            <p>No conversations found.</p>
+            <div className={styles.EmptyState}>No conversations found.</div>
           )}
         </ListGroup>
       )}

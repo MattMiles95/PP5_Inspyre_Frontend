@@ -8,7 +8,7 @@
 
 .Btn {
   font-weight: 500;
-  background: linear-gradient(to right, #ffa245, #88300f) !important;
+  background: linear-gradient(to right, #ff7b00, #88300f) !important;
   border: none;
   transition: 0.2s ease-in-out;
 }
