@@ -82,11 +82,10 @@ const ConversationsPage = () => {
       if (data.length > 0) {
         navigate(`/messages/conversation/${data[0].conversation}`);
       } else {
-        const newMessage = await axiosReq.post(
-          "/messages/",
-          JSON.stringify({ receiver: user.id, content: "👋" }),
-          { headers: { "Content-Type": "application/json" } }
-        );
+        const newMessage = await axiosReq.post("/messages/", {
+          receiver: user.id,
+          content: "👋",
+        });
 
         navigate(`/messages/conversation/${newMessage.data.conversation}`);
       }
