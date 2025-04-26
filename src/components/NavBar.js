@@ -77,7 +77,7 @@ const NavBar = () => {
           <Avatar
             src={currentUser?.profile_image}
             text=""
-            height={40}
+            height={60}
             className="m-2"
           />
         </Dropdown.Toggle>
