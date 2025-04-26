@@ -26,7 +26,7 @@ import styles from "../styles/NavBar.module.css";
 import Avatar from "./Avatar";
 
 // React Router
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 // Utils
 import { removeTokenTimestamp } from "../utils/utils";
@@ -34,12 +34,14 @@ import { removeTokenTimestamp } from "../utils/utils";
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
       await axios.post("/dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp();
+      navigate("/signin");
     } catch (err) {
       // console.log(err);
     }
