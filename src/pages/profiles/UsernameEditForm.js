@@ -7,7 +7,10 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 // Context
-import { useCurrentUser, useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../../contexts/CurrentUserContext";
 
 // CSS
 import btnStyles from "../../styles/Buttons.module.css";
@@ -41,6 +44,7 @@ const UsernameEditForm = () => {
     try {
       await axiosRes.put("/dj-rest-auth/user/", { username });
       setCurrentUser((prev) => ({ ...prev, username }));
+      navigate(-1);
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -58,7 +62,9 @@ const UsernameEditForm = () => {
         />
       </Form.Group>
       {errors?.username?.map((msg, idx) => (
-        <Alert key={idx} variant="warning">{msg}</Alert>
+        <Alert key={idx} variant="warning">
+          {msg}
+        </Alert>
       ))}
       <Button type="submit" className={`${btnStyles.Btn} mt-2`}>
         Save Username

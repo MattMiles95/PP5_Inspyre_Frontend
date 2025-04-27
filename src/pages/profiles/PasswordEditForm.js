@@ -25,6 +25,7 @@ const PasswordEditForm = () => {
     new_password2: "",
   });
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
   const { new_password1, new_password2 } = userData;
   const navigate = useNavigate();
   const { id } = useParams();
@@ -44,14 +45,18 @@ const PasswordEditForm = () => {
     e.preventDefault();
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
-      navigate("/");
+      setSuccessMessage("Password changed successfully!");
+      setErrors({});
+      setUserData({ new_password1: "", new_password2: "" });
     } catch (err) {
       setErrors(err.response?.data);
+      setSuccessMessage("");
     }
   };
 
   return (
     <Form onSubmit={handleSubmit}>
+      {successMessage && <Alert variant="success">{successMessage}</Alert>}
       <Form.Group>
         <Form.Label>New Password</Form.Label>
         <Form.Control
@@ -63,7 +68,9 @@ const PasswordEditForm = () => {
         />
       </Form.Group>
       {errors?.new_password1?.map((msg, idx) => (
-        <Alert key={idx} variant="warning">{msg}</Alert>
+        <Alert key={idx} variant="warning">
+          {msg}
+        </Alert>
       ))}
       <Form.Group>
         <Form.Label>Confirm Password</Form.Label>
@@ -76,7 +83,9 @@ const PasswordEditForm = () => {
         />
       </Form.Group>
       {errors?.new_password2?.map((msg, idx) => (
-        <Alert key={idx} variant="warning">{msg}</Alert>
+        <Alert key={idx} variant="warning">
+          {msg}
+        </Alert>
       ))}
       <Button type="submit" className={`${btnStyles.Btn} mt-2`}>
         Change Password
