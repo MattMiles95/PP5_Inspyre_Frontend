@@ -20,7 +20,7 @@ const Modal = ({ isOpen, onClose, title, children, onConfirm }) => {
 
         {/* Modal Body */}
         <div className={styles.ModalBody}>{children}</div>
-        
+
         {/* Modal Footer */}
         <div className={styles.ModalFooter}>
           <button onClick={onClose} className={styles.CancelButton}>

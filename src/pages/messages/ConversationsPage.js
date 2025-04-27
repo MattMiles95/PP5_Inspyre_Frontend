@@ -6,17 +6,17 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
-import Modal from "react-bootstrap/Modal";
 
 // Context
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
+// Local Components
+import Asset from "../../components/Asset";
+import Modal from "../../components/Modal";
+
 // CSS
 import styles from "../../styles/ConversationsPage.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
-
-// Local Components
-import Asset from "../../components/Asset";
 
 // React
 import { useState, useEffect } from "react";
@@ -107,6 +107,20 @@ const ConversationsPage = () => {
       }
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const handleDeleteConversation = async () => {
+    try {
+      await axiosReq.delete(`/conversations/${conversationToDelete}/`);
+      setConversations((prev) =>
+        prev.filter((c) => c.id !== conversationToDelete)
+      );
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setShowConfirmModal(false);
+      setConversationToDelete(null);
     }
   };
 
@@ -226,46 +240,14 @@ const ConversationsPage = () => {
         </ListGroup>
       )}
 
+      {/* Delete Conversation Modal */}
       <Modal
-        show={showConfirmModal}
-        onHide={() => setShowConfirmModal(false)}
-        centered
-        backdrop="static"
+        isOpen={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+        onConfirm={handleDeleteConversation}
+        title="Delete Conversation?"
       >
-        <Modal.Header closeButton className="border-0">
-          <Modal.Title>Delete Conversation?</Modal.Title>
-        </Modal.Header>
-        <Modal.Body className="text-center">
-          <p>Are you sure you want to permanently delete this conversation?</p>
-        </Modal.Body>
-        <Modal.Footer className="border-0 d-flex justify-content-center">
-          <Button
-            variant="secondary"
-            onClick={() => setShowConfirmModal(false)}
-          >
-            Cancel
-          </Button>
-          <Button
-            variant="danger"
-            onClick={async () => {
-              try {
-                await axiosReq.delete(
-                  `/conversations/${conversationToDelete}/`
-                );
-                setConversations((prev) =>
-                  prev.filter((c) => c.id !== conversationToDelete)
-                );
-              } catch (err) {
-                console.error(err);
-              } finally {
-                setShowConfirmModal(false);
-                setConversationToDelete(null);
-              }
-            }}
-          >
-            Delete
-          </Button>
-        </Modal.Footer>
+        Are you sure you want to permanently delete this conversation?
       </Modal>
     </Container>
   );
