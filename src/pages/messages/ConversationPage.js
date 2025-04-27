@@ -45,20 +45,17 @@ const ConversationPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch messages
-        const { data: messageData } = await axiosReq.get(
-          `/messages/?conversation_id=${conversationId}`
-        );
-        setMessages(messageData.results || messageData);
+        const [{ data: conversationData }, { data: messageData }] =
+          await Promise.all([
+            axiosReq.get(`/conversations/${conversationId}/`),
+            axiosReq.get(`/messages/?conversation_id=${conversationId}`),
+          ]);
 
-        // Fetch conversation participants
-        const { data: conversationData } = await axiosReq.get(
-          `/conversations/${conversationId}/`
-        );
         const other = conversationData.participants.find(
           (participant) => participant.id !== currentUser?.id
         );
         setOtherUser(other);
+        setMessages(messageData.results || messageData);
       } catch (err) {
         console.error(err);
       } finally {

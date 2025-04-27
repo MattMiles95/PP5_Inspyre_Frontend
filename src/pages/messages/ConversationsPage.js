@@ -179,12 +179,11 @@ const ConversationsPage = () => {
       {/* Existing Conversations List */}
       {!searchMode && (
         <ListGroup>
-          {conversations.length ? (
+          {currentUser && conversations.length ? (
             conversations.map((conversation) => {
               const otherUser = conversation.participants.find(
-                (participant) => participant.id !== currentUser?.id
+                (p) => p.id !== currentUser.id
               );
-
               if (!otherUser) return null;
 
               return (
