@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import ListGroup from "react-bootstrap/ListGroup";
+import Modal from "react-bootstrap/Modal";
 
 // Context
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -34,7 +35,9 @@ const ConversationsPage = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchLoading, setSearchLoading] = useState(false);
 
-  // Fetch conversations initially
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [conversationToDelete, setConversationToDelete] = useState(null);
+
   useEffect(() => {
     const fetchConversations = async () => {
       try {
@@ -50,7 +53,6 @@ const ConversationsPage = () => {
     fetchConversations();
   }, []);
 
-  // Search users when query changes
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
       if (searchQuery.trim() === "") {
@@ -176,7 +178,6 @@ const ConversationsPage = () => {
         </>
       )}
 
-      {/* Existing Conversations List */}
       {!searchMode && (
         <ListGroup>
           {currentUser && conversations.length ? (
@@ -187,19 +188,36 @@ const ConversationsPage = () => {
               if (!otherUser) return null;
 
               return (
-                <ListGroup.Item
+                <div
+                  className={styles.ConversationWrapper}
                   key={conversation.id}
-                  action
-                  as={Link}
-                  to={`/messages/conversation/${conversation.id}`}
-                  className={styles.ConversationItem}
                 >
-                  <strong>{otherUser.username}</strong>
-                  <br />
-                  <small className="text-muted">
-                    {conversation.latest_message?.preview || "No messages yet"}
-                  </small>
-                </ListGroup.Item>
+                  <ListGroup.Item className={styles.ConversationItem}>
+                    <Link
+                      to={`/messages/conversation/${conversation.id}`}
+                      className={styles.ConversationLink}
+                    >
+                      <strong>{otherUser.username}</strong>
+                      <br />
+                      <small className="text-muted">
+                        {conversation.latest_message?.preview ||
+                          "No messages yet"}
+                      </small>
+                    </Link>
+                  </ListGroup.Item>
+
+                  <div
+                    className={styles.TrashIconWrapper}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      e.preventDefault();
+                      setConversationToDelete(conversation.id);
+                      setShowConfirmModal(true);
+                    }}
+                  >
+                    <i className="fa-solid fa-trash-can"></i>
+                  </div>
+                </div>
               );
             })
           ) : (
@@ -207,6 +225,48 @@ const ConversationsPage = () => {
           )}
         </ListGroup>
       )}
+
+      <Modal
+        show={showConfirmModal}
+        onHide={() => setShowConfirmModal(false)}
+        centered
+        backdrop="static"
+      >
+        <Modal.Header closeButton className="border-0">
+          <Modal.Title>Delete Conversation?</Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-center">
+          <p>Are you sure you want to permanently delete this conversation?</p>
+        </Modal.Body>
+        <Modal.Footer className="border-0 d-flex justify-content-center">
+          <Button
+            variant="secondary"
+            onClick={() => setShowConfirmModal(false)}
+          >
+            Cancel
+          </Button>
+          <Button
+            variant="danger"
+            onClick={async () => {
+              try {
+                await axiosReq.delete(
+                  `/conversations/${conversationToDelete}/`
+                );
+                setConversations((prev) =>
+                  prev.filter((c) => c.id !== conversationToDelete)
+                );
+              } catch (err) {
+                console.error(err);
+              } finally {
+                setShowConfirmModal(false);
+                setConversationToDelete(null);
+              }
+            }}
+          >
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
