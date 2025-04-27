@@ -189,7 +189,7 @@ const ConversationPage = () => {
         </Col>
         <Col xs={2} className="d-flex align-items-center">
           <Button
-            className={styles.SendBtn}
+            className={btnStyles.SendBtn}
             onClick={handleSendMessage}
             disabled={!newMessage.trim()}
           >

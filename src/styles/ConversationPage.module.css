@@ -115,24 +115,3 @@
   border-color: #ff7b00;
   box-shadow: 0 0 5px rgba(255, 123, 0, 0.5);
 }
-
-.SendBtn {
-  background: linear-gradient(to right, #ff7b00, #88300f) !important;
-  color: #fff !important;
-  border: none;
-  padding: 0.4rem 1rem;
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-  width: auto;
-  height: 2.5rem;
-  min-width: 3rem;
-  transition: all 0.2s ease-in-out;
-}
-
-.SendBtn:hover {
-  background: linear-gradient(to right, #fff, #fff) !important;
-  color: #ea5722 !important;
-}

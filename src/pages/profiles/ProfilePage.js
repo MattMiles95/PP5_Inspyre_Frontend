@@ -30,7 +30,7 @@ import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 // React Router
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 // Utils
 import { fetchMoreData, stripHtmlTags, truncateText } from "../../utils/utils";
@@ -46,6 +46,7 @@ function ProfilePage() {
 
   const [profile] = pageProfile.results || [];
   const is_owner = currentUser?.username === profile?.owner;
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -68,6 +69,29 @@ function ProfilePage() {
     fetchData();
   }, [id, setProfileData]);
 
+  const handleMessage = async () => {
+    try {
+      const { data: conversationsData } = await axiosReq.get("/conversations/");
+      const existingConversation = (
+        conversationsData.results || conversationsData
+      ).find((conversation) =>
+        conversation.participants.some((p) => p.id === profile?.id)
+      );
+
+      if (existingConversation) {
+        navigate(`/messages/conversation/${existingConversation.id}`);
+      } else {
+        const newMessage = await axiosReq.post("/messages/", {
+          receiver: profile?.id,
+          content: "👋",
+        });
+        navigate(`/messages/conversation/${newMessage.data.conversation}`);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const profileHeader = (
     <div className={styles.ProfileHeader}>
       <Image
@@ -86,21 +110,29 @@ function ProfilePage() {
               <i className="fa-solid fa-gears"></i> Edit
             </Link>
           ) : currentUser ? (
-            profile?.following_id ? (
+            <>
+              {profile?.following_id ? (
+                <Button
+                  className={`${btnStyles.UnfollowBtn} ml-2`}
+                  onClick={() => handleUnfollow(profile)}
+                >
+                  Unfollow
+                </Button>
+              ) : (
+                <Button
+                  className={`${btnStyles.FollowBtn} ml-2`}
+                  onClick={() => handleFollow(profile)}
+                >
+                  Follow
+                </Button>
+              )}
               <Button
-                className={`${btnStyles.Btn} ml-2`}
-                onClick={() => handleUnfollow(profile)}
+                className={`${btnStyles.MessageBtn} ml-2`}
+                onClick={handleMessage}
               >
-                unfollow
+                Message
               </Button>
-            ) : (
-              <Button
-                className={`${btnStyles.Btn} ml-2`}
-                onClick={() => handleFollow(profile)}
-              >
-                follow
-              </Button>
-            )
+            </>
           ) : null}
         </div>
 
