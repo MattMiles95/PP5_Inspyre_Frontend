@@ -1,0 +1,100 @@
+.ModalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  .ModalContent {
+    background-color: #171717;
+    color: #ffebd8;
+    padding: 2rem;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0px 0px 20px rgba(255, 123, 0, 0.3);
+    position: relative;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .ModalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ff7b00;
+    padding-bottom: 0.5rem;
+  }
+  
+  .ModalTitle {
+    font-size: 1.5rem;
+  }
+  
+  .CloseButton {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #ffebd8;
+    cursor: pointer;
+  }
+  
+  .CloseButton:hover {
+    color: #ff7b00;
+  }
+  
+  .ModalBody {
+    margin-top: 1rem;
+    text-align: center;
+  }
+  
+  .ModalFooter {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .CancelButton {
+    background: #444;
+    color: #ffebd8;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .CancelButton:hover {
+    background: #666;
+  }
+  
+  .DeleteButton {
+    background: linear-gradient(to right, #ff4e4e, #b23737);
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .DeleteButton:hover {
+    background: linear-gradient(to right, #ff6c6c, #a32929);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
