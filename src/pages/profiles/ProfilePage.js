@@ -16,7 +16,9 @@ import {
 } from "../../contexts/ProfileDataContext";
 
 // CSS
+import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
+import errorStyles from "../../styles/CustomErrors.module.css";
 import galleryStyles from "../../styles/PostsGallery.module.css";
 import styles from "../../styles/ProfilePage.module.css";
 
@@ -200,10 +202,19 @@ function ProfilePage() {
           className={galleryStyles.GalleryGrid}
         />
       ) : (
-        <Asset
-          src={NoResults}
-          message={`No results found, ${profile?.owner} hasn't posted yet.`}
-        />
+        <div className={`text-center ${errorStyles.ErrorWrapper}`}>
+          <Image
+            src={NoResults}
+            className={errorStyles.ErrorImage}
+            alt="Page Not Found"
+          />
+          <h2 className={`mt-4 ${errorStyles.ErrorTitle}`}>
+            Hmm... There's nothing here!?
+          </h2>
+          <p className={`mt-3 ${errorStyles.ErrorMessage}`}>
+            {profile?.owner} hasn't posted yet!
+          </p>
+        </div>
       )}
     </div>
   );
