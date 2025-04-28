@@ -148,21 +148,25 @@ const ConversationPage = () => {
         <Col xs={12}>
           <ListGroup className={styles.MessagesList}>
             {messages.length ? (
-              [...messages].reverse().map((message) => (
-                <ListGroup.Item
-                  key={message.id}
-                  className={`${styles.MessageRow} ${
-                    message.sender.id === currentUser?.id
-                      ? styles.SenderMessage
-                      : styles.ReceiverMessage
-                  }`}
-                >
-                  <div className={styles.MessageBubble}>
-                    <strong>{message.sender.username}</strong>:{" "}
-                    {message.content}
-                  </div>
-                </ListGroup.Item>
-              ))
+              [...messages].reverse().map((message) => {
+                const isSender = message.sender?.id === currentUser?.pk;
+                return (
+                  <ListGroup.Item
+                    key={message.id}
+                    className={`${styles.MessageRow} ${
+                      isSender ? styles.SenderMessage : styles.ReceiverMessage
+                    }`}
+                  >
+                    <div
+                      className={`${styles.MessageBubble} ${
+                        isSender ? styles.SenderBubble : styles.ReceiverBubble
+                      }`}
+                    >
+                      {message.content}
+                    </div>
+                  </ListGroup.Item>
+                );
+              })
             ) : (
               <p className={styles.EmptyState}>No messages yet.</p>
             )}
