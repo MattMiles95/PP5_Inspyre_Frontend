@@ -21,6 +21,9 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import styles from "../../styles/ProfileEditor.module.css";
 
+// Hooks
+import { useHandleAccountDelete } from "../../hooks/useHandleAccountDelete";
+
 // React
 import React, { useState, useEffect, useRef } from "react";
 
@@ -33,6 +36,7 @@ const DetailsEditForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const imageFile = useRef();
+  const handleAccountDelete = useHandleAccountDelete();
 
   const [profileData, setProfileData] = useState({
     content: "",
@@ -110,18 +114,6 @@ const DetailsEditForm = () => {
         profile_image: data.image,
       }));
       navigate(-1);
-    } catch (err) {
-      setErrors(err.response?.data);
-    }
-  };
-
-  const handleAccountDelete = async () => {
-    try {
-      await axiosReq.delete("/users/delete/");
-      setCurrentUser(null);
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-      navigate("/");
     } catch (err) {
       setErrors(err.response?.data);
     }

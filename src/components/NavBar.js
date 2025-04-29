@@ -1,9 +1,6 @@
 // React
 import React from "react";
 
-// API
-import axios from "axios";
-
 // Assets
 import logo from "../assets/inspyre_logo.png";
 
