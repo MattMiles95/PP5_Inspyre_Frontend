@@ -14,39 +14,24 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 
 // Context
-import {
-  useCurrentUser,
-  useSetCurrentUser,
-} from "../contexts/CurrentUserContext";
+import { useCurrentUser } from "../contexts/CurrentUserContext";
 
 // CSS
 import styles from "../styles/NavBar.module.css";
+
+// Hooks
+import { useHandleSignOut } from "../hooks/useHandleSignOut";
 
 // Local Components
 import Avatar from "./Avatar";
 
 // React Router
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
-
-// Utils
-import { removeTokenTimestamp } from "../utils/utils";
+import { NavLink, useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-  const setCurrentUser = useSetCurrentUser();
-  const navigate = useNavigate();
   const location = useLocation();
-
-  const handleSignOut = async () => {
-    try {
-      await axios.post("/dj-rest-auth/logout/");
-      setCurrentUser(null);
-      removeTokenTimestamp();
-      navigate("/signin");
-    } catch (err) {
-      // console.log(err);
-    }
-  };
+  const handleSignOut = useHandleSignOut();
 
   const loggedInNavbar = (
     <>
