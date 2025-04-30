@@ -54,8 +54,37 @@
 }
 
 .Reply {
-  background-color: #3c3c3c;
-  box-shadow: 0 0 8px rgba(255, 123, 0, 0.12);
+  background-color: #2a2a2a;
+  box-shadow: 0 0 6px rgba(255, 123, 0, 0.1);
+  padding-left: 1.25rem;
+  border-left: 3px solid #ff7b00;
+  font-size: 0.95rem;
+  position: relative;
+}
+
+.Reply::before {
+  content: "";
+  position: absolute;
+  top: 1.2rem;
+  left: -1.5rem;
+  width: 1rem;
+  height: 1px;
+  background-color: #ff7b00;
+}
+
+.Reply .CommentText {
+  font-size: 0.95rem;
+  line-height: 1.2;
+}
+
+.Reply .Avatar {
+  width: 36px;
+  height: 36px;
+  margin-right: 2rem;
+}
+
+.CommentCard.Reply {
+  box-shadow: 0 0 6px rgba(255, 123, 0, 0.08);
 }
 
 .Avatar {

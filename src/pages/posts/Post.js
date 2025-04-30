@@ -117,18 +117,20 @@ const Post = (props) => {
 
       <Card.Body className={styles.MediaContainer}>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
-        {image ? (
+        {image && (
           <div className={styles.ImageWrapper}>
             <Card.Img src={image} alt={title} className={styles.PostImage} />
           </div>
-        ) : content ? (
+        )}
+
+        {content && (
           <div
-            className="ql-editor"
+            className="ql-editor mt-3"
             dangerouslySetInnerHTML={{ __html: content }}
           />
-        ) : (
-          <Asset spinner />
         )}
+
+        {!image && !content && <Asset spinner />}
 
         {post_tags?.length > 0 && (
           <div className={`${styles.Tags} mt-3`}>

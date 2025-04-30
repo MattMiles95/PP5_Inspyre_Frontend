@@ -14,6 +14,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
 import appStyles from "../../App.module.css";
+import styles from "../../styles/PostPage.module.css";
 
 // Local Components
 import Asset from "../../components/Asset";
@@ -62,7 +63,7 @@ function PostPage() {
           <Asset spinner />
         )}
 
-        <Container className={appStyles.Content}>
+        <Container className={`${appStyles.Content} ${styles.CommentSection}`}>
           {currentUser && (
             <CommentCreateForm
               profile_id={currentUser.profile_id}
