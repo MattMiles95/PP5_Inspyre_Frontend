@@ -72,6 +72,8 @@ export const ProfileDataProvider = ({ children }) => {
 
   useEffect(() => {
     const handleMount = async () => {
+      if (!currentUser) return;
+
       try {
         const { data } = await axiosReq.get(
           "/profiles/?ordering=-followers_count"
@@ -90,7 +92,9 @@ export const ProfileDataProvider = ({ children }) => {
 
   return (
     <ProfileDataContext.Provider value={profileData}>
-      <SetProfileDataContext.Provider value={{ setProfileData, handleFollow, handleUnfollow }}>
+      <SetProfileDataContext.Provider
+        value={{ setProfileData, handleFollow, handleUnfollow }}
+      >
         {children}
       </SetProfileDataContext.Provider>
     </ProfileDataContext.Provider>
