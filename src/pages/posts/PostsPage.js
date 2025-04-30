@@ -142,6 +142,9 @@ function PostsPage({ message, filter = "" }) {
                           alt="Post"
                           className={styles.Thumb}
                         />
+                        <div className={styles.ImageHoverTitle}>
+                          {post.title}
+                        </div>
                       </div>
                     ) : (
                       <div className={styles.TextThumb}>

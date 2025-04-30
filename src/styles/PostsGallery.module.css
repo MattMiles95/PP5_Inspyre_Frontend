@@ -52,9 +52,30 @@
 }
 
 .ImageContainer {
+  position: relative;
   height: 200px;
   display: inline-block;
   overflow: hidden;
+}
+
+.ImageHoverTitle {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5rem;
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.85rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  text-align: center;
+}
+
+.ImageContainer:hover .ImageHoverTitle {
+  opacity: 1;
 }
 
 .Thumb {
@@ -241,7 +262,7 @@
 
 @media (max-width: 425px) {
   .GalleryGrid {
-    gap: .8rem;
+    gap: 0.8rem;
     justify-content: center;
   }
 }
