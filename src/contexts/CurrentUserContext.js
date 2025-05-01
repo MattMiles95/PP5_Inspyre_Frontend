@@ -30,7 +30,10 @@ export const CurrentUserProvider = ({ children }) => {
 
     try {
       const { data } = await axiosRes.get("/dj-rest-auth/user/");
-      setCurrentUser(data);
+      setCurrentUser({
+        ...data,
+        id: data.pk || data.id,
+      });
     } catch (err) {
       if (err.response?.status === 401) return;
     }
