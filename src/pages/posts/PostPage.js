@@ -80,6 +80,7 @@ function PostPage() {
               loader={<Asset spinner />}
               hasMore={!!comments.next}
               next={() => fetchMoreData(comments, setComments)}
+              className={styles.ScrollContainer}
             >
               {comments.results.map((comment) => (
                 <Comment
