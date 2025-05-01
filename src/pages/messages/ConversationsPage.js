@@ -196,9 +196,7 @@ const ConversationsPage = () => {
         <ListGroup>
           {currentUser && conversations.length ? (
             conversations.map((conversation) => {
-              const otherUser = conversation.participants.find(
-                (p) => p.id !== currentUser.id
-              );
+              const otherUser = conversation.other_user;
               if (!otherUser) return null;
 
               return (

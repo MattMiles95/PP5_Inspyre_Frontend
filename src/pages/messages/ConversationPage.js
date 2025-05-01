@@ -51,10 +51,7 @@ const ConversationPage = () => {
             axiosReq.get(`/messages/?conversation_id=${conversationId}`),
           ]);
 
-        const other = conversationData.participants.find(
-          (participant) => participant.id !== currentUser?.id
-        );
-        setOtherUser(other);
+        setOtherUser(conversationData.other_user);
         setMessages(messageData.results || messageData);
       } catch (err) {
         console.error(err);
@@ -149,7 +146,7 @@ const ConversationPage = () => {
           <ListGroup className={styles.MessagesList}>
             {messages.length ? (
               [...messages].reverse().map((message) => {
-                const isSender = message.sender?.id === currentUser?.pk;
+                const isSender = message.sender?.id === currentUser?.id;
                 return (
                   <ListGroup.Item
                     key={message.id}
