@@ -43,6 +43,7 @@ function PostImageForm({ setPostType, postType }) {
     tags: "",
   });
   const { title, content, image, imageFile, tags } = postData;
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -99,16 +100,19 @@ function PostImageForm({ setPostType, postType }) {
     formData.append("image", imageFile);
     formData.append("tags", tags);
 
+    setSubmitting(true);
+
     try {
       const { data } = await axiosReq.post("/posts/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
-
       navigate(`/posts/${data.id}`);
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -232,6 +236,10 @@ function PostImageForm({ setPostType, postType }) {
                   ))}
                 </Form.Group>
 
+                {submitting && (
+                  <Asset spinner message="Creating your post..." />
+                )}
+
                 <div className="d-flex align-items-left gap-3 mb-2">
                   <Button
                     className={btnStyles.CancelBtn}
@@ -243,9 +251,9 @@ function PostImageForm({ setPostType, postType }) {
                   <Button
                     className={btnStyles.CreateBtn}
                     type="submit"
-                    disabled={!imageFile}
+                    disabled={!imageFile || submitting}
                   >
-                    Create
+                    {submitting ? "Creating..." : "Create"}
                   </Button>
                 </div>
               </Container>

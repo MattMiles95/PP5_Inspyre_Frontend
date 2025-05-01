@@ -20,6 +20,9 @@ import btnStyles from "../../styles/Buttons.module.css";
 // Hooks
 import { useRedirect } from "../../hooks/useRedirect";
 
+// Local Components
+import Asset from "../../components/Asset";
+
 // React Quill Editor
 import { useQuill } from "react-quilljs";
 import "quill/dist/quill.snow.css";
@@ -37,6 +40,7 @@ function PostTextForm({ setPostType, postType }) {
     tags: "",
   });
   const { title, content, tags } = postData;
+  const [submitting, setSubmitting] = useState(false);
 
   // Quill integration
   const { quill, quillRef } = useQuill({
@@ -79,27 +83,31 @@ function PostTextForm({ setPostType, postType }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const validationErrors = {};
-  
+
     if (!title.trim()) {
       validationErrors.title = ["Don't forget to give your creation a title!"];
     }
-  
+
     if (!content.trim()) {
-      validationErrors.content = ["Uh-oh - looks like you forgot to write something!"];
+      validationErrors.content = [
+        "Uh-oh - looks like you forgot to write something!",
+      ];
     }
-  
+
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-  
+
     const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     formData.append("tags", tags);
-  
+
+    setSubmitting(true);
+
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       navigate(`/posts/${data.id}`);
@@ -107,9 +115,10 @@ function PostTextForm({ setPostType, postType }) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+    } finally {
+      setSubmitting(false);
     }
   };
-  
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -120,7 +129,8 @@ function PostTextForm({ setPostType, postType }) {
           onClick={() => setPostType(null)}
           aria-label="Go back to post type selection"
         >
-          <i className={`${appStyles.BackArrow} fas fa-arrow-left me-2`}></i> Go back
+          <i className={`${appStyles.BackArrow} fas fa-arrow-left me-2`}></i> Go
+          back
         </Button>
 
         <Row className="mb-3">
@@ -189,6 +199,12 @@ function PostTextForm({ setPostType, postType }) {
           </Col>
         </Row>
 
+        {submitting && (
+          <div className="text-center my-4">
+            <Asset spinner message="Creating your post..." />
+          </div>
+        )}
+
         <Row className="mb-2">
           <Col md={{ span: 12 }} className="d-flex justify-content-between">
             <div className="d-flex justify-content-center gap-3">
@@ -200,11 +216,11 @@ function PostTextForm({ setPostType, postType }) {
                 Cancel
               </Button>
               <Button
-                className={`${btnStyles.CreateBtn}`}
+                className={btnStyles.CreateBtn}
                 type="submit"
-                disabled={!content.trim()}
+                disabled={!content.trim() || submitting}
               >
-                Create
+                {submitting ? "Creating..." : "Create"}
               </Button>
             </div>
           </Col>
