@@ -16,7 +16,6 @@ import {
 } from "../../contexts/ProfileDataContext";
 
 // CSS
-import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import errorStyles from "../../styles/CustomErrors.module.css";
 import galleryStyles from "../../styles/PostsGallery.module.css";
@@ -49,6 +48,26 @@ function ProfilePage() {
   const [profile] = pageProfile.results || [];
   const is_owner = currentUser?.username === profile?.owner;
   const navigate = useNavigate();
+  const [isMessageSubmitting, setIsMessageSubmitting] = useState(false);
+  const [isFollowSubmitting, setIsFollowSubmitting] = useState(false);
+
+  const handleFollowSubmit = async () => {
+    setIsFollowSubmitting(true);
+    try {
+      await handleFollow(profile);
+    } finally {
+      setIsFollowSubmitting(false);
+    }
+  };
+
+  const handleUnfollowSubmit = async () => {
+    setIsFollowSubmitting(true);
+    try {
+      await handleUnfollow(profile);
+    } finally {
+      setIsFollowSubmitting(false);
+    }
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -72,6 +91,7 @@ function ProfilePage() {
   }, [id, setProfileData]);
 
   const handleMessage = async () => {
+    setIsMessageSubmitting(true);
     try {
       const { data: conversationsData } = await axiosReq.get("/conversations/");
       const existingConversation = (
@@ -91,6 +111,8 @@ function ProfilePage() {
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      setIsMessageSubmitting(false);
     }
   };
 
@@ -116,23 +138,38 @@ function ProfilePage() {
               {profile?.following_id ? (
                 <Button
                   className={`${btnStyles.UnfollowBtn} ml-2`}
-                  onClick={() => handleUnfollow(profile)}
+                  onClick={handleUnfollowSubmit}
+                  disabled={isFollowSubmitting}
                 >
-                  Unfollow
+                  {isFollowSubmitting ? "Unfollowing..." : "Unfollow"}
                 </Button>
               ) : (
                 <Button
                   className={`${btnStyles.FollowBtn} ml-2`}
-                  onClick={() => handleFollow(profile)}
+                  onClick={handleFollowSubmit}
+                  disabled={isFollowSubmitting}
                 >
-                  Follow
+                  {isFollowSubmitting ? "Following..." : "Follow"}
                 </Button>
               )}
+
               <Button
                 className={`${btnStyles.MessageBtn} ml-2`}
                 onClick={handleMessage}
+                disabled={isMessageSubmitting}
               >
-                Message
+                {isMessageSubmitting ? (
+                  <span className="d-flex align-items-center gap-1">
+                    <span
+                      className="spinner-border spinner-border-sm"
+                      role="status"
+                      aria-hidden="true"
+                    />
+                    <span>Loading...</span>
+                  </span>
+                ) : (
+                  "Message"
+                )}
               </Button>
             </>
           ) : null}
@@ -150,7 +187,7 @@ function ProfilePage() {
           <div className={styles.Tags}>
             {profile.profile_tags_display.map((tag, index) => (
               <span key={index} className={styles.Tag}>
-                {tag.name} {/* Use tag.name to display the tag's name */}
+                {tag.name}
               </span>
             ))}
           </div>
