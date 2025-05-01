@@ -51,44 +51,49 @@
 
 .CreateBtn {
   font-weight: 500;
-  background: linear-gradient(to right, #00f3fb, #20d787) !important;
-  border: none;
-  color: #171717 !important;
+  background-color: #1c1c1c !important;
+  color: #20d787 !important;
+  border: 1px solid #20d787 !important;
+  border-radius: 999px;
   margin-left: 1rem;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 8px rgba(32, 215, 135, 0.25);
 }
 
 .CreateBtn:hover {
-  background: linear-gradient(to bottom, #49f9ff, #44ce92) !important;
-  color: #232323 !important;
-  box-shadow: none !important;
-  text-shadow: #ffffffc1 0px 0px 5px;
-  transition: 0.2s ease-in-out;
+  background-color: #20d787 !important;
+  color: #1c1c1c !important;
+  box-shadow: 0 0 12px rgba(32, 215, 135, 0.4);
 }
 
 .CreateBtn:active,
 .CreateBtn:focus {
   box-shadow: none !important;
+  outline: none !important;
 }
 
 .CancelBtn {
   font-weight: 500;
-  background: linear-gradient(to right, #ffd56c, #ff4e4e) !important;
-  border: none;
-  color: #171717 !important;
-  margin-right: 1rem;
+  background-color: #1c1c1c !important;
+  color: #ff4e4e !important;
+  border: 1px solid #ff4e4e !important;
+  border-radius: 999px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 8px rgba(255, 78, 78, 0.25);
 }
 
 .CancelBtn:hover {
-  background: linear-gradient(to bottom, #ffde8a, #b23737) !important;
-  color: #232323 !important;
-  box-shadow: none !important;
-  text-shadow: #ffffffc1 0px 0px 5px;
-  transition: 0.2s ease-in-out;
+  background-color: #ff4e4e !important;
+  color: #1c1c1c !important;
+  box-shadow: 0 0 12px rgba(255, 78, 78, 0.4);
 }
 
 .CancelBtn:active,
 .CancelBtn:focus {
   box-shadow: none !important;
+  outline: none !important;
 }
 
 .CommentBtn {
