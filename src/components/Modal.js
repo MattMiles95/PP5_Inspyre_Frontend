@@ -4,7 +4,15 @@ import React from "react";
 // CSS
 import styles from "../styles/Modal.module.css";
 
-const Modal = ({ isOpen, onClose, title, children, onConfirm }) => {
+const Modal = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  onConfirm,
+  showCancel = true,
+  showConfirm = !!onConfirm,
+}) => {
   if (!isOpen) return null;
 
   return (
@@ -23,12 +31,14 @@ const Modal = ({ isOpen, onClose, title, children, onConfirm }) => {
 
         {/* Modal Footer */}
         <div className={styles.ModalFooter}>
-          <button onClick={onClose} className={styles.CancelButton}>
-            Cancel
-          </button>
-          {onConfirm && (
+          {showCancel && (
+            <button onClick={onClose} className={styles.CancelButton}>
+              Close
+            </button>
+          )}
+          {showConfirm && onConfirm && (
             <button onClick={onConfirm} className={styles.DeleteButton}>
-              Delete
+              Confirm
             </button>
           )}
         </div>
