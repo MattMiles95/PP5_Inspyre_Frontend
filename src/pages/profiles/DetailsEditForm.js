@@ -46,10 +46,9 @@ const DetailsEditForm = () => {
 
   const [availableTags, setAvailableTags] = useState([]);
   const [errors, setErrors] = useState({});
-
   const { content, image, profile_tags } = profileData;
-
   const [showConfirm, setShowConfirm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -99,6 +98,7 @@ const DetailsEditForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
     const formData = new FormData();
     formData.append("content", content);
     profile_tags.forEach((tagId) => formData.append("profile_tags", tagId));
@@ -116,9 +116,11 @@ const DetailsEditForm = () => {
       navigate(-1);
     } catch (err) {
       setErrors(err.response?.data);
+    } finally {
+      setIsSubmitting(false);
     }
   };
-  
+
   const textFields = (
     <>
       <Form.Group>
@@ -173,11 +175,16 @@ const DetailsEditForm = () => {
       </Form.Group>
 
       <div className={styles.SaveCancelButtons}>
-        <Button className={btnStyles.Btn} onClick={() => navigate(-1)}>
-          cancel
+        <Button className={btnStyles.CancelBtn} onClick={() => navigate(-1)}>
+          Cancel
         </Button>
-        <Button className={btnStyles.Btn} type="submit">
-          save
+
+        <Button
+          className={btnStyles.SaveBtn}
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Saving..." : "Save"}
         </Button>
       </div>
     </>
@@ -235,7 +242,7 @@ const DetailsEditForm = () => {
         {!showConfirm ? (
           <Button
             variant="danger"
-            className={styles.DeleteBtn}
+            className={`${btnStyles.DeleteBtn} mb-4`}
             onClick={() => setShowConfirm(true)}
           >
             Delete Account

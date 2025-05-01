@@ -98,21 +98,6 @@
   text-align: center;
 }
 
-.DeleteBtn {
-  background: linear-gradient(to right, #ff4e4e, #b23737);
-  border: none;
-  font-weight: 600;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 8px;
-  transition: background-color 0.2s ease;
-}
-
-.DeleteBtn:hover {
-  background: linear-gradient(to bottom, #ff6c6c, #a32929);
-  color: #fff;
-}
-
 .DeleteConfirmBox {
   background-color: #2a2a2a;
   border: 1px solid #ff4e4e;

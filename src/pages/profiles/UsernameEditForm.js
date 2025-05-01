@@ -27,6 +27,7 @@ const UsernameEditForm = () => {
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const { id } = useParams();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -41,12 +42,15 @@ const UsernameEditForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       await axiosRes.put("/dj-rest-auth/user/", { username });
       setCurrentUser((prev) => ({ ...prev, username }));
       navigate(-1);
     } catch (err) {
       setErrors(err.response?.data);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -66,8 +70,12 @@ const UsernameEditForm = () => {
           {msg}
         </Alert>
       ))}
-      <Button type="submit" className={`${btnStyles.Btn} mt-2`}>
-        Save Username
+      <Button
+        className={`${btnStyles.SaveBtn} mt-3`}
+        type="submit"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Saving..." : "Save Username"}
       </Button>
     </Form>
   );

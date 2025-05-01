@@ -30,6 +30,7 @@ const PasswordEditForm = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const currentUser = useCurrentUser();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (currentUser?.profile_id?.toString() !== id) {
@@ -43,6 +44,7 @@ const PasswordEditForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       setSuccessMessage("Password changed successfully!");
@@ -51,6 +53,8 @@ const PasswordEditForm = () => {
     } catch (err) {
       setErrors(err.response?.data);
       setSuccessMessage("");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -87,8 +91,12 @@ const PasswordEditForm = () => {
           {msg}
         </Alert>
       ))}
-      <Button type="submit" className={`${btnStyles.Btn} mt-2`}>
-        Change Password
+      <Button
+        className={`${btnStyles.SaveBtn} mt-3`}
+        type="submit"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? "Changing..." : "Change Password"}
       </Button>
     </Form>
   );

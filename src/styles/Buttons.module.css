@@ -96,6 +96,35 @@
   outline: none !important;
 }
 
+.SaveBtn {
+  font-weight: 500;
+  background-color: #1c1c1c !important;
+  color: #ffb347 !important;
+  border: 1px solid #ffb347 !important;
+  border-radius: 999px;
+  padding: 0.5rem 1.5rem;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 0 8px rgba(255, 179, 71, 0.25);
+}
+
+.SaveBtn:hover {
+  background-color: #ffb347 !important;
+  color: #1c1c1c !important;
+  box-shadow: 0 0 12px rgba(255, 179, 71, 0.4) !important;
+}
+
+.SaveBtn:active,
+.SaveBtn:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.SaveBtn:disabled {
+  background-color: #4e4e4e !important;
+  color: #aaa !important;
+  cursor: not-allowed;
+}
+
 .CommentBtn {
   background-color: #ff7b00;
   color: #fff;
@@ -236,4 +265,19 @@
   color: #1c1c1c !important;
   border: 1px solid #ffb347 !important;
   box-shadow: 0px 0px 8px rgba(255, 179, 71, 0.4) !important;
+}
+
+.DeleteBtn {
+  background: linear-gradient(to right, #ff4e4e, #b23737);
+  border: none;
+  font-weight: 600;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
+}
+
+.DeleteBtn:hover {
+  background: linear-gradient(to bottom, #ff6c6c, #a32929);
+  color: #fff;
 }
