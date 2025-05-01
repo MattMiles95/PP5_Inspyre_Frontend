@@ -263,8 +263,16 @@
 .MessageBtn:hover {
   background-color: #ffb347 !important;
   color: #1c1c1c !important;
-  border: 1px solid #ffb347 !important;
   box-shadow: 0px 0px 8px rgba(255, 179, 71, 0.4) !important;
+}
+
+.StartNewConvoBtn {
+  color: #ff7b00 !important;
+  border: 1px solid #ff7b00 !important;
+}
+
+.StartNewConvoBtn:hover {
+  background-color: #ff7b00 !important;
 }
 
 .DeleteBtn {
