@@ -139,7 +139,7 @@ const ConversationsPage = () => {
       {!searchMode && (
         <Button
           variant="primary"
-          className={`${styles.StartConversationBtn}`}
+          className={`${btnStyles.MessageBtn} mb-3`}
           onClick={handleStartNewConversation}
         >
           Start New Conversation
