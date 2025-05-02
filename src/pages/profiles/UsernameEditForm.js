@@ -22,13 +22,17 @@ import React, { useEffect, useState } from "react";
 // React Router
 import { useNavigate, useParams } from "react-router-dom";
 
+// Modal
+import Modal from "../../components/Modal";
+
 const UsernameEditForm = () => {
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const navigate = useNavigate();
   const { id } = useParams();
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
 
@@ -46,7 +50,8 @@ const UsernameEditForm = () => {
     try {
       await axiosRes.put("/dj-rest-auth/user/", { username });
       setCurrentUser((prev) => ({ ...prev, username }));
-      navigate(-1);
+      setErrors({});
+      setIsModalOpen(true);
     } catch (err) {
       setErrors(err.response?.data);
     } finally {
@@ -55,29 +60,39 @@ const UsernameEditForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Form.Group>
-        <Form.Label>Choose a new Username</Form.Label>
-        <Form.Control
-          type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className={styles.FormInput}
-        />
-      </Form.Group>
-      {errors?.username?.map((msg, idx) => (
-        <Alert key={idx} variant="warning">
-          {msg}
-        </Alert>
-      ))}
-      <Button
-        className={`${btnStyles.SaveBtn} mt-3`}
-        type="submit"
-        disabled={isSubmitting}
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>Choose a new Username</Form.Label>
+          <Form.Control
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className={styles.FormInput}
+          />
+        </Form.Group>
+        {errors?.username?.map((msg, idx) => (
+          <Alert key={idx} variant="warning">
+            {msg}
+          </Alert>
+        ))}
+        <Button
+          className={`${btnStyles.SaveBtn} mt-3`}
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Saving..." : "Save Username"}
+        </Button>
+      </Form>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title="Username Updated"
       >
-        {isSubmitting ? "Saving..." : "Save Username"}
-      </Button>
-    </Form>
+        <p>Your username was updated successfully.</p>
+      </Modal>
+    </>
   );
 };
 
