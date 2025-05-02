@@ -27,6 +27,7 @@ import appStyles from "../../App.module.css";
 // Local Components
 import Asset from "../../components/Asset";
 import { Link, useLocation } from "react-router-dom";
+import Post from "./Post";
 
 // React Components
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -41,6 +42,13 @@ function PostsPage({ message, filter = "" }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [query, setQuery] = useState("");
   const { pathname } = useLocation();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -127,37 +135,46 @@ function PostsPage({ message, filter = "" }) {
                 loader={<Asset spinner />}
                 hasMore={!!posts.next}
                 next={() => fetchMoreData(posts, setPosts)}
-                className={styles.GalleryGrid}
+                className={isMobile ? "" : styles.GalleryGrid}
               >
-                {posts.results.map((post) => (
-                  <Link
-                    to={`/posts/${post.id}`}
-                    key={post.id}
-                    className={styles.ThumbWrapper}
-                  >
-                    {post.image ? (
-                      <div className={styles.ImageContainer}>
-                        <img
-                          src={post.image}
-                          alt="Post"
-                          className={styles.Thumb}
-                        />
-                        <div className={styles.ImageHoverTitle}>
-                          {post.title}
+                {posts.results.map((post) =>
+                  isMobile ? (
+                    <Post
+                      key={post.id}
+                      {...post}
+                      setPosts={setPosts}
+                      postPage={false}
+                    />
+                  ) : (
+                    <Link
+                      to={`/posts/${post.id}`}
+                      key={post.id}
+                      className={styles.ThumbWrapper}
+                    >
+                      {post.image ? (
+                        <div className={styles.ImageContainer}>
+                          <img
+                            src={post.image}
+                            alt="Post"
+                            className={styles.Thumb}
+                          />
+                          <div className={styles.ImageHoverTitle}>
+                            {post.title}
+                          </div>
                         </div>
-                      </div>
-                    ) : (
-                      <div className={styles.TextThumb}>
-                        <div className={styles.TextThumbContent}>
-                          {truncateText(stripHtmlTags(post.content), 25)}
+                      ) : (
+                        <div className={styles.TextThumb}>
+                          <div className={styles.TextThumbContent}>
+                            {truncateText(stripHtmlTags(post.content), 25)}
+                          </div>
+                          <div className={styles.TextHoverTitle}>
+                            {post.title}
+                          </div>
                         </div>
-                        <div className={styles.TextHoverTitle}>
-                          {post.title}
-                        </div>
-                      </div>
-                    )}
-                  </Link>
-                ))}
+                      )}
+                    </Link>
+                  )
+                )}
               </InfiniteScroll>
             ) : (
               <Container className={appStyles.NoResultContainer}>

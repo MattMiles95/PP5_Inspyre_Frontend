@@ -158,3 +158,36 @@
 .CancelDeleteBtn:hover {
   background-color: #333;
 }
+
+/* ------------------------------------------ MEDIA QUERIES */
+
+/* -------------------------------------- Small Screens */
+@media (max-width: 600px) {
+  .Post {
+    border-radius: 0;
+    margin-bottom: 1rem;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #222;
+  }
+
+  .PostImage {
+    max-height: 300px;
+    width: 100%;
+    height: auto;
+    border-radius: 0;
+  }
+
+  .MediaContainer {
+    padding: 0.5rem 1rem;
+  }
+
+  .Tags {
+    display: none;
+  }
+
+  .PostBar {
+    justify-content: flex-start;
+    padding-left: 1rem;
+  }
+}
