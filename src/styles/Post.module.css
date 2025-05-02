@@ -15,7 +15,6 @@
   max-height: 500px;
   border-radius: 10px;
   margin-top: 1rem;
-  box-shadow: 0 0 5px rgba(234, 87, 34, 0.4);
   image-rendering: auto;
 }
 
@@ -159,6 +158,12 @@
   background-color: #333;
 }
 
+.TextPreview {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #eaeaea;
+}
+
 /* ------------------------------------------ MEDIA QUERIES */
 
 /* -------------------------------------- Small Screens */
@@ -184,10 +189,5 @@
 
   .Tags {
     display: none;
-  }
-
-  .PostBar {
-    justify-content: flex-start;
-    padding-left: 1rem;
   }
 }

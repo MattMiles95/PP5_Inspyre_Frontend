@@ -144,6 +144,7 @@ function PostsPage({ message, filter = "" }) {
                       {...post}
                       setPosts={setPosts}
                       postPage={false}
+                      isPreview
                     />
                   ) : (
                     <Link

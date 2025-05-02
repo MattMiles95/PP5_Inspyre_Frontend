@@ -27,6 +27,9 @@ import PostDropdown from "../../components/PostDropdown";
 // React Router
 import { Link, useNavigate } from "react-router-dom";
 
+// Utils
+import { stripHtmlTags, truncateText } from "../../utils/utils";
+
 const Post = (props) => {
   const {
     id,
@@ -44,6 +47,7 @@ const Post = (props) => {
     is_owner,
     postPage,
     setPosts,
+    isPreview = false,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -95,7 +99,11 @@ const Post = (props) => {
   };
 
   return (
-    <Card className={styles.Post}>
+    <Card
+      className={styles.Post}
+      onClick={() => isPreview && navigate(`/posts/${id}`)}
+      style={isPreview ? { cursor: "pointer" } : {}}
+    >
       <Card.Body>
         <div className="d-flex align-items-center justify-content-between">
           <Link
@@ -125,8 +133,12 @@ const Post = (props) => {
 
         {content && (
           <div
-            className="ql-editor mt-3"
-            dangerouslySetInnerHTML={{ __html: content }}
+            className={`ql-editor mt-3 ${isPreview ? styles.TextPreview : ""}`}
+            dangerouslySetInnerHTML={{
+              __html: isPreview
+                ? truncateText(stripHtmlTags(content), 50)
+                : content,
+            }}
           />
         )}
 
