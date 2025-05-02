@@ -40,6 +40,7 @@ const ConversationPage = () => {
   const [otherUser, setOtherUser] = useState(null);
 
   const messagesEndRef = useRef(null);
+  const [sending, setSending] = useState(false);
 
   // Fetch conversation participants
   useEffect(() => {
@@ -92,6 +93,7 @@ const ConversationPage = () => {
     e.preventDefault();
     if (!newMessage.trim()) return;
 
+    setSending(true);
     try {
       const { data } = await axiosReq.post("/messages/", {
         receiver: otherUser?.id,
@@ -102,6 +104,8 @@ const ConversationPage = () => {
       setNewMessage("");
     } catch (err) {
       console.error(err);
+    } finally {
+      setSending(false);
     }
   };
 
@@ -189,9 +193,9 @@ const ConversationPage = () => {
           <Button
             className={btnStyles.SendBtn}
             onClick={handleSendMessage}
-            disabled={!newMessage.trim()}
+            disabled={!newMessage.trim() || sending}
           >
-            <SendFill />
+            {sending ? <Asset spinner height={20} /> : <SendFill />}
           </Button>
         </Col>
       </Row>
