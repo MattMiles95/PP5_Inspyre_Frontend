@@ -12,6 +12,14 @@
   align-items: center;
 }
 
+.NavLink i,
+.MessageIcon i,
+.NavLinkAvatar img,
+.Logo {
+  transition: transform 0.2s ease-in-out, height 0.2s ease-in-out,
+    margin 0.2s ease-in-out;
+}
+
 .NavLink,
 .MenuNavLink,
 .NavLinkAvatar {
@@ -164,43 +172,187 @@
   color: #fff !important;
 }
 
-/* ------------------------------------------ MEDIA QUERIES */
+.MobileDiscoverIcon {
+  display: none;
+}
 
-/* -------------------------------------- Small Screens */
-@media only screen and (max-width: 520px) {
-  .NavLink,
-  .Discover {
-    margin-top: 0.5rem;
-    margin-right: 1rem !important;
-    padding: 0 !important;
-    font-size: 0.9rem;
+/* ------------------------------------ Media Queries */
+
+@media (max-width: 768px) {
+  .NavLink i,
+  .MessageIcon i {
+    transform: scale(0.9);
   }
 
-  .InspyreLink {
-    padding: 0.25rem 0.5rem !important;
+  .NavLinkAvatar img {
+    height: 52px !important;
+    width: 52px !important;
+    object-fit: contain;
   }
 
   .Logo {
-    height: 50px;
+    height: 65px !important;
   }
 
-  .LogoLink {
-    margin-bottom: 1rem !important;
+  .NavLink,
+  .MessageIcon,
+  .InspyreLink {
+    margin-right: 0.9rem !important;
   }
 }
 
-/* -------------------------------------- Mobile Phones */
-@media only screen and (max-width: 440px) {
-  .Discover,
+@media (max-width: 650px) {
+  .NavLink i,
+  .MessageIcon i {
+    transform: scale(0.8);
+  }
+
+  .NavLinkAvatar img {
+    height: 46px !important;
+    width: 46px !important;
+  }
+
+  .Logo {
+    height: 55px !important;
+  }
+
+  .NavLink,
+  .MessageIcon,
+  .InspyreLink {
+    margin-right: 0.7rem !important;
+  }
+}
+
+/* Mobile Mode (≤600px) */
+@media (max-width: 600px) {
   .Divider {
     display: none !important;
   }
 
+  .Discover {
+    display: none !important;
+  }
+
+  .MobileDiscoverIcon {
+    display: inline-flex !important;
+    padding: 0.25rem 0.5rem;
+    font-size: 1.4rem;
+    color: #ff7b00 !important;
+    align-items: center;
+  }
+
+  .MobileDiscoverIcon:hover {
+    color: #fff !important;
+  }
+
+  .ActiveIcon,
+  .MobileDiscoverIcon:focus {
+    color: #fff !important;
+  }
+
+  .InspyreMobile {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: linear-gradient(to right, #ff7b00, #88300f) !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 0 !important;
+  }
+
+  .InspyreMobile:hover {
+    background: linear-gradient(to right, #fff, #fff) !important;
+    color: #ff7b00 !important;
+    text-shadow: #fff 0px 0px 5px;
+  }
+
+  .ActiveBtn,
+  .InspyreMobile:focus {
+    background: linear-gradient(to right, #fff, #fff) !important;
+    color: #ff7b00 !important;
+    text-shadow: #fff 0px 0px 5px;
+  }
+
+  .NavLinkAvatar img {
+    height: 42px !important;
+    width: 42px !important;
+  }
+
   .Logo {
-    height: 50px;
+    height: 55px !important;
+    padding-left: 2rem;
+  }
+
+  .NavLink i,
+  .MessageIcon i,
+  .MobileDiscoverIcon {
+    transform: scale(1.1);
+  }
+
+  .NavLink,
+  .MessageIcon,
+  .MobileDiscoverIcon {
+    margin-right: 1.5rem !important;
   }
 
   .LogoLink {
-    margin-bottom: 12px !important;
+    margin-bottom: 10px !important;
+  }
+}
+
+@media (max-width: 460px) {
+  .NavLink i,
+  .MessageIcon i,
+  .MobileDiscoverIcon {
+    transform: scale(0.8);
+  }
+
+  .NavLinkAvatar img {
+    height: 36px !important;
+    width: 36px !important;
+  }
+
+  .Logo {
+    height: 45px !important;
+    padding-left: 1rem;
+  }
+
+  .NavLink,
+  .MessageIcon,
+  .MobileDiscoverIcon {
+    margin-right: 1.2rem !important;
+  }
+
+  .NavLinkAvatar {
+    margin: 0 !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .NavLink i,
+  .MessageIcon i,
+  .MobileDiscoverIcon {
+    transform: scale(0.7);
+  }
+
+  .NavLinkAvatar img {
+    height: 30px !important;
+    width: 30px !important;
+  }
+
+  .Logo {
+    height: 40px !important;
+    padding-left: 0.5rem;
+  }
+
+  .NavLink,
+  .MessageIcon,
+  .MobileDiscoverIcon {
+    margin-right: 1rem !important;
   }
 }

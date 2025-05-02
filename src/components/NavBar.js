@@ -1,5 +1,5 @@
 // React
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Assets
 import logo from "../assets/inspyre_logo.png";
@@ -29,18 +29,25 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const location = useLocation();
   const handleSignOut = useHandleSignOut();
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const loggedInNavbar = (
     <>
       <NavLink
         className={({ isActive }) =>
-          `${styles.NavLink} mr-4 ${styles.InspyreLink} ${
-            isActive ? styles.ActiveBtn : ""
-          }`
+          `${styles.NavLink} mr-4 ${
+            isMobile ? styles.InspyreMobile : styles.InspyreLink
+          } ${isActive ? styles.ActiveBtn : ""}`
         }
         to="/posts/inspyre"
       >
-        Inspyre +
+        {isMobile ? "+" : "Inspyre +"}
       </NavLink>
 
       <NavLink
@@ -142,14 +149,28 @@ const NavBar = () => {
         </NavLink>
 
         <Nav className="d-flex align-items-center flex-wrap text-left">
-          <NavLink
-            className={({ isActive }) =>
-              `${styles.Discover} mr-4 ${isActive ? styles.Active : ""}`
-            }
-            to="/"
-          >
-            Discover
-          </NavLink>
+          {isMobile ? (
+            <NavLink
+              className={({ isActive }) =>
+                `${styles.MobileDiscoverIcon} mr-4 ${
+                  isActive ? styles.ActiveIcon : ""
+                }`
+              }
+              to="/"
+            >
+              <i className="fa-solid fa-bars-staggered"></i>
+            </NavLink>
+          ) : (
+            <NavLink
+              className={({ isActive }) =>
+                `${styles.Discover} mr-4 ${isActive ? styles.Active : ""}`
+              }
+              to="/"
+            >
+              Discover
+            </NavLink>
+          )}
+
           <span className={`${styles.Divider} mr-4`}>|</span>
           {currentUser ? loggedInNavbar : loggedOutNavbar}
         </Nav>
