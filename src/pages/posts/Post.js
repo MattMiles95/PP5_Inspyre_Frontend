@@ -47,6 +47,7 @@ const Post = (props) => {
     is_owner,
     postPage,
     setPosts,
+    original_author,
     isPreview = false,
   } = props;
 
@@ -162,28 +163,44 @@ const Post = (props) => {
               placement="top"
               overlay={<Tooltip>You can't like your own post!</Tooltip>}
             >
-              <Fire className={styles.OwnerFlame} size={20} />
+              <div className={styles.IconWithCount}>
+                <Fire className={styles.OwnerFlame} size={20} />
+                <span>{likes_count}</span>
+              </div>
             </OverlayTrigger>
           ) : like_id ? (
-            <span onClick={handleUnlike}>
+            <div onClick={handleUnlike} className={styles.IconWithCount}>
               <Fire className={styles.LikedFlame} size={20} />
-            </span>
+              <span>{likes_count}</span>
+            </div>
           ) : currentUser ? (
-            <span onClick={handleLike}>
+            <div onClick={handleLike} className={styles.IconWithCount}>
               <Fire className={styles.UnlikedFlame} size={20} />
-            </span>
+              <span>{likes_count}</span>
+            </div>
           ) : (
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>Log in to like posts!</Tooltip>}
             >
-              <Fire className={styles.OwnerFlame} size={20} />
+              <div className={styles.IconWithCount}>
+                <Fire className={styles.OwnerFlame} size={20} />
+                <span>{likes_count}</span>
+              </div>
             </OverlayTrigger>
           )}
-          {likes_count}
 
-          <Chat className="ml-4 mr-1" size={20} />
-          {comments_count}
+          <div className={styles.IconWithCount}>
+            <Chat size={20} />
+            <span>{comments_count}</span>
+          </div>
+
+          {original_author && (
+            <div className={styles.OriginalIndicator}>
+              <i className="fa-solid fa-lightbulb"></i>
+              <span>Original</span>
+            </div>
+          )}
         </div>
       </Card.Body>
 

@@ -191,3 +191,23 @@
     display: none;
   }
 }
+
+.IconWithCount {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  gap: 0.5rem;
+}
+
+.OriginalIndicator {
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+  color: #fff9c4;
+  margin-left: 1rem;
+  gap: 0.5rem;
+}
+
+.OriginalIndicator i {
+  color: #fff59d;
+}
