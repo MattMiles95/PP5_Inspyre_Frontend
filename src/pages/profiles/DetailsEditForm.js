@@ -21,9 +21,6 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import styles from "../../styles/ProfileEditor.module.css";
 
-// Hooks
-import { useHandleAccountDelete } from "../../hooks/useHandleAccountDelete";
-
 // React
 import React, { useState, useEffect, useRef } from "react";
 
@@ -36,8 +33,6 @@ const DetailsEditForm = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const imageFile = useRef();
-  const handleAccountDelete = useHandleAccountDelete();
-
   const [profileData, setProfileData] = useState({
     content: "",
     image: "",
@@ -47,7 +42,6 @@ const DetailsEditForm = () => {
   const [availableTags, setAvailableTags] = useState([]);
   const [errors, setErrors] = useState({});
   const { content, image, profile_tags } = profileData;
-  const [showConfirm, setShowConfirm] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
@@ -237,41 +231,6 @@ const DetailsEditForm = () => {
           </Container>
         </Col>
       </Row>
-
-      <div className={styles.DeleteAccountSection}>
-        {!showConfirm ? (
-          <Button
-            variant="danger"
-            className={`${btnStyles.DeleteBtn} mb-4`}
-            onClick={() => setShowConfirm(true)}
-          >
-            Delete Account
-          </Button>
-        ) : (
-          <div className={styles.DeleteConfirmBox}>
-            <p className={styles.ConfirmText}>
-              Are you sure you want to delete your account? This will remove
-              your profile, posts, followers, and login credentials permanently.
-            </p>
-            <div className={styles.ConfirmButtons}>
-              <Button
-                variant="danger"
-                className={styles.ConfirmDeleteBtn}
-                onClick={handleAccountDelete}
-              >
-                Yes, delete my account
-              </Button>
-              <Button
-                variant="secondary"
-                className={styles.CancelDeleteBtn}
-                onClick={() => setShowConfirm(false)}
-              >
-                Cancel
-              </Button>
-            </div>
-          </div>
-        )}
-      </div>
     </Form>
   );
 };
