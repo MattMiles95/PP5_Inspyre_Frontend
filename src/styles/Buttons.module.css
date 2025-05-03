@@ -369,8 +369,49 @@
 }
 
 .ContinueBtn:hover,
-.ContinueBtn:focus, .ContinueBtn:active {
+.ContinueBtn:focus,
+.ContinueBtn:active {
   background-color: #218838;
   outline: none !important;
   box-shadow: none !important;
+}
+
+.ModalCancelBtn {
+  background: #444;
+  color: #ffebd8;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ModalCancelBtn:hover {
+  background: #666;
+}
+
+.ModalCancelBtn:active,
+.ModalCancelBtn:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+.ModalDeleteBtn {
+  background: linear-gradient(to right, #ff4e4e, #b23737);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ModalDeleteBtn:hover {
+  background: linear-gradient(to right, #ff6c6c, #a32929);
+}
+
+.ModalDeleteBtn:active,
+.ModalDeleteBtn:focus {
+  box-shadow: none !important;
+  outline: none !important;
 }

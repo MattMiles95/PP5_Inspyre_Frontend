@@ -2,6 +2,7 @@
 import React from "react";
 
 // CSS
+import btnStyles from "../styles/Buttons.module.css";
 import styles from "../styles/Modal.module.css";
 
 const Modal = ({
@@ -31,12 +32,15 @@ const Modal = ({
           ) : (
             <>
               {showCancel && (
-                <button onClick={onClose} className={styles.CancelButton}>
+                <button onClick={onClose} className={btnStyles.ModalCancelBtn}>
                   Close
                 </button>
               )}
               {showConfirm && onConfirm && (
-                <button onClick={onConfirm} className={styles.DeleteButton}>
+                <button
+                  onClick={onConfirm}
+                  className={btnStyles.ModalDeleteBtn}
+                >
                   Confirm
                 </button>
               )}
