@@ -1,3 +1,24 @@
+.ConditionalHeader {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #ffebd8;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.ConditionalHeader::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 106, 0, 0.5);
+  box-shadow: 0 0 6px rgba(255, 106, 0, 0.8);
+  border-radius: 1px;
+}
+
 .SearchWrapper {
   position: relative;
   margin: 0;

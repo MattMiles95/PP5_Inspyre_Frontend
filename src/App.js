@@ -59,6 +59,7 @@ function App() {
             path="/pyres"
             element={
               <PostsPage
+                header="Posts from Creators you follow:"
                 message="No results found. Try searching for something, or give someone a follow!"
                 filter={`owner__followed__owner__profile=${profile_id}&`}
               />
@@ -68,6 +69,7 @@ function App() {
             path="/sparks"
             element={
               <PostsPage
+                header="Posts you thought were 🔥:"
                 message="No results found. Try searching for something, or give some posts a like!"
                 filter={`likes__owner__profile=${profile_id}&ordering=-likes__created_at&`}
               />

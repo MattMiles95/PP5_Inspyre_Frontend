@@ -35,7 +35,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 // Utils
 import { fetchMoreData, stripHtmlTags, truncateText } from "../../utils/utils";
 
-function PostsPage({ message, filter = "" }) {
+function PostsPage({ message, filter = "", header = "" }) {
   const currentUser = useCurrentUser();
   const [posts, setPosts] = useState({ results: [] });
   const [trendingPosts, setTrendingPosts] = useState([]);
@@ -124,6 +124,13 @@ function PostsPage({ message, filter = "" }) {
               ))}
             </div>
           </div>
+        )}
+
+        {/* Conditional Header */}
+        {header && (
+          <Col xs={12} className="px-3 pt-3 pb-2">
+            <h4 className={styles.ConditionalHeader}>{header}</h4>
+          </Col>
         )}
 
         {/* Gallery Section */}
