@@ -24,11 +24,15 @@ import styles from "../../styles/SignInUpForm.module.css";
 // Hooks
 import { useRedirect } from "../../hooks/useRedirect";
 
+// Local Components
+import Modal from "../../components/Modal";
+
 // React Router
 import { Link, useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
   useRedirect("loggedIn");
+
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -37,6 +41,7 @@ const SignUpForm = () => {
   const { username, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
+  const [showModal, setShowModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -44,7 +49,7 @@ const SignUpForm = () => {
     e.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      navigate("/signin");
+      setShowModal(true);
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -55,6 +60,11 @@ const SignUpForm = () => {
       ...signUpData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    navigate("/signin");
   };
 
   return (
@@ -150,6 +160,23 @@ const SignUpForm = () => {
           </div>
         </Col>
       </Row>
+
+      {/* Confirmation Modal */}
+      <Modal
+        isOpen={showModal}
+        onClose={handleModalClose}
+        title="Welcome to Inspyre!"
+        customFooter={
+          <button
+            onClick={handleModalClose}
+            className={btnStyles.ContinueBtn}
+          >
+            Continue to sign in page
+          </button>
+        }
+      >
+        <p>Your account has been successfully created.</p>
+      </Modal>
     </Container>
   );
 };

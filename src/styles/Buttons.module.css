@@ -355,3 +355,22 @@
   box-shadow: none !important;
   outline: none !important;
 }
+
+.ContinueBtn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background-color 0.2s ease;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.ContinueBtn:hover,
+.ContinueBtn:focus, .ContinueBtn:active {
+  background-color: #218838;
+  outline: none !important;
+  box-shadow: none !important;
+}

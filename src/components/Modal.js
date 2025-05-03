@@ -12,34 +12,35 @@ const Modal = ({
   onConfirm,
   showCancel = true,
   showConfirm = !!onConfirm,
+  customFooter = null,
 }) => {
   if (!isOpen) return null;
 
   return (
-    // Modal Overlay
     <div className={styles.ModalOverlay}>
       <div className={styles.ModalContent}>
         <div className={styles.ModalHeader}>
           <h4 className={styles.ModalTitle}>{title}</h4>
-          <button onClick={onClose} className={styles.CloseButton}>
-            x
-          </button>
         </div>
 
-        {/* Modal Body */}
         <div className={styles.ModalBody}>{children}</div>
 
-        {/* Modal Footer */}
         <div className={styles.ModalFooter}>
-          {showCancel && (
-            <button onClick={onClose} className={styles.CancelButton}>
-              Close
-            </button>
-          )}
-          {showConfirm && onConfirm && (
-            <button onClick={onConfirm} className={styles.DeleteButton}>
-              Confirm
-            </button>
+          {customFooter ? (
+            customFooter
+          ) : (
+            <>
+              {showCancel && (
+                <button onClick={onClose} className={styles.CancelButton}>
+                  Close
+                </button>
+              )}
+              {showConfirm && onConfirm && (
+                <button onClick={onConfirm} className={styles.DeleteButton}>
+                  Confirm
+                </button>
+              )}
+            </>
           )}
         </div>
       </div>
