@@ -266,9 +266,18 @@ function ProfilePage() {
           <h2 className={`mt-4 ${errorStyles.ErrorTitle}`}>
             Hmm... There's nothing here!?
           </h2>
-          <p className={`mt-3 ${errorStyles.ErrorMessage}`}>
-            {profile?.owner} hasn't posted yet!
-          </p>
+          {is_owner ? (
+            <div>
+              <p className={`mt-3 ${errorStyles.ErrorMessage}`}>Ready to get started?</p>
+              <Link to="/posts/inspyre" className={`btn ${btnStyles.SaveBtn} mt-2`}>
+                Create your first post
+              </Link>
+            </div>
+          ) : (
+            <p className={`mt-3 ${errorStyles.ErrorMessage}`}>
+              {profile?.owner} hasn't posted yet!
+            </p>
+          )}
         </div>
       )}
     </div>
