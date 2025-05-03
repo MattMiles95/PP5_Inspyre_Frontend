@@ -1,6 +1,3 @@
-// React
-import React, { useState } from "react";
-
 // API
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -23,6 +20,9 @@ import "../../index.css";
 import Asset from "../../components/Asset";
 import Avatar from "../../components/Avatar";
 import PostDropdown from "../../components/PostDropdown";
+
+// React
+import React, { useState } from "react";
 
 // React Router
 import { Link, useNavigate } from "react-router-dom";

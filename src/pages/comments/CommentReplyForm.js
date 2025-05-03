@@ -1,6 +1,3 @@
-// React
-import React, { useState, useEffect, useRef } from "react";
-
 // API
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -9,8 +6,11 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 // CSS
-import styles from "../../styles/CommentReplyForm.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
+import styles from "../../styles/CommentReplyForm.module.css";
+
+// React
+import React, { useState, useEffect, useRef } from "react";
 
 const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
   const [content, setContent] = useState("");

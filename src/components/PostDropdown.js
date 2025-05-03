@@ -1,6 +1,3 @@
-// React
-import React from "react";
-
 // Bootstrap Components
 import Dropdown from "react-bootstrap/Dropdown";
 
@@ -9,6 +6,9 @@ import { ThreeDots } from "react-bootstrap-icons";
 
 // CSS
 import styles from "../styles/PostDropdown.module.css";
+
+// React
+import React from "react";
 
 const PostDropdown = ({ handleEdit, handleDelete, handleReport }) => {
   return (

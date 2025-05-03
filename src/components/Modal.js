@@ -1,9 +1,9 @@
-// React
-import React from "react";
-
 // CSS
 import btnStyles from "../styles/Buttons.module.css";
 import styles from "../styles/Modal.module.css";
+
+// React
+import React from "react";
 
 const Modal = ({
   isOpen,

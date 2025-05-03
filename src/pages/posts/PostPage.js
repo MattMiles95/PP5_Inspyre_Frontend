@@ -1,6 +1,3 @@
-// React
-import React, { useEffect, useState } from "react";
-
 // API
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -16,18 +13,23 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/PostPage.module.css";
 
+// Infinite Scroll
+import InfiniteScroll from "react-infinite-scroll-component";
+
 // Local Components
 import Asset from "../../components/Asset";
 import Comment from "../comments/Comment";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import Post from "./Post";
-import { fetchMoreData } from "../../utils/utils";
+
+// React
+import React, { useEffect, useState } from "react";
 
 // React Router
 import { useParams } from "react-router-dom";
 
-// Infinite Scroll
-import InfiniteScroll from "react-infinite-scroll-component";
+// Utils
+import { fetchMoreData } from "../../utils/utils";
 
 function PostPage() {
   const { id } = useParams();

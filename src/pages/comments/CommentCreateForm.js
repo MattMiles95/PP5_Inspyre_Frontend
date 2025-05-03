@@ -1,6 +1,3 @@
-// React
-import React, { useState } from "react";
-
 // API
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -9,11 +6,14 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
 // CSS
-import styles from "../../styles/CommentCreateEditForm.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
+import styles from "../../styles/CommentCreateEditForm.module.css";
 
 // Local Components
 import Avatar from "../../components/Avatar";
+
+// React
+import React, { useState } from "react";
 
 // React Router
 import { Link } from "react-router-dom";

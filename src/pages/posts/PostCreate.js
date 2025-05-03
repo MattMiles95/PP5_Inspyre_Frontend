@@ -1,11 +1,8 @@
-// React
-import React, { useState } from "react";
-
 // Bootstrap Components
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 
 // CSS
@@ -17,6 +14,9 @@ import { useRedirect } from "../../hooks/useRedirect";
 // Local Components
 import PostImageForm from "./PostImageForm";
 import PostTextForm from "./PostTextForm";
+
+// React
+import React, { useState } from "react";
 
 const PostCreate = () => {
   useRedirect("loggedOut");

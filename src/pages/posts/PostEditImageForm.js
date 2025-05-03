@@ -1,6 +1,3 @@
-// React
-import React from "react";
-
 // Bootstrap Components
 import Alert from "react-bootstrap/Alert";
 import Form from "react-bootstrap/Form";
@@ -8,8 +5,11 @@ import Image from "react-bootstrap/Image";
 
 // CSS
 import btnStyles from "../../styles/Buttons.module.css";
-import styles from "../../styles/PostEditForm.module.css";
 import sharedStyles from "../../styles/PostCreateForms.module.css";
+import styles from "../../styles/PostEditForm.module.css";
+
+// React
+import React from "react";
 
 const PostEditImageForm = ({
   image,

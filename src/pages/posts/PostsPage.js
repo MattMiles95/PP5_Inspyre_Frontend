@@ -1,6 +1,3 @@
-// React
-import React, { useEffect, useState } from "react";
-
 // API
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -8,11 +5,11 @@ import { axiosReq } from "../../api/axiosDefaults";
 import NoResults from "../../assets/no-results.png";
 
 // Bootstrap Components
+import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 // Bootstrap Icons
 import Search from "react-bootstrap-icons/dist/icons/search";
@@ -21,16 +18,21 @@ import Search from "react-bootstrap-icons/dist/icons/search";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
-import styles from "../../styles/PostsGallery.module.css";
 import appStyles from "../../App.module.css";
+import styles from "../../styles/PostsGallery.module.css";
 
 // Local Components
 import Asset from "../../components/Asset";
-import { Link, useLocation } from "react-router-dom";
 import Post from "./Post";
+
+// React
+import React, { useEffect, useState } from "react";
 
 // React Components
 import InfiniteScroll from "react-infinite-scroll-component";
+
+// React Router
+import { Link, useLocation } from "react-router-dom";
 
 // Utils
 import { fetchMoreData, stripHtmlTags, truncateText } from "../../utils/utils";

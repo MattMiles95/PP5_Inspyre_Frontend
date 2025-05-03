@@ -1,6 +1,3 @@
-// React
-import React from "react";
-
 // Context
 import { CurrentUserProvider } from "./contexts/CurrentUserContext";
 import { ProfileDataProvider } from "./contexts/ProfileDataContext";
@@ -10,6 +7,9 @@ import "./index.css";
 
 // Local Components
 import App from "./App";
+
+// React
+import React from "react";
 
 // React DOM
 import ReactDOM from "react-dom/client";

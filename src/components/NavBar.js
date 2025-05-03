@@ -1,6 +1,3 @@
-// React
-import React, { useEffect, useState } from "react";
-
 // Assets
 import logo from "../assets/inspyre_logo.png";
 
@@ -21,6 +18,9 @@ import { useHandleSignOut } from "../hooks/useHandleSignOut";
 
 // Local Components
 import Avatar from "./Avatar";
+
+// React
+import React, { useEffect, useState } from "react";
 
 // React Router
 import { NavLink, useLocation } from "react-router-dom";

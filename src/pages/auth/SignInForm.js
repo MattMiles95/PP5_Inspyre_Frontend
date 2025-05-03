@@ -1,14 +1,8 @@
-// React
-import React, { useState } from "react";
-
 // API
 import axios from "axios";
 
 // Assets
 import signInHero from "../../assets/signin_hero.png";
-
-// Context
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 // Bootstrap Components
 import Alert from "react-bootstrap/Alert";
@@ -19,6 +13,9 @@ import Form from "react-bootstrap/Form";
 import Image from "react-bootstrap/Image";
 import Row from "react-bootstrap/Row";
 
+// Context
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+
 // CSS
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
@@ -26,6 +23,9 @@ import styles from "../../styles/SignInUpForm.module.css";
 
 // Hooks
 import { useRedirect } from "../../hooks/useRedirect";
+
+// React
+import React, { useState } from "react";
 
 // React Router
 import { Link, useNavigate } from "react-router-dom";

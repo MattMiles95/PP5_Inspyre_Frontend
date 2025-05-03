@@ -1,6 +1,3 @@
-// React
-import React, { useState } from "react";
-
 // API
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -11,14 +8,17 @@ import Card from "react-bootstrap/Card";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
-import styles from "../../styles/Comment.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
+import styles from "../../styles/Comment.module.css";
 
 // Local Components
 import Avatar from "../../components/Avatar";
 import CommentEditForm from "./CommentEditForm";
-import PostDropdown from "../../components/PostDropdown";
 import CommentReplyForm from "./CommentReplyForm";
+import PostDropdown from "../../components/PostDropdown";
+
+// React
+import React, { useState } from "react";
 
 // React Router
 import { Link } from "react-router-dom";
