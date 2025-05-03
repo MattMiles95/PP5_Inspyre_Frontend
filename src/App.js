@@ -28,6 +28,7 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import Unauthorized from "./pages/errors/401Unauthorized";
 import Forbidden from "./pages/errors/403Forbidden";
 import NotFound from "./pages/errors/404NotFound";
+import InternalServerError from "./pages/errors/500InternalServerError";
 import ServiceUnavailable from "./pages/errors/503ServiceUnavailable";
 
 // React
@@ -91,6 +92,7 @@ function App() {
           {/* Custom Error Pages */}
           <Route path="/401" element={<Unauthorized />} />
           <Route path="/403" element={<Forbidden />} />
+          <Route path="/500" element={<InternalServerError />} />
           <Route path="/503" element={<ServiceUnavailable />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

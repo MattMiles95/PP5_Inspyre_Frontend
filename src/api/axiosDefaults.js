@@ -28,6 +28,8 @@ const handleRedirect = (status) => {
     window.location.href = "/403";
   } else if (status === 404) {
     window.location.href = "/404";
+  } else if (status === 500) {
+    window.location.href = "/500";
   } else if (status === 503) {
     window.location.href = "/503";
   }
