@@ -75,3 +75,36 @@
   -webkit-text-fill-color: transparent;
   text-transform: uppercase;
 }
+
+.OriginalAuthorCheckbox {
+  max-width: 355px;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ff7b00;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  background-color: #1e1e1e;
+  color: #fff;
+  gap: 0.75rem;
+  transition: background-color 0.3s ease;
+  line-height: 1.4;
+}
+
+.OriginalAuthorCheckbox input[type="checkbox"] {
+  accent-color: #ff7b00;
+  transform: scale(1.2);
+  cursor: pointer;
+  margin: 0;
+}
+
+.OriginalAuthorCheckbox:hover {
+  background-color: #2a2a2a;
+}
+
+.OriginalAuthorLabel {
+  font-weight: 500;
+  margin: 0;
+  padding: 0;
+}

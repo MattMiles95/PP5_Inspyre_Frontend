@@ -31,20 +31,21 @@ function PostEditFormBase() {
     image: "",
     imageFile: null,
     tags: "",
+    original_author: false,
   });
 
-  const { title, content, image, tags } = postData;
+  const { title, content, image, tags, original_author } = postData;
   const imageInput = useRef(null);
   const navigate = useNavigate();
   const { id } = useParams();
-
   const isTextPost = !postData.image;
 
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { title, content, image, is_owner, post_tags } = data;
+        const { title, content, image, is_owner, post_tags, original_author } =
+          data;
 
         if (!is_owner) return navigate("/");
 
@@ -52,6 +53,7 @@ function PostEditFormBase() {
           title,
           content,
           image,
+          original_author,
           tags: Array.isArray(post_tags)
             ? post_tags.map((tag) => tag.name).join(", ")
             : "",
@@ -89,6 +91,7 @@ function PostEditFormBase() {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("tags", tags);
+    formData.append("original_author", original_author);
 
     if (imageInput.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
@@ -117,8 +120,13 @@ function PostEditFormBase() {
                 onImageChange={handleChangeImage}
                 imageInputRef={imageInput}
                 errors={errors}
+                original_author={original_author}
+                setOriginalAuthor={(checked) =>
+                  setPostData((prev) => ({ ...prev, original_author: checked }))
+                }
               />
             )}
+
             <PostEditTextForm
               title={title}
               tags={tags}
@@ -128,6 +136,10 @@ function PostEditFormBase() {
               content={content}
               setContent={(value) =>
                 setPostData((prev) => ({ ...prev, content: value }))
+              }
+              original_author={original_author}
+              setOriginalAuthor={(checked) =>
+                setPostData((prev) => ({ ...prev, original_author: checked }))
               }
             />
           </Container>

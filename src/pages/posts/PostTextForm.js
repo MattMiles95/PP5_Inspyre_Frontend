@@ -38,8 +38,9 @@ function PostTextForm({ setPostType, postType }) {
     title: "",
     content: "",
     tags: "",
+    original_author: false,
   });
-  const { title, content, tags } = postData;
+  const { title, content, tags, original_author } = postData;
   const [submitting, setSubmitting] = useState(false);
 
   // Quill integration
@@ -81,6 +82,13 @@ function PostTextForm({ setPostType, postType }) {
     });
   };
 
+  const handleCheckboxChange = (e) => {
+    setPostData({
+      ...postData,
+      original_author: e.target.checked,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -105,6 +113,7 @@ function PostTextForm({ setPostType, postType }) {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("tags", tags);
+    formData.append("original_author", original_author);
 
     setSubmitting(true);
 
@@ -195,6 +204,25 @@ function PostTextForm({ setPostType, postType }) {
                   {message}
                 </Alert>
               ))}
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-4">
+          <Col md={{ span: 12 }}>
+            <Form.Group className={styles.OriginalAuthorCheckbox}>
+              <input
+                type="checkbox"
+                id="original-author-checkbox"
+                checked={original_author}
+                onChange={handleCheckboxChange}
+              />
+              <label
+                htmlFor="original-author-checkbox"
+                className={styles.OriginalAuthorLabel}
+              >
+                I am the original author of this work
+              </label>
             </Form.Group>
           </Col>
         </Row>

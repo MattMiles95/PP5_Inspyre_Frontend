@@ -41,8 +41,9 @@ function PostImageForm({ setPostType, postType }) {
     image: "",
     imageFile: null,
     tags: "",
+    original_author: false,
   });
-  const { title, content, image, imageFile, tags } = postData;
+  const { title, content, image, imageFile, tags, original_author } = postData;
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
@@ -76,6 +77,13 @@ function PostImageForm({ setPostType, postType }) {
     }
   };
 
+  const handleCheckboxChange = (e) => {
+    setPostData({
+      ...postData,
+      original_author: e.target.checked,
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -99,6 +107,7 @@ function PostImageForm({ setPostType, postType }) {
     formData.append("content", content);
     formData.append("image", imageFile);
     formData.append("tags", tags);
+    formData.append("original_author", original_author);
 
     setSubmitting(true);
 
@@ -234,6 +243,21 @@ function PostImageForm({ setPostType, postType }) {
                       {message}
                     </Alert>
                   ))}
+                </Form.Group>
+
+                <Form.Group className={styles.OriginalAuthorCheckbox}>
+                  <input
+                    type="checkbox"
+                    id="original-author-checkbox"
+                    checked={original_author}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label
+                    htmlFor="original-author-checkbox"
+                    className={styles.OriginalAuthorLabel}
+                  >
+                    I am the original author of this work
+                  </label>
                 </Form.Group>
 
                 {submitting && (
