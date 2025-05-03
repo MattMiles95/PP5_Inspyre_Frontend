@@ -42,10 +42,13 @@ const SignInForm = () => {
   });
   const { username, password } = signInData;
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
@@ -53,6 +56,8 @@ const SignInForm = () => {
       navigate("/");
     } catch (err) {
       setErrors(err.response?.data);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -111,8 +116,9 @@ const SignInForm = () => {
               <Button
                 className={`${btnStyles.AuthBtn} ${btnStyles.Btn}`}
                 type="submit"
+                disabled={loading}
               >
-                Login
+                {loading ? "Logging in..." : "Log In"}
               </Button>
               {errors.non_field_errors?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>

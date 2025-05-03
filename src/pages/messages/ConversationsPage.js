@@ -37,6 +37,7 @@ const ConversationsPage = () => {
 
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [conversationToDelete, setConversationToDelete] = useState(null);
+  const [selectingUser, setSelectingUser] = useState(false);
 
   useEffect(() => {
     const fetchConversations = async () => {
@@ -88,6 +89,7 @@ const ConversationsPage = () => {
   };
 
   const handleUserSelect = async (user) => {
+    setSelectingUser(true);
     try {
       const { data: conversationsData } = await axiosReq.get("/conversations/");
       const existingConversation = (
@@ -107,6 +109,8 @@ const ConversationsPage = () => {
       }
     } catch (err) {
       console.error(err);
+    } finally {
+      setSelectingUser(false);
     }
   };
 
@@ -178,10 +182,17 @@ const ConversationsPage = () => {
                   <ListGroup.Item
                     key={user.id}
                     action
-                    onClick={() => handleUserSelect(user)}
-                    className={styles.SearchResultItem}
+                    onClick={() => !selectingUser && handleUserSelect(user)}
+                    className={`${styles.SearchResultItem} ${
+                      selectingUser ? styles.DisabledItem : ""
+                    }`}
                   >
                     {user.username}
+                    {selectingUser && (
+                      <span className="ms-2">
+                        <i className="fas fa-spinner fa-spin"></i>
+                      </span>
+                    )}
                   </ListGroup.Item>
                 ))
               : searchQuery.trim() !== "" &&

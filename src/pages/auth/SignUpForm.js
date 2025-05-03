@@ -42,16 +42,20 @@ const SignUpForm = () => {
 
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       setShowModal(true);
     } catch (err) {
       setErrors(err.response?.data);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -142,9 +146,11 @@ const SignUpForm = () => {
               <Button
                 className={`${btnStyles.AuthBtn} ${btnStyles.Btn}`}
                 type="submit"
+                disabled={loading}
               >
-                Create
+                {loading ? "Creating account..." : "Join"}
               </Button>
+
               {errors.non_field_errors?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                   {message}
@@ -167,10 +173,7 @@ const SignUpForm = () => {
         onClose={handleModalClose}
         title="Welcome to Inspyre!"
         customFooter={
-          <button
-            onClick={handleModalClose}
-            className={btnStyles.ContinueBtn}
-          >
+          <button onClick={handleModalClose} className={btnStyles.ContinueBtn}>
             Continue to sign in page
           </button>
         }
