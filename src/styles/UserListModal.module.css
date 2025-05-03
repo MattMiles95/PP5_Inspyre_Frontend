@@ -1,0 +1,33 @@
+.UserList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.UserItem {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.UserItem:hover {
+  background-color: rgba(255, 123, 0, 0.1);
+  transform: scale(1.02);
+}
+
+.UserAvatar {
+  width: 55px;
+  height: 55px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 0.75rem;
+  border: 2px solid #ff7b00;
+}
+
+.Username {
+  font-weight: 500;
+  color: #ffebd8;
+  transition: color 0.2s ease;
+}

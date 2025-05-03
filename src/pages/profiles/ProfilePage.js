@@ -23,6 +23,7 @@ import styles from "../../styles/ProfilePage.module.css";
 
 // Local Components
 import Asset from "../../components/Asset";
+import FollowersFollowingModal from "./FollowersFollowingModal";
 
 // React
 import React, { useEffect, useState } from "react";
@@ -50,6 +51,13 @@ function ProfilePage() {
   const navigate = useNavigate();
   const [isMessageSubmitting, setIsMessageSubmitting] = useState(false);
   const [isFollowSubmitting, setIsFollowSubmitting] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
+  const [modalType, setModalType] = useState("followers");
+  const openModal = (type) => {
+    setModalType(type);
+    setShowModal(true);
+  };
 
   const handleFollowSubmit = async () => {
     setIsFollowSubmitting(true);
@@ -176,11 +184,21 @@ function ProfilePage() {
         </div>
 
         <div className={styles.Stats}>
-          <span>{profile?.posts_count} posts </span>
+          <span>{profile?.posts_count} posts</span>
           <span>|</span>
-          <span>{profile?.followers_count} followers</span>
+          <button
+            className={btnStyles.StatBtn}
+            onClick={() => openModal("followers")}
+          >
+            {profile?.followers_count} followers
+          </button>
           <span>|</span>
-          <span>{profile?.following_count} following</span>
+          <button
+            className={btnStyles.StatBtn}
+            onClick={() => openModal("following")}
+          >
+            {profile?.following_count} following
+          </button>
         </div>
 
         {profile?.profile_tags_display?.length > 0 && (
@@ -266,6 +284,13 @@ function ProfilePage() {
       ) : (
         <Asset spinner />
       )}
+
+      <FollowersFollowingModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        profileId={id}
+        type={modalType}
+      />
     </div>
   );
 }
