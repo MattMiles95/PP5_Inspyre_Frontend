@@ -113,7 +113,7 @@ const ConversationPage = () => {
     navigate("/conversations");
   };
 
-  if (loading) {
+  if (loading || !currentUser) {
     return (
       <Container className="text-center mt-5">
         <Asset spinner />
@@ -148,9 +148,9 @@ const ConversationPage = () => {
       <Row className={`${styles.MessagesWrapper} mt-3`}>
         <Col xs={12}>
           <ListGroup className={styles.MessagesList}>
-            {messages.length ? (
+            {messages.length && currentUser ? (
               [...messages].reverse().map((message) => {
-                const isSender = message.sender?.id === currentUser?.id;
+                const isSender = message.sender?.id === currentUser.pk;
                 return (
                   <ListGroup.Item
                     key={message.id}
@@ -171,6 +171,7 @@ const ConversationPage = () => {
             ) : (
               <p className={styles.EmptyState}>No messages yet.</p>
             )}
+
             <div ref={messagesEndRef} />
           </ListGroup>
         </Col>
