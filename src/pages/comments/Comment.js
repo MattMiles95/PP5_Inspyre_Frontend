@@ -16,6 +16,7 @@ import Avatar from "../../components/Avatar";
 import CommentEditForm from "./CommentEditForm";
 import CommentReplyForm from "./CommentReplyForm";
 import CustomDropdown from "../../components/CustomDropdown";
+import Modal from "../../components/Modal";
 
 // React
 import React, { useState } from "react";
@@ -41,6 +42,7 @@ const Comment = ({
   const [showReplyForm, setShowReplyForm] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   const currentUser = useCurrentUser();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const updateCommentStatus = (comments, idToUpdate) => {
     return comments.map((comment) => {
@@ -153,7 +155,7 @@ const Comment = ({
               {currentUser?.username === owner ? (
                 <CustomDropdown
                   handleEdit={() => setShowEditForm(true)}
-                  handleDelete={handleDelete}
+                  handleDelete={() => setShowDeleteModal(true)}
                 />
               ) : (
                 approval_status !== 1 && (
@@ -164,6 +166,19 @@ const Comment = ({
           </div>
         </Card.Body>
       </Card>
+
+      <Modal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        title="Confirm Delete"
+        onConfirm={() => {
+          setShowDeleteModal(false);
+          handleDelete();
+        }}
+      >
+        Are you sure you want to delete this comment? This action cannot be
+        undone.
+      </Modal>
 
       {replies.length > 0 && (
         <div className={styles.ReplyGroup}>
