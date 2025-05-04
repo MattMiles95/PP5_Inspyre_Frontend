@@ -1,42 +1,41 @@
 .DropdownToggle {
-    background: none;
-    border: none;
-    color: #f0e6d2;
-    padding: 0;
-    margin: 0;
-    font-size: 1.25rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
+  background: none;
+  border: none;
+  color: #f0e6d2;
+  padding: 0;
+  margin: 0;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
 
-  .DropdownToggle:hover,
-  .DropdownToggle:focus {
-    color: #ff7b00;
-    outline: none;
-    box-shadow: none;
-  }
-  
-  .DropdownMenu {
-    background-color: #2a2a2a;
-    border: none;
-    box-shadow: 0 0 12px rgba(255, 123, 0, 0.12);
-    border-radius: 10px;
-    padding: 0.5rem 0;
-    min-width: 120px;
-  }
-  
-  .DropdownItem {
-    color: #f0e6d2;
-    padding: 0.5rem 1rem;
-    font-size: 0.95rem;
-    transition: background 0.2s ease;
-  }
-  
-  .DropdownItem:hover,
-  .DropdownItem:focus {
-    background-color: rgba(255, 123, 0, 0.1);
-    color: #ff7b00;
-    outline: none;
-  }
-  
+.DropdownToggle:hover,
+.DropdownToggle:focus {
+  color: #ff7b00;
+  outline: none;
+  box-shadow: none;
+}
+
+.DropdownMenu {
+  background-color: #2a2a2a;
+  border: none;
+  box-shadow: 0 0 12px rgba(255, 123, 0, 0.12);
+  border-radius: 10px;
+  padding: 0.5rem 0;
+  min-width: 120px;
+}
+
+.DropdownItem {
+  color: #f0e6d2;
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  transition: background 0.2s ease;
+}
+
+.DropdownItem:hover,
+.DropdownItem:focus {
+  background-color: rgba(255, 123, 0, 0.1);
+  color: #ff7b00;
+  outline: none;
+}
