@@ -5,7 +5,7 @@ import { ThreeDots } from "react-bootstrap-icons";
 import styles from "../styles/CustomDropdown.module.css";
 
 // Hooks
-import UseClickOutsideToggle from "../hooks/UseClickOutsideToggle";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 // React
 import React, { useEffect, useRef, useState } from "react";
@@ -14,7 +14,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
 const CustomDropdown = ({ handleEdit, handleDelete, handleReport }) => {
-  const { expanded: show, setExpanded: setShow, ref } = UseClickOutsideToggle();
+  const { expanded: show, setExpanded: setShow, ref } = useClickOutsideToggle();
   const toggleRef = useRef(null);
   const [menuStyle, setMenuStyle] = useState({});
 
