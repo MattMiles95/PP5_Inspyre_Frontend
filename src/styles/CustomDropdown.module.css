@@ -19,8 +19,7 @@
 
 .DropdownMenu {
   background-color: #2a2a2a;
-  border: none;
-  box-shadow: 0 0 12px rgba(255, 123, 0, 0.12);
+  border: 2px solid rgba(255, 123, 0, 0.2);
   border-radius: 10px;
   padding: 0.5rem 0;
   min-width: 120px;
@@ -31,6 +30,7 @@
   padding: 0.5rem 1rem;
   font-size: 0.95rem;
   transition: background 0.2s ease;
+  border-bottom: 2px solid rgba(255, 123, 0, 0.2);
 }
 
 .DropdownItem:hover,
@@ -38,4 +38,8 @@
   background-color: rgba(255, 123, 0, 0.1);
   color: #ff7b00;
   outline: none;
+}
+
+.DropdownItem:last-child {
+  border-bottom: none;
 }
