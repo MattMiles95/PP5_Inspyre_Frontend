@@ -34,11 +34,12 @@ function PostEditFormBase() {
     original_author: false,
   });
 
-  const { title, content, image, tags, original_author, owner } = postData;
+  const { title, content, image, tags, original_author } = postData;
   const imageInput = useRef(null);
   const navigate = useNavigate();
   const { id } = useParams();
   const isTextPost = postData.image === null || postData.image === "";
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -86,6 +87,7 @@ function PostEditFormBase() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSaving(true);
     const formData = new FormData();
 
     formData.append("title", title);
@@ -104,6 +106,8 @@ function PostEditFormBase() {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -137,7 +141,7 @@ function PostEditFormBase() {
               setOriginalAuthor={(checked) =>
                 setPostData((prev) => ({ ...prev, original_author: checked }))
               }
-              username={owner}
+              saving={saving}
             />
           </Container>
         </Col>

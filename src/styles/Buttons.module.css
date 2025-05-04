@@ -132,29 +132,30 @@
 }
 
 .CommentBtn {
-  background-color: #ff7b00;
-  color: #fff;
+  background-color: #ff7b00 !important;
+  color: #fff !important;
   border: none;
   font-weight: 500;
   border-radius: 8px;
   padding: 0.2rem 0.4rem;
-  margin: 5px 0 15px;
+  margin: 5px 7px 15px;
 }
 
 .CommentBtn:hover {
-  background-color: #ff9b3d;
-  color: #fff;
+  background-color: #ff9b3d !important;
+  color: #fff !important;
 }
 
 .CommentBtn:active,
 .CommentBtn:focus {
+  background-color: #ff9b3d !important;
   box-shadow: none !important;
   outline: none !important;
 }
 
 .CommentBtn:disabled {
-  background-color: #696969;
-  color: #e0e0e0;
+  background-color: #696969 !important;
+  color: #e0e0e0 !important;
   cursor: not-allowed;
 }
 
@@ -173,26 +174,6 @@
 
 .ReplyBtn:active,
 .ReplyBtn:focus {
-  box-shadow: none !important;
-  outline: none !important;
-}
-
-.CommentFormBtn {
-  background-color: #ff7b00;
-  color: #fff;
-  border: none;
-  font-weight: 500;
-  border-radius: 8px;
-  padding: 0.2rem 0.4rem;
-  margin: 8px 0 5px 8px;
-}
-
-.CommentFormBtn:hover {
-  background-color: #ff9b3d;
-}
-
-.CommentFormBtn:active,
-.CommentFormBtn:focus {
   box-shadow: none !important;
   outline: none !important;
 }

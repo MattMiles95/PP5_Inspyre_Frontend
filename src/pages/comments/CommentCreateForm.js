@@ -21,6 +21,8 @@ import { Link } from "react-router-dom";
 function CommentCreateForm(props) {
   const { post, setPost, setComments, profileImage, profile_id } = props;
   const [content, setContent] = useState("");
+  const [posting, setPosting] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
     setContent(event.target.value);
@@ -28,6 +30,7 @@ function CommentCreateForm(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setPosting(true);
     try {
       const { data } = await axiosRes.post("/comments/", {
         content,
@@ -47,7 +50,11 @@ function CommentCreateForm(props) {
       }));
       setContent("");
     } catch (err) {
-      // console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    } finally {
+      setPosting(false);
     }
   };
 
@@ -66,14 +73,19 @@ function CommentCreateForm(props) {
             onChange={handleChange}
             rows={2}
           />
+          {errors?.content?.map((message, idx) => (
+            <div key={idx} className="text-danger small mt-1">
+              {message}
+            </div>
+          ))}
         </InputGroup>
       </Form.Group>
       <button
         className={`${btnStyles.CommentBtn} btn d-block ml-auto`}
-        disabled={!content.trim()}
+        disabled={!content.trim() || posting}
         type="submit"
       >
-        post
+        {posting ? "posting..." : "post"}
       </button>
     </Form>
   );

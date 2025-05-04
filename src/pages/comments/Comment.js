@@ -106,7 +106,7 @@ const Comment = ({
           </Link>
 
           <div className="flex-grow-1 d-flex justify-content-between align-items-start">
-            <div>
+            <div className="flex-grow-1 w-100" style={{ minWidth: 0 }}>
               <span className={styles.Owner}>{owner}</span>
               <span className={styles.Date}>{updated_at}</span>
 

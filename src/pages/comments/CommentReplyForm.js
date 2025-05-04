@@ -15,6 +15,7 @@ import React, { useState, useEffect, useRef } from "react";
 const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
   const [content, setContent] = useState("");
   const formRef = useRef(null);
+  const [replying, setReplying] = useState(false);
 
   // Detect outside clicks
   useEffect(() => {
@@ -32,6 +33,7 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setReplying(true);
 
     if (!content.trim()) return;
 
@@ -66,6 +68,8 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
         "Reply submission error:",
         err.response?.data || err.message
       );
+    } finally {
+      setReplying(false);
     }
   };
 
@@ -89,7 +93,7 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
           variant="secondary"
           type="button"
           size="sm"
-          className={btnStyles.CommentFormBtn}
+          className={btnStyles.CommentBtn}
           onClick={() => setShowReplyForm(false)}
         >
           Cancel
@@ -98,9 +102,10 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
           variant="primary"
           type="submit"
           size="sm"
-          className={btnStyles.CommentFormBtn}
+          className={btnStyles.CommentBtn}
+          disabled={!content.trim() || replying}
         >
-          Post Reply
+          {replying ? "Replying..." : "Reply"}
         </Button>
       </div>
     </Form>

@@ -16,6 +16,8 @@
   border-radius: 16px;
   box-shadow: 0 0 6px rgba(255, 123, 0, 0.08);
   color: #f0e6d2;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .ReplyForm textarea {
@@ -26,6 +28,8 @@
   padding: 0.5rem;
   resize: none;
   font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .ReplyForm textarea::placeholder {
@@ -33,5 +37,5 @@
 }
 
 .ReplyForm textarea:focus {
-    box-shadow: 0 0 0 .2rem #c35e0084 !important;
+  box-shadow: 0 0 0 0.2rem #c35e0084 !important;
 }

@@ -28,7 +28,7 @@ const PostEditTextForm = ({
   setContent,
   original_author,
   setOriginalAuthor,
-  username,
+  saving,
 }) => {
   const navigate = useNavigate();
 
@@ -137,11 +137,12 @@ const PostEditTextForm = ({
           className={btnStyles.CancelBtn}
           onClick={() => navigate(-1)}
           aria-label="Cancel post edit"
+          disabled={saving}
         >
           Cancel
         </Button>
-        <Button className={btnStyles.CreateBtn} type="submit">
-          Save
+        <Button className={btnStyles.CreateBtn} type="submit" disabled={saving}>
+          {saving ? "Saving..." : "Save"}
         </Button>
       </div>
     </>
