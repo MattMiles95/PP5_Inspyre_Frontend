@@ -25,6 +25,7 @@ Built with a clean, responsive UI and a focus on discoverability, Inspyre suppor
 - [Wireframes](#wireframes)
 - [Theme](#theme)
 - [Colours](#colours)
+- [Brand: Meet Ember](#brand-meet-ember)
 - [Typography](#typography)
 - [Accessibility](#accessibility)
 - [Responsiveness](#responsiveness)
@@ -101,6 +102,8 @@ Below are the wireframes I used to create the initial layout and design for Insp
 <details>
 <summary> Wireframe - Sign Up Page </summary>
 
+<br>
+
 ![Wireframe for the sign up page](./README/wireframes/wf-signup-page.png)
 
 </details>
@@ -109,6 +112,8 @@ Below are the wireframes I used to create the initial layout and design for Insp
 
 <details>
 <summary> Wireframe - Homepage </summary>
+
+<br>
 
 ![Wireframe for the homepage](./README/wireframes/wf-homepage.png)
 
@@ -119,6 +124,8 @@ Below are the wireframes I used to create the initial layout and design for Insp
 <details>
 <summary> Wireframe - Homepage (Mobile) </summary>
 
+<br>
+
 ![Wireframe for the homepage (mobile view)](./README/wireframes/wf-homepage-mobile.png)
 
 </details>
@@ -128,6 +135,8 @@ Below are the wireframes I used to create the initial layout and design for Insp
 <details>
 <summary> Wireframe - Profile Page </summary>
 
+<br>
+
 ![Wireframe for the profile page](./README/wireframes/wf-profile-page.png)
 
 </details>
@@ -135,8 +144,171 @@ Below are the wireframes I used to create the initial layout and design for Insp
 <br>
 
 <details>
-<summary> Wireframe - Chat Page</summary>
+<summary> Wireframe - Chat Page </summary>
+
+<br>
 
 ![Wireframe for the profile page](./README/wireframes/wf-chat-page.png)
 
 </details>
+
+### Theme
+
+<details>
+<summary> Logo </summary>
+
+<br>
+
+![Inspyre Logo](./src/assets/inspyre_logo.png)
+
+</details>
+
+<br>
+
+The theme for Inspyre began with its logo. Fire has long been a symbol of creativity — the _spark_ of inspiration, the _flames_ of the forge where where the blacksmith shapes his creations, storytellers sharing tales of wonder around a _campfire_. I wanted a logo that embodied this elemental energy — something simple, bold, and immediately evocative of the act of creation. From that foundation, the visual identity of Inspyre took shape.
+
+### Colours
+
+<details>
+<summary> Background & Colour Palette </summary>
+
+<br>
+
+![Background](./src/assets/inspyre_bg.jpg)
+![Colour Palette](./README/images/inspyre-palette.png)
+
+</details>
+
+<br>
+
+The background and colour scheme builds on this concept of fire and emberlight. A dark background beneath dancing embers serves as the canvas, contrasted with a UI that utilises vivid accents of bright orange, amber, and ember-red, giving the platform a sense of warmth and focus. This contrast helps highlight content while maintaining a modern, dramatic tone. It’s designed to feel sleek and atmospheric, like a gallery lit by a glowing campfire.
+
+<details>
+<summary> Demo: Post Creation Page </summary>
+
+<br>
+
+![Post Creation Page](./README/images/post-creation-page.png)
+
+</details>
+
+### Brand: Meet Ember
+
+<details>
+<summary> Ember </summary>
+
+<br>
+
+![Ember](./README/images/ember.png)
+
+</details>
+
+<br>
+
+To bring personality and playfulness into the design, I created Ember, the platform’s flame-shaped mascot. Ember embodies the spirit of Inspyre: a cheeky, curious flame with a creative streak. As users engage with the platform — posting, exploring, or connecting — Ember makes the occasional appearance here and there. Be it as the favicon, at the sign in page, during a 404 error, as a default profile image or even a post from his own account!
+
+<details>
+<summary> Ember - Sign Up </summary>
+
+<br>
+
+![Ember - Sign Up Page](./src/assets/signup_hero.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Ember - Sign In </summary>
+
+<br>
+
+![Ember - Sign In Page](./src/assets/signin_hero.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Ember - 404 Error & No Results </summary>
+
+<br>
+
+![Ember - 404 Error & No Results](./src/assets/no-results.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Ember - 401 & 403 Error </summary>
+
+<br>
+
+![Ember - 401 & 403 Error](./src/assets/no-access.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Ember - 500 & 503 Error </summary>
+
+<br>
+
+![Ember - 500 & 503 Error](./src/assets/no-service.png)
+
+</details>
+
+<br>
+
+A brand mascot like Ember creates an emotional resonance between the user and the platform, helping users form a more memorable and relatable connection with the brand. It can make interactions feel more engaging and human, while also reinforcing core themes — in this case, creativity, warmth, and playful inspiration.
+
+### Typography
+
+<details>
+<summary> Font Specimen - Montserrat </summary>
+
+<br>
+
+![Font Specimen - Montserrat](./README/images/font-specimen-montserrat.png)
+
+</details>
+
+<br>
+
+I chose **Montserrat** as the default font for Inspyre because its clean, geometric style aligns perfectly with the platform’s modern and creative aesthetic. It feels contemporary without being cold, giving the site a sense of clarity and polish. Additionally, as a Google Font, it’s widely supported across browsers and devices, ensuring consistent rendering and accessibility for all users.
+
+### Accessibility
+
+To ensure every User has equal opportunity to enjoy the platform, I ensured maximum accessibility in its design and code:
+
+- Alt text and aria-labels are used throughout the site to aid screen readers.
+
+- All colour schemes utilise contrast between background and foreground to ensure ease of readability.
+
+### Responsiveness
+
+<details>
+<summary> Homepage - Desktop </summary>
+
+<br>
+
+![Homepage - Desktop](./README/images/homepage-desktop.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Homepage - Mobile </summary>
+
+<br>
+
+![Homepage - Mobile](./README/images/homepage-mobile.png)
+
+</details>
+
+<br>
+
+While Inspyre is primarily designed with desktop users in mind — where creative content can be viewed and edited most comfortably — the platform is fully responsive across a range of devices, including tablets and smartphones. By combining Bootstrap’s responsive flexbox system with custom CSS media queries, I’ve ensured that layouts adapt seamlessly to different screen sizes, maintaining usability, visual clarity, and an intuitive experience no matter where or how users access the site.
