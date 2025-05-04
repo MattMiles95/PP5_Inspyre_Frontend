@@ -5,6 +5,9 @@ import styles from "../styles/Modal.module.css";
 // React
 import React from "react";
 
+// React DOM
+import ReactDOM from "react-dom";
+
 const Modal = ({
   isOpen,
   onClose,
@@ -17,7 +20,7 @@ const Modal = ({
 }) => {
   if (!isOpen) return null;
 
-  return (
+  const modalContent = (
     <div className={styles.ModalOverlay}>
       <div className={styles.ModalContent}>
         <div className={styles.ModalHeader}>
@@ -49,6 +52,11 @@ const Modal = ({
         </div>
       </div>
     </div>
+  );
+
+  return ReactDOM.createPortal(
+    modalContent,
+    document.getElementById("modal-root")
   );
 };
 
