@@ -15,7 +15,7 @@ import styles from "../../styles/Comment.module.css";
 import Avatar from "../../components/Avatar";
 import CommentEditForm from "./CommentEditForm";
 import CommentReplyForm from "./CommentReplyForm";
-import PostDropdown from "../../components/PostDropdown";
+import CustomDropdown from "../../components/CustomDropdown";
 
 // React
 import React, { useState } from "react";
@@ -151,13 +151,13 @@ const Comment = ({
 
             <div className={styles.Dropdown}>
               {currentUser?.username === owner ? (
-                <PostDropdown
+                <CustomDropdown
                   handleEdit={() => setShowEditForm(true)}
                   handleDelete={handleDelete}
                 />
               ) : (
                 approval_status !== 1 && (
-                  <PostDropdown handleReport={handleReport} />
+                  <CustomDropdown handleReport={handleReport} />
                 )
               )}
             </div>

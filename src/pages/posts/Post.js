@@ -19,7 +19,7 @@ import "../../index.css";
 // Local Components
 import Asset from "../../components/Asset";
 import Avatar from "../../components/Avatar";
-import PostDropdown from "../../components/PostDropdown";
+import CustomDropdown from "../../components/CustomDropdown";
 
 // React
 import React, { useState } from "react";
@@ -115,7 +115,7 @@ const Post = (props) => {
             <span className="ml-2 font-weight-bold">{owner}</span>
           </Link>
           {is_owner && postPage && (
-            <PostDropdown
+            <CustomDropdown
               handleEdit={handleEdit}
               handleDelete={() => setShowConfirm(true)}
             />
