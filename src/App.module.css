@@ -1,9 +1,9 @@
-@import 'quill/dist/quill.core.css';
-@import 'quill/dist/quill.snow.css';
+@import "quill/dist/quill.core.css";
+@import "quill/dist/quill.snow.css";
 
 .App {
   font-family: "Montserrat", sans-serif;
-  background-image: url('./assets/inspyre_bg.jpg');
+  background-image: url("./assets/inspyre_bg.jpg");
   color: #fff;
   min-height: 100vh;
 }
@@ -63,6 +63,7 @@ figure {
 .InspyredText {
   color: #ff9532;
   font-weight: bold;
+  text-shadow: #ffaf6ac1 0px 0px 6px;
 }
 
 .avatar {

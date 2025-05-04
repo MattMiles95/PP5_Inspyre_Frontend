@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
 // CSS
+import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Buttons.module.css";
 import postEditStyles from "../../styles/PostEditForm.module.css";
 import sharedStyles from "../../styles/PostCreateForms.module.css";
@@ -27,6 +28,7 @@ const PostEditTextForm = ({
   setContent,
   original_author,
   setOriginalAuthor,
+  username,
 }) => {
   const navigate = useNavigate();
 
@@ -56,23 +58,35 @@ const PostEditTextForm = ({
         ))}
       </Form.Group>
 
-      {isTextPost && (
-        <Form.Group className="mt-3">
-          <Form.Label className={postEditStyles.FormLabel}>Content</Form.Label>
+      <Form.Group className="mt-3">
+        <Form.Label className={postEditStyles.FormLabel}>
+          {isTextPost ? "Content" : "Description"}
+        </Form.Label>
+        {isTextPost ? (
           <div className={postEditStyles.QuillEditorWrapper}>
             <QuillEditor content={content} onChange={setContent} />
           </div>
-          {errors?.content?.map((message, idx) => (
-            <Alert
-              key={idx}
-              variant="warning"
-              className={`${postEditStyles.ErrorAlert} mt-2`}
-            >
-              {message}
-            </Alert>
-          ))}
-        </Form.Group>
-      )}
+        ) : (
+          <Form.Control
+            as="textarea"
+            rows={4}
+            name="content"
+            value={content}
+            onChange={(e) => setContent(e.target.value)}
+            placeholder="A picture says a thousand words, but a few more never hurt..."
+            className={postEditStyles.FormInput}
+          />
+        )}
+        {errors?.content?.map((message, idx) => (
+          <Alert
+            key={idx}
+            variant="warning"
+            className={`${postEditStyles.ErrorAlert} mt-2`}
+          >
+            {message}
+          </Alert>
+        ))}
+      </Form.Group>
 
       <Form.Group className="mt-3">
         <Form.Label className={postEditStyles.FormLabel}>
@@ -97,19 +111,25 @@ const PostEditTextForm = ({
         ))}
       </Form.Group>
 
-      <Form.Group className={`${sharedStyles.OriginalAuthorCheckbox} mt-4`}>
-        <input
-          type="checkbox"
-          id="original-author-checkbox"
-          checked={original_author}
-          onChange={handleCheckboxChange}
-        />
-        <label
-          htmlFor="original-author-checkbox"
-          className={sharedStyles.OriginalAuthorLabel}
-        >
-          I am the original author of this work
-        </label>
+      <Form.Group className="mt-3">
+        <Form.Label className={postEditStyles.FormLabel}>
+          A <span className={appStyles.InspyredText}>you</span> original, or an
+          appreciation post? Let us know!
+        </Form.Label>
+        <div className={sharedStyles.OriginalAuthorCheckbox}>
+          <input
+            type="checkbox"
+            id="original-author-checkbox"
+            checked={original_author}
+            onChange={handleCheckboxChange}
+          />
+          <label
+            htmlFor="original-author-checkbox"
+            className={sharedStyles.OriginalAuthorLabel}
+          >
+            I am the original author of this work
+          </label>
+        </div>
       </Form.Group>
 
       <div className={postEditStyles.ButtonRow}>

@@ -5,24 +5,12 @@ import Image from "react-bootstrap/Image";
 
 // CSS
 import btnStyles from "../../styles/Buttons.module.css";
-import sharedStyles from "../../styles/PostCreateForms.module.css";
 import styles from "../../styles/PostEditForm.module.css";
 
 // React
 import React from "react";
 
-const PostEditImageForm = ({
-  image,
-  onImageChange,
-  imageInputRef,
-  errors,
-  original_author,
-  setOriginalAuthor,
-}) => {
-  const handleCheckboxChange = (e) => {
-    setOriginalAuthor(e.target.checked);
-  };
-
+const PostEditImageForm = ({ image, onImageChange, imageInputRef, errors }) => {
   return (
     <Form.Group className="text-center">
       <figure>
@@ -49,21 +37,6 @@ const PostEditImageForm = ({
           {message}
         </Alert>
       ))}
-
-      <Form.Group className={sharedStyles.OriginalAuthorCheckbox}>
-        <input
-          type="checkbox"
-          id="original-author-checkbox"
-          checked={original_author}
-          onChange={handleCheckboxChange}
-        />
-        <label
-          htmlFor="original-author-checkbox"
-          className={sharedStyles.OriginalAuthorLabel}
-        >
-          I am the original author of this work
-        </label>
-      </Form.Group>
     </Form.Group>
   );
 };

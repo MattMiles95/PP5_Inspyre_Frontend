@@ -189,7 +189,7 @@ const ConversationsPage = () => {
                   >
                     {user.username}
                     {selectingUser && (
-                      <span className="ms-2">
+                      <span className="ms-2 ml-2">
                         <i className="fas fa-spinner fa-spin"></i>
                       </span>
                     )}
