@@ -61,7 +61,7 @@ const UsernameEditForm = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="m-4">
         <Form.Group>
           <Form.Label>Choose a new Username</Form.Label>
           <Form.Control

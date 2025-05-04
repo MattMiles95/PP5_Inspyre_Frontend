@@ -61,7 +61,7 @@ const PasswordEditForm = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} className="m-4">
         <Form.Group>
           <Form.Label>New Password</Form.Label>
           <Form.Control
