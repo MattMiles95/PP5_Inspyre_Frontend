@@ -12,6 +12,24 @@ import styles from "../../styles/CommentReplyForm.module.css";
 // React
 import React, { useState, useEffect, useRef } from "react";
 
+const insertReply = (comments, parentId, newReply) => {
+  return comments.map((comment) => {
+    if (comment.id === parentId) {
+      return {
+        ...comment,
+        replies: [...(comment.replies || []), newReply],
+      };
+    }
+    if (comment.replies && comment.replies.length > 0) {
+      return {
+        ...comment,
+        replies: insertReply(comment.replies, parentId, newReply),
+      };
+    }
+    return comment;
+  });
+};
+
 const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
   const [content, setContent] = useState("");
   const formRef = useRef(null);
@@ -51,14 +69,7 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
 
       setComments((prev) => ({
         ...prev,
-        results: prev.results.map((comment) =>
-          comment.id === parentId
-            ? {
-                ...comment,
-                replies: [...(comment.replies || []), data],
-              }
-            : comment
-        ),
+        results: insertReply(prev.results, parentId, data),
       }));
 
       setContent("");
