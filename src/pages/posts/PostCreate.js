@@ -27,7 +27,7 @@ const PostCreate = () => {
   };
 
   return (
-    <Container className={`mt-4 ${styles.CreateContainer}`}>
+    <Container className="mt-4">
       <Card className={styles.SelectionCard}>
         <Card.Body>
           {/* Hide the headings when postType is selected */}

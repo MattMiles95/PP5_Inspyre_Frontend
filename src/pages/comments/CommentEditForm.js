@@ -101,7 +101,7 @@ function CommentEditForm({
           disabled={!formContent.trim() || editing}
           type="submit"
         >
-          {editing ? "Saving..." : "Save"}
+          {editing ? "saving..." : "save"}
         </button>
       </div>
     </Form>

@@ -144,7 +144,9 @@ function PostImageForm({ setPostType, postType }) {
             <h2 className={styles.CenteredHeading}>Visual Creation</h2>
             <Col xs={12}>
               {/* Image upload section */}
-              <Container className={`${appStyles.Content} ${styles.Container}`}>
+              <Container
+                className={`${appStyles.Content} ${styles.CreateContainer}`}
+              >
                 <Form.Group className="text-center">
                   {image ? (
                     <>
@@ -171,8 +173,8 @@ function PostImageForm({ setPostType, postType }) {
                     >
                       <Asset
                         src={Upload}
-                        height={50}
                         message="Upload your creation"
+                        imgClassName={styles.UploadIcon}
                       />
                     </Form.Label>
                   )}
@@ -183,6 +185,7 @@ function PostImageForm({ setPostType, postType }) {
                     onChange={handleChangeImage}
                     aria-label="Image upload"
                     ref={imageInput}
+                    className={styles.FormInput}
                   />
                 </Form.Group>
                 {errors?.image?.map((message, idx) => (
@@ -195,15 +198,18 @@ function PostImageForm({ setPostType, postType }) {
 
             {/* Form fields section */}
             <Col xs={12} className="mt-4">
-              <Container className={`${appStyles.Content} ${styles.Container}`}>
+              <Container
+                className={`${appStyles.Content} ${styles.CreateContainer}`}
+              >
                 <Form.Group className="mb-3">
-                  <Form.Label>Title</Form.Label>
+                  <Form.Label className={styles.FormLabel}>Title</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Name your creation"
                     name="title"
                     value={title}
                     onChange={handleChange}
+                    className={styles.FormInput}
                   />
                   {errors?.title?.map((message, idx) => (
                     <Alert key={idx} variant="warning" className="mt-2">
@@ -213,7 +219,9 @@ function PostImageForm({ setPostType, postType }) {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Description</Form.Label>
+                  <Form.Label className={styles.FormLabel}>
+                    Description
+                  </Form.Label>
                   <Form.Control
                     as="textarea"
                     placeholder="A picture tells a thousand words, but a few more never hurt..."
@@ -221,6 +229,7 @@ function PostImageForm({ setPostType, postType }) {
                     name="content"
                     value={content}
                     onChange={handleChange}
+                    className={styles.FormInput}
                   />
                   {errors?.content?.map((message, idx) => (
                     <Alert key={idx} variant="warning" className="mt-2">
@@ -230,13 +239,16 @@ function PostImageForm({ setPostType, postType }) {
                 </Form.Group>
 
                 <Form.Group className="mb-4">
-                  <Form.Label>Tags (comma-separated)</Form.Label>
+                  <Form.Label className={styles.FormLabel}>
+                    Tags (comma-separated)
+                  </Form.Label>
                   <Form.Control
                     type="text"
                     name="tags"
                     value={tags}
                     onChange={handleTagsChange}
                     placeholder="Enter tags separated by commas"
+                    className={styles.FormInput}
                   />
                   {errors?.tags?.map((message, idx) => (
                     <Alert key={idx} variant="warning" className="mt-2">
@@ -245,19 +257,25 @@ function PostImageForm({ setPostType, postType }) {
                   ))}
                 </Form.Group>
 
-                <Form.Group className={styles.OriginalAuthorCheckbox}>
-                  <input
-                    type="checkbox"
-                    id="original-author-checkbox"
-                    checked={original_author}
-                    onChange={handleCheckboxChange}
-                  />
-                  <label
-                    htmlFor="original-author-checkbox"
-                    className={styles.OriginalAuthorLabel}
-                  >
-                    I am the original author of this work
-                  </label>
+                <Form.Group className="mt-3">
+                  <Form.Label className={styles.FormLabel}>
+                    A <span className={appStyles.InspyredText}>you</span>{" "}
+                    original, or an appreciation post? Let us know!
+                  </Form.Label>
+                  <div className={styles.OriginalAuthorCheckbox}>
+                    <input
+                      type="checkbox"
+                      id="original-author-checkbox"
+                      checked={original_author}
+                      onChange={handleCheckboxChange}
+                    />
+                    <label
+                      htmlFor="original-author-checkbox"
+                      className={styles.OriginalAuthorLabel}
+                    >
+                      I am the original author of this work
+                    </label>
+                  </div>
                 </Form.Group>
 
                 {submitting && (

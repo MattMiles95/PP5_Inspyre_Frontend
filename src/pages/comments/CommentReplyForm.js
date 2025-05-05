@@ -107,7 +107,7 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
           className={btnStyles.CommentBtn}
           onClick={() => setShowReplyForm(false)}
         >
-          Cancel
+          cancel
         </Button>
         <Button
           variant="primary"
@@ -116,7 +116,7 @@ const ReplyForm = ({ parentId, postId, setComments, setShowReplyForm }) => {
           className={btnStyles.CommentBtn}
           disabled={!content.trim() || replying}
         >
-          {replying ? "Replying..." : "Reply"}
+          {replying ? "replying..." : "reply"}
         </Button>
       </div>
     </Form>

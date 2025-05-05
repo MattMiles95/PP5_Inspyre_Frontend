@@ -90,21 +90,21 @@ function PostTextForm({ setPostType, postType }) {
 
   return (
     <Form onSubmit={handleSubmit}>
+      <Button
+        variant="link"
+        className={`${btnStyles.BackBtn} mb-3 p-0 text-decoration-none d-flex align-items-center`}
+        onClick={() => setPostType(null)}
+        aria-label="Go back to post type selection"
+      >
+        <i className={`${appStyles.BackArrow} fas fa-arrow-left me-2`}></i>
+        Go back
+      </Button>
+      <div className="text-center mb-4">
+        <h2 className={styles.CenteredHeading}>Written Creation</h2>
+      </div>
       <Container
         className={`${appStyles.Content} ${styles.CreateContainer} mt-4`}
       >
-        <Button
-          variant="link"
-          className={`${btnStyles.BackBtn} mb-3 p-0 text-decoration-none d-flex align-items-center`}
-          onClick={() => setPostType(null)}
-          aria-label="Go back to post type selection"
-        >
-          <i className={`${appStyles.BackArrow} fas fa-arrow-left me-2`}></i>
-          Go back
-        </Button>
-
-        <h2 className={styles.CenteredHeading}>Written Creation</h2>
-
         <Form.Group className="mb-3">
           <Form.Label className={styles.FormLabel}>Title</Form.Label>
           <Form.Control
@@ -160,7 +160,8 @@ function PostTextForm({ setPostType, postType }) {
 
         <Form.Group className="mb-4">
           <Form.Label className={styles.FormLabel}>
-            A <span className={appStyles.InspyredText}>you</span> original?
+            A <span className={appStyles.InspyredText}>you</span> original, or
+            an appreciation post? Let us know!
           </Form.Label>
           <div className={styles.OriginalAuthorCheckbox}>
             <input

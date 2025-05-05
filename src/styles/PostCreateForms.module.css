@@ -7,10 +7,8 @@
 }
 
 .SelectionCard {
-  background-color: rgba(0, 0, 0, 0.7);
-  border: none;
+  background-color: rgba(0, 0, 0, 0.8);
   border-radius: 16px;
-  padding: 2rem;
   color: #ffebd8;
 }
 
@@ -78,7 +76,6 @@
 
 .OriginalAuthorCheckbox {
   max-width: 355px;
-  margin-top: 1rem;
   margin-bottom: 1.5rem;
   padding: 0.5rem 1rem;
   border: 1px solid #ff7b00;
@@ -104,7 +101,6 @@
 }
 
 .OriginalAuthorLabel {
-  font-weight: 500;
   margin: 0;
   padding: 0;
 }
@@ -113,6 +109,7 @@
   font-weight: bold;
   color: #ffebd8;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .FormInput {
@@ -127,4 +124,9 @@
 .FormInput:focus {
   border-color: #ffaa55;
   outline: none;
+}
+
+.UploadIcon {
+  height: 64px;
+  width: auto;
 }

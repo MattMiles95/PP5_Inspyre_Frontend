@@ -34,6 +34,7 @@ Built with a clean, responsive UI and a focus on discoverability, Inspyre suppor
 ### [Features](#features-1)
 
 - [Authorisation](#authorisation)
+- [Navbar](#navbar)
 - [Homepage, Pyres & Sparks](#homepage-pyres--sparks)
 - [Post Searchbar](#post-searchbar)
 - [Detailed Post View](#detailed-post-view)
@@ -357,6 +358,65 @@ Behind the scenes, Jason Web Token (JWT) authentication is used to manage user s
 
 Permissions are carefully scoped using Django REST Framework’s built-in permission classes, along with custom logic. This ensures users can only perform actions they’re authorised for — for example, editing their own posts, accessing their conversations, or managing their own profile — while preventing unauthorised access to other users' data or actions. -->
 
+### Navbar
+
+<details>
+<summary> Navbar - Desktop </summary>
+
+<br>
+
+![Navbar - Desktop](./README/images/navbar-desktop.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Navbar - Desktop </summary>
+
+<br>
+
+![Navbar - Mobile](./README/images/navbar-mobile.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Navbar - Desktop </summary>
+
+<br>
+
+![Navbar - Menu](./README/images/navbar-menu.png)
+
+</details>
+
+<br>
+
+The Inspyre navbar provides persistent, intuitive navigation across the entire platform. It spans the full width of every page and remains fixed to the top of the viewport, ensuring constant access to key features — even while scrolling.
+
+Key elements of the navbar include:
+
+- The Inspyre logo, which doubles as a home button, following modern UX conventions by allowing users to quickly return to the homepage with a single click.
+
+- A "Discover" button, also linking to the homepage, reinforcing its role as the central hub for browsing new content.
+
+- The "Inspyre +" button, which opens the post creation menu, encouraging users to share new content from anywhere on the platform.
+
+- An icon of two speech bubbles, which links directly to the direct messaging feature for quick access to conversations.
+
+- A circular avatar image representing the logged-in user. Clicking or tapping this avatar reveals a dropdown menu with essential personal navigation options:
+
+    - Profile – View or edit the user’s own profile.
+
+    - Pyres – Filter the homepage to show posts from followed creators.
+
+    - Sparks – Filter the homepage to show liked posts.
+
+    - Logout – End the session and return to the public view.
+
+To help users stay oriented, the Discover, Inspyre +, and Messages buttons visually indicate the active route by switching from their default orange color to white when selected. This provides clear, subtle feedback about the user’s current location within the platform.
+
 ### Homepage, Pyres & Sparks
 
 #### Homepage & Browsing Experience
@@ -475,3 +535,164 @@ From the PostPage, users can:
 - If the user is the owner of the post, they’ll also see a dedicated edit/delete menu, allowing them to manage their content directly from this page.
 
 The PostPage strikes a balance between presentation and interaction — celebrating the creative work while making it easy for users to show appreciation, start a dialogue, or explore related content.
+
+### Comments
+
+<details>
+<summary> Comment Thread </summary>
+
+<br>
+
+![Comment Thread](./README/images/comment-thread.png)
+
+</details>
+
+<br>
+
+Inspyre supports a fully-featured commenting system designed to encourage meaningful engagement while maintaining a clean, modern interface. Comment sections are available on the detailed view of each post, where users can share feedback, ask questions, or start conversations around the content.
+
+Key features of the comment system include:
+
+- If a post has no comments, a friendly placeholder message is shown, confirming the space is open for new discussion.
+
+- Users can comment directly on the post or reply to existing comments, supporting deeper conversation threads.
+
+- Replies are visually nested beneath their parent comment, with subtle styling differences and a visible connecting line (or "thread") to clarify context.
+
+- Each comment includes a 'vertical three-dot' dropdown menu, offering context-sensitive actions:
+
+    - If the comment belongs to the current user, they’ll see options to edit or delete the comment.
+
+    - If it’s another user’s comment, a report option is displayed instead.
+
+#### Editing & Reporting
+
+<details>
+<summary> Comment Editing </summary>
+
+<br>
+
+![Comment Editing](./README/images/comment-edit.png)
+
+</details>
+
+<br>
+
+When editing a comment, the comment bubble is transformed into a textarea, allowing the user to make and save changes in real time without navigating away or refreshing the page.
+
+For deletions, a confirmation modal appears to prevent accidental loss of content, ensuring good CRUD-based UX and giving users the opportunity to confirm or cancel the action.
+
+<details>
+<summary> Comment Reporting </summary>
+
+<br>
+
+![Comment Reported](./README/images/comment-reported.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Comment Moderating </summary>
+
+<br>
+
+![Comment Moderating](./README/images/comment-moderating.png)
+
+</details>
+
+<br>
+
+If a comment is reported (for inappropriate or offensive content), it is immediately hidden from public view, pending moderator review. In its place, a placeholder message appears noting that the comment has been reported.
+
+All comments are accessible by moderators via the admin panel of the DRF API. Once reported, the "Approval status" of the comment is simply changed from its default status, "Approved", to its new status, "Reported". From here, the moderator can review the comment and decide whether it should be reinstated as "Approved", or deleted altogether.  
+
+This system strikes a balance between expressive discussion and responsible moderation, offering users a clear, intuitive way to engage with content while maintaining community standards.
+
+### Likes & Trending Posts
+
+<details>
+<summary> 'Like' Button & Counter </summary>
+
+<br>
+
+![Like Button & Counter](./README/images/likes-comment-count-original-icon.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Trending Posts </summary>
+
+<br>
+
+![Like Button & Counter](./README/images/trending-posts.png)
+
+</details>
+
+<br>
+
+Inspyre uses a simple, intuitive like system to let users show appreciation for posts. Rather than the traditional thumbs-up or heart icons, likes are represented with a flame icon, reinforcing the platform’s core theme of creativity as fire. Each post displays its current like count, and users can toggle their like with a single click or tap.
+
+The Trending Posts feature highlights the most popular content on the platform in real time. It tracks the total number of likes across all posts and displays the top 10 most liked posts within the “Trending Right Now” section at the top of the homepage. This gives users a quick snapshot of what’s currently resonating with the community and helps elevate standout content for greater visibility.
+
+### Post Creation
+
+<details>
+<summary> Post Creation Form </summary>
+
+<br>
+
+![Post Creation Form](./README/images/post-creation-page.png)
+
+</details>
+
+<br>
+
+Inspyre empowers users to express themselves through both visual and written creations, with a post creation flow that intuitively guides users through the process.
+
+When starting a new post, users are first presented with a creation type menu, prompting them to choose between crafting a visual post or a written post. This selection then funnels them to the appropriate creation form, tailored to their chosen medium.
+
+#### Visual Posts
+
+<details>
+<summary> Visual Creation Form </summary>
+
+<br>
+
+![Visual Creation Form](./README/images/post-creation-image.png)
+
+</details>
+
+<br>
+
+- Users can upload an image file (with a size restriction of 2MB) to showcase artwork, photography, or any visual creation.
+
+- Each image post includes fields for a title and an optional description, allowing creators to provide context, commentary, or narrative behind the visual.
+
+#### Written Posts
+
+<details>
+<summary> Written Creation Form </summary>
+
+<br>
+
+![Written Creation Form](./README/images/post-creation-text.png)
+
+</details>
+
+<br>
+
+- Text-based posts can be pasted into the editoror or composed from scratch using the integrated React Quill rich text editor.
+
+- The editor supports basic formatting options like bold, italics, alignment, headers, and color — enabling creators to craft expressive written pieces that feel polished and personal.
+
+#### Tags & Attribution
+
+- All posts — visual or written — can include custom tags, which provide thematic or descriptive context. These tags are searchable via the homepage searchbar, making them a valuable tool for discovery and categorization.
+
+- Creators also have the option to mark their post as “Original.” When selected, this tag communicates to other users that the content is the creator’s own work. If the user is sharing or reposting someone else’s work, they can leave this option unchecked — a simple yet meaningful way to promote honesty and transparency around attribution.
+
+The post creation system is built to be quick, expressive, and respectful of creative ownership — ensuring that users can share confidently and authentically.
