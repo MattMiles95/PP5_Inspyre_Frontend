@@ -108,3 +108,23 @@
   margin: 0;
   padding: 0;
 }
+
+.FormLabel {
+  font-weight: bold;
+  color: #ffebd8;
+  margin-top: 1rem;
+}
+
+.FormInput {
+  background-color: #1a1a1a;
+  border: 1px solid #ff7b00;
+  color: #ffebd8;
+  padding: 0.5rem;
+  border-radius: 6px;
+  transition: border-color 0.2s;
+}
+
+.FormInput:focus {
+  border-color: #ffaa55;
+  outline: none;
+}

@@ -1,0 +1,21 @@
+.inspyre-quill-wrapper .ql-container.ql-snow {
+  border: 1px solid #ff7b00;
+  border-radius: 8px;
+  background-color: #1a1a1a;
+}
+
+.inspyre-quill-wrapper .ql-editor {
+  min-height: 300px;
+  font-family: "Montserrat", sans-serif;
+  color: #ffebd8;
+}
+
+.inspyre-quill-wrapper .ql-editor *:not([style*="color"]):not([class*="ql-"]) {
+  color: #ffebd8;
+}
+
+.inspyre-quill-wrapper .ql-toolbar.ql-snow {
+  background-color: #1e1e1e;
+  border: 1px solid #ff7b00;
+  color: #ffebd8;
+}

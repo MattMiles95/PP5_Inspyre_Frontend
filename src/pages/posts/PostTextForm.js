@@ -4,10 +4,8 @@ import { axiosReq } from "../../api/axiosDefaults";
 // Bootstrap Components
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 
 // CSS
 import appStyles from "../../App.module.css";
@@ -19,13 +17,10 @@ import { useRedirect } from "../../hooks/useRedirect";
 
 // Local Components
 import Asset from "../../components/Asset";
+import QuillEditor from "../../components/QuillEditor";
 
 // React
-import React, { useState, useEffect } from "react";
-
-// React Quill Editor
-import { useQuill } from "react-quilljs";
-import "quill/dist/quill.snow.css";
+import React, { useState } from "react";
 
 // React Router
 import { useNavigate } from "react-router-dom";
@@ -43,42 +38,10 @@ function PostTextForm({ setPostType, postType }) {
   const { title, content, tags, original_author } = postData;
   const [submitting, setSubmitting] = useState(false);
 
-  // Quill integration
-  const { quill, quillRef } = useQuill({
-    modules: {
-      toolbar: [
-        [{ header: [1, 2, false] }],
-        ["bold", "italic", "underline", "strike"],
-        [{ color: [] }, { background: [] }],
-        [{ list: "ordered" }, { list: "bullet" }],
-        [{ align: ["left", "center", "justify"] }],
-        ["clean"], // remove formatting
-      ],
-    },
-  });
-
-  useEffect(() => {
-    if (quill) {
-      quill.on("text-change", () => {
-        setPostData((prevData) => ({
-          ...prevData,
-          content: quill.root.innerHTML,
-        }));
-      });
-    }
-  }, [quill]);
-
   const handleChange = (e) => {
     setPostData({
       ...postData,
       [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleTagsChange = (e) => {
-    setPostData({
-      ...postData,
-      tags: e.target.value,
     });
   };
 
@@ -93,17 +56,14 @@ function PostTextForm({ setPostType, postType }) {
     e.preventDefault();
 
     const validationErrors = {};
-
     if (!title.trim()) {
       validationErrors.title = ["Don't forget to give your creation a title!"];
     }
-
-    if (!content.trim()) {
+    if (!content.trim() || content === "<p><br></p>") {
       validationErrors.content = [
         "Uh-oh - looks like you forgot to write something!",
       ];
     }
-
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -116,7 +76,6 @@ function PostTextForm({ setPostType, postType }) {
     formData.append("original_author", original_author);
 
     setSubmitting(true);
-
     try {
       const { data } = await axiosReq.post("/posts/", formData);
       navigate(`/posts/${data.id}`);
@@ -131,101 +90,93 @@ function PostTextForm({ setPostType, postType }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Container className={`${appStyles.Content} ${styles.Container} mt-4`}>
+      <Container
+        className={`${appStyles.Content} ${styles.CreateContainer} mt-4`}
+      >
         <Button
           variant="link"
           className={`${btnStyles.BackBtn} mb-3 p-0 text-decoration-none d-flex align-items-center`}
           onClick={() => setPostType(null)}
           aria-label="Go back to post type selection"
         >
-          <i className={`${appStyles.BackArrow} fas fa-arrow-left me-2`}></i> Go
-          back
+          <i className={`${appStyles.BackArrow} fas fa-arrow-left me-2`}></i>
+          Go back
         </Button>
 
-        <Row className="mb-3">
-          <h2 className={styles.CenteredHeading}>Written Creation</h2>
-          {/* Conditionally Render Sections Based on `postType` */}
-          <Col md={{ span: 12 }}>
-            {postType === "text" && (
-              <>
-                <Form.Group>
-                  <Form.Label>Title</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Name your creation"
-                    name="title"
-                    value={title}
-                    onChange={handleChange}
-                  />
-                  {errors?.title?.map((message, idx) => (
-                    <Alert key={idx} variant="warning" className="mt-2">
-                      {message}
-                    </Alert>
-                  ))}
-                </Form.Group>
+        <h2 className={styles.CenteredHeading}>Written Creation</h2>
 
-                <Form.Group>
-                  <Form.Label className="mt-4">Content</Form.Label>
-                  <div
-                    ref={quillRef}
-                    style={{
-                      height: "300px",
-                      backgroundColor: "#fff",
-                      border: "1px solid #ced4da",
-                      borderRadius: "0.25rem",
-                      color: "black",
-                      fontFamily: "Montserrat, sans-serif",
-                    }}
-                  />
-                  {errors?.content?.map((message, idx) => (
-                    <Alert key={idx} variant="warning" className="mt-2">
-                      {message}
-                    </Alert>
-                  ))}
-                </Form.Group>
-              </>
-            )}
-          </Col>
-        </Row>
+        <Form.Group className="mb-3">
+          <Form.Label className={styles.FormLabel}>Title</Form.Label>
+          <Form.Control
+            type="text"
+            name="title"
+            value={title}
+            onChange={handleChange}
+            className={styles.FormInput}
+            placeholder="Name your creation"
+          />
+          {errors?.title?.map((message, idx) => (
+            <Alert key={idx} variant="warning" className="mt-2">
+              {message}
+            </Alert>
+          ))}
+        </Form.Group>
 
-        <Row className="mb-4">
-          <Col md={{ span: 12 }}>
-            <Form.Group>
-              <Form.Label className="mt-2">Tags (comma-separated)</Form.Label>
-              <Form.Control
-                type="text"
-                name="tags"
-                value={tags}
-                onChange={handleTagsChange}
-                placeholder="Enter tags separated by commas"
-              />
-              {errors?.tags?.map((message, idx) => (
-                <Alert key={idx} variant="warning" className="mt-2">
-                  {message}
-                </Alert>
-              ))}
-            </Form.Group>
-          </Col>
-        </Row>
+        <Form.Group className="mb-3">
+          <Form.Label className={styles.FormLabel}>Content</Form.Label>
+          <div>
+            <QuillEditor
+              content={content}
+              onChange={(val) =>
+                setPostData((prev) => ({ ...prev, content: val }))
+              }
+            />
+          </div>
+          {errors?.content?.map((message, idx) => (
+            <Alert key={idx} variant="warning" className="mt-2">
+              {message}
+            </Alert>
+          ))}
+        </Form.Group>
 
-        <Row className="mb-4">
-          <Col md={{ span: 12 }}>
-            <Form.Group className={styles.OriginalAuthorCheckbox}>
-              <input
-                type="checkbox"
-                id="original-author-checkbox"
-                checked={original_author}
-                onChange={handleCheckboxChange}
-              />
-              <label
-                htmlFor="original-author-checkbox"
-                className={styles.OriginalAuthorLabel}
-              >
-                I am the original author of this work
-              </label>
-            </Form.Group>
-          </Col>
-        </Row>
+        <Form.Group className="mb-3">
+          <Form.Label className={styles.FormLabel}>
+            Tags (comma-separated)
+          </Form.Label>
+          <Form.Control
+            type="text"
+            name="tags"
+            value={tags}
+            onChange={handleChange}
+            className={styles.FormInput}
+            placeholder="Enter tags separated by commas"
+          />
+          {errors?.tags?.map((message, idx) => (
+            <Alert key={idx} variant="warning" className="mt-2">
+              {message}
+            </Alert>
+          ))}
+        </Form.Group>
+
+        <Form.Group className="mb-4">
+          <Form.Label className={styles.FormLabel}>
+            A <span className={appStyles.InspyredText}>you</span> original?
+          </Form.Label>
+          <div className={styles.OriginalAuthorCheckbox}>
+            <input
+              type="checkbox"
+              id="original-author-checkbox"
+              checked={original_author}
+              onChange={handleCheckboxChange}
+            />
+            <label
+              htmlFor="original-author-checkbox"
+              className={styles.OriginalAuthorLabel}
+            >
+              I am the original author of this work
+            </label>
+          </div>
+        </Form.Group>
 
         {submitting && (
           <div className="text-center my-4">
@@ -233,26 +184,22 @@ function PostTextForm({ setPostType, postType }) {
           </div>
         )}
 
-        <Row className="mb-2">
-          <Col md={{ span: 12 }} className="d-flex justify-content-between">
-            <div className="d-flex justify-content-center gap-3">
-              <Button
-                className={btnStyles.CancelBtn}
-                onClick={() => navigate(-1)}
-                aria-label="Cancel post creation"
-              >
-                Cancel
-              </Button>
-              <Button
-                className={btnStyles.CreateBtn}
-                type="submit"
-                disabled={!content.trim() || submitting}
-              >
-                {submitting ? "Creating..." : "Create"}
-              </Button>
-            </div>
-          </Col>
-        </Row>
+        <div className="d-flex justify-content-center gap-3 mt-3">
+          <Button
+            className={btnStyles.CancelBtn}
+            onClick={() => navigate(-1)}
+            aria-label="Cancel post creation"
+          >
+            Cancel
+          </Button>
+          <Button
+            className={btnStyles.CreateBtn}
+            type="submit"
+            disabled={submitting}
+          >
+            {submitting ? "Creating..." : "Create"}
+          </Button>
+        </div>
       </Container>
     </Form>
   );

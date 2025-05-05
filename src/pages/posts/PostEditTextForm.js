@@ -63,7 +63,7 @@ const PostEditTextForm = ({
           {isTextPost ? "Content" : "Description"}
         </Form.Label>
         {isTextPost ? (
-          <div className={postEditStyles.QuillEditorWrapper}>
+          <div>
             <QuillEditor content={content} onChange={setContent} />
           </div>
         ) : (

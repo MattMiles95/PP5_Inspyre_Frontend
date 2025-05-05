@@ -38,15 +38,6 @@
   outline: none;
 }
 
-.QuillEditorWrapper {
-  max-height: 400px;
-  background-color: #1a1a1a;
-  padding: 0 0.1rem;
-  color: #ffebd8;
-  font-family: "Montserrat", sans-serif;
-  overflow-y: auto;
-}
-
 .TagHint {
   font-size: 0.9rem;
   color: #ffebd8;
