@@ -36,6 +36,10 @@
   background-image: none !important;
 }
 
+.NavLinkAvatar img:hover {
+  border: 2px solid #fff;
+}
+
 .NavLinkAvatar:focus,
 .NavLinkAvatar:active {
   box-shadow: none !important;
@@ -47,14 +51,18 @@
 
 .NavbarDropdownMenu {
   background-color: #1c1c1c !important;
-  border: none !important;
+  border: 2px solid #ff7b00 !important;
+  border-top: none !important;
   box-shadow: 0 4px 12px rgba(255, 123, 0, 0.1);
   border-radius: 0.5rem;
   padding: 0.25rem 0;
   min-width: 140px;
+  max-width: 90vw;
+  margin-right: 0.5rem;
   z-index: 1050;
   animation: slideDown 0.25s ease-out forwards;
   transform-origin: top center;
+  overflow-wrap: break-word;
 }
 
 @keyframes slideDown {
@@ -330,6 +338,11 @@
 
   .NavLinkAvatar {
     margin: 0 !important;
+  }
+
+  .NavbarDropdownMenu {
+    right: 0 !important;
+    left: auto !important;
   }
 }
 
