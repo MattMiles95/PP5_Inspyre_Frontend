@@ -1,3 +1,7 @@
+.ProfilePageWrapper {
+  overflow-x: hidden;
+}
+
 .ProfileHeaderWrapper {
   background-color: #1e1e1e;
   padding: 2rem;
@@ -60,6 +64,8 @@
   max-width: 1600px;
   margin: 0 auto;
   padding: 0 0.5rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .GalleryGrid {
@@ -67,6 +73,10 @@
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .HeaderTopRow {

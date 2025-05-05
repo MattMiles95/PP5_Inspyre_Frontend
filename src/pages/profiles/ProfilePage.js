@@ -24,6 +24,7 @@ import styles from "../../styles/ProfilePage.module.css";
 // Local Components
 import Asset from "../../components/Asset";
 import FollowersFollowingModal from "./FollowersFollowingModal";
+import Post from "../posts/Post";
 
 // React
 import React, { useEffect, useState } from "react";
@@ -52,12 +53,20 @@ function ProfilePage() {
   const [isMessageSubmitting, setIsMessageSubmitting] = useState(false);
   const [isFollowSubmitting, setIsFollowSubmitting] = useState(false);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+
   const [showModal, setShowModal] = useState(false);
   const [modalType, setModalType] = useState("followers");
   const openModal = (type) => {
     setModalType(type);
     setShowModal(true);
   };
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleFollowSubmit = async () => {
     setIsFollowSubmitting(true);
@@ -221,41 +230,52 @@ function ProfilePage() {
   );
 
   const profileGallery = (
-    <div className={galleryStyles.GalleryWrapper}>
+    <div className={styles.GalleryWrapper}>
       {profilePosts.results.length ? (
         <InfiniteScroll
-          children={profilePosts.results.map((post) => (
-            <Link
-              to={`/posts/${post.id}`}
-              key={post.id}
-              className={galleryStyles.ThumbWrapper}
-            >
-              {post.image ? (
-                <div className={galleryStyles.ImageContainer}>
-                  <img
-                    src={post.image}
-                    alt="Post"
-                    className={galleryStyles.Thumb}
-                  />
-                </div>
-              ) : (
-                <div className={galleryStyles.TextThumb}>
-                  <div className={galleryStyles.TextThumbContent}>
-                    {truncateText(stripHtmlTags(post.content), 25)}
-                  </div>
-                  <div className={galleryStyles.TextHoverTitle}>
-                    {post.title}
-                  </div>
-                </div>
-              )}
-            </Link>
-          ))}
           dataLength={profilePosts.results.length}
           loader={<Asset spinner />}
           hasMore={!!profilePosts.next}
           next={() => fetchMoreData(profilePosts, setProfilePosts)}
-          className={galleryStyles.GalleryGrid}
-        />
+          className={isMobile ? "" : styles.GalleryGrid}
+        >
+          {profilePosts.results.map((post) =>
+            isMobile ? (
+              <Post
+                key={post.id}
+                {...post}
+                setPosts={setProfilePosts}
+                postPage={false}
+                isPreview
+              />
+            ) : (
+              <Link
+                to={`/posts/${post.id}`}
+                key={post.id}
+                className={galleryStyles.ThumbWrapper}
+              >
+                {post.image ? (
+                  <div className={galleryStyles.ImageContainer}>
+                    <img
+                      src={post.image}
+                      alt="Post"
+                      className={galleryStyles.Thumb}
+                    />
+                  </div>
+                ) : (
+                  <div className={galleryStyles.TextThumb}>
+                    <div className={galleryStyles.TextThumbContent}>
+                      {truncateText(stripHtmlTags(post.content), 25)}
+                    </div>
+                    <div className={galleryStyles.TextHoverTitle}>
+                      {post.title}
+                    </div>
+                  </div>
+                )}
+              </Link>
+            )
+          )}
+        </InfiniteScroll>
       ) : (
         <div className={`text-center ${errorStyles.ErrorWrapper}`}>
           <Image
@@ -268,8 +288,13 @@ function ProfilePage() {
           </h2>
           {is_owner ? (
             <div>
-              <p className={`mt-3 ${errorStyles.ErrorMessage}`}>Ready to get started?</p>
-              <Link to="/posts/inspyre" className={`btn ${btnStyles.SaveBtn} mt-2`}>
+              <p className={`mt-3 ${errorStyles.ErrorMessage}`}>
+                Ready to get started?
+              </p>
+              <Link
+                to="/posts/inspyre"
+                className={`btn ${btnStyles.SaveBtn} mt-2`}
+              >
                 Create your first post
               </Link>
             </div>
@@ -284,7 +309,7 @@ function ProfilePage() {
   );
 
   return (
-    <div className="pb-4">
+    <div className={`${styles.ProfilePageWrapper} pb-4`}>
       {hasLoaded ? (
         <>
           <div className={styles.ProfileHeaderWrapper}>{profileHeader}</div>
