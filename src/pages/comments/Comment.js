@@ -43,6 +43,7 @@ const Comment = ({
   const [fadeOut, setFadeOut] = useState(false);
   const currentUser = useCurrentUser();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showReportModal, setShowReportModal] = useState(false);
 
   const updateCommentStatus = (comments, idToUpdate) => {
     return comments.map((comment) => {
@@ -82,19 +83,16 @@ const Comment = ({
     }
   };
 
-  const handleReport = async () => {
-    const confirmReport = window.confirm(
-      "Are you sure you want to report this comment?"
-    );
-    if (!confirmReport) return;
-
+  const performReport = async () => {
     try {
       await axiosRes.put(`/comments/${id}/report/`);
       setComments((prev) => ({
         ...prev,
         results: updateCommentStatus(prev.results, id),
       }));
-    } catch (err) {}
+    } catch (err) {
+      // Handle error
+    }
   };
 
   return (
@@ -159,7 +157,9 @@ const Comment = ({
                 />
               ) : (
                 approval_status !== 1 && (
-                  <CustomDropdown handleReport={handleReport} />
+                  <CustomDropdown
+                    handleReport={() => setShowReportModal(true)}
+                  />
                 )
               )}
             </div>
@@ -167,6 +167,7 @@ const Comment = ({
         </Card.Body>
       </Card>
 
+      {/* Delete Modal */}
       <Modal
         isOpen={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
@@ -178,6 +179,20 @@ const Comment = ({
       >
         Are you sure you want to delete this comment? This action cannot be
         undone.
+      </Modal>
+
+      {/* Report Modal */}
+      <Modal
+        isOpen={showReportModal}
+        onClose={() => setShowReportModal(false)}
+        title="Report Comment"
+        onConfirm={() => {
+          performReport();
+          setShowReportModal(false);
+        }}
+      >
+        Are you sure you want to report this comment? It will be reviewed by
+        moderators.
       </Modal>
 
       {replies.length > 0 && (
