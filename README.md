@@ -26,22 +26,37 @@ Built with a clean, responsive UI and a focus on discoverability, Inspyre suppor
 - [Theme](#theme)
 - [Colours](#colours)
 - [Brand: Meet Ember](#brand-meet-ember)
+- [Favicon](#favicon)
 - [Typography](#typography)
 - [Accessibility](#accessibility)
 - [Responsiveness](#responsiveness)
 
 ### [Features](#features-1)
 
-- [Front End](#front-end)
-- [Admin Panel](#admin-panel)
+- [Authorisation](#authorisation)
+- [Homepage, Pyres & Sparks](#homepage-pyres--sparks)
+- [Post Searchbar](#post-searchbar)
+- [Post Detail](#post-detail)
+- [Comments, Replies & Threads](#comments-replies--threads)
+- [Likes & Trending Posts](#likes--trending-posts)
+- [Post Creation](#post-creation)
+- [Post Edit & Deletion](#post-edit--deletion)
+- [Profile Page](#profile-page)
+- [Direct Messaging](#direct-messaging)
+- [Custom Modal](#custom-modal)
+- [Custom Dropdown Menu](#custom-dropdown-menu)
+- [Custom Error Pages](#custom-error-pages)
 
 ### [Future Features](#future-features-1)
 
-- [Bespoke Profiles](#bespoke-profiles)
-- [Front End UI for Teachers](#front-end-ui-for-teachers)
-- [Homework CRUD Functionality](#homework-crud-functionality)
-- [More Content](#more-content)
-- [Refactoring](#refactoring)
+- [Reporting Posts](#reporting-posts)
+- [Global Searchbar](#global-searchbar)
+- [User Account Deletion](#user-account-deletion)
+- [Deleting Individual Messages](#deleting-individual-messages)
+- [Group Conversations](#group-conversations)
+- [Multi-Media Message Capability](#multi---media-message-capability)
+- [Blocking Users](#blocking-users)
+- [Private Profiles](#private-profiles)
 
 ### [Project Management - an Agile Approach](#project-management---an-agile-approach-1)
 
@@ -264,6 +279,21 @@ To bring personality and playfulness into the design, I created Ember, the platf
 
 A brand mascot like Ember creates an emotional resonance between the user and the platform, helping users form a more memorable and relatable connection with the brand. It can make interactions feel more engaging and human, while also reinforcing core themes — in this case, creativity, warmth, and playful inspiration.
 
+### Favicon
+
+<details>
+<summary> Favicon </summary>
+
+<br>
+
+![Favicon](./README/images/favicon.png)
+
+</details>
+
+<br>
+
+For Inspyre's favicon, I've used a scaled down image of Ember. I've done this to reaffirm the User's recogintion of the platform's brand.
+
 ### Typography
 
 <details>
@@ -312,3 +342,61 @@ To ensure every User has equal opportunity to enjoy the platform, I ensured maxi
 <br>
 
 While Inspyre is primarily designed with desktop users in mind — where creative content can be viewed and edited most comfortably — the platform is fully responsive across a range of devices, including tablets and smartphones. By combining Bootstrap’s responsive flexbox system with custom CSS media queries, I’ve ensured that layouts adapt seamlessly to different screen sizes, maintaining usability, visual clarity, and an intuitive experience no matter where or how users access the site.
+
+## Features
+
+### Authorisation
+
+Authorisation follows a typical model for content-sharing and social platforms: non-authenticated users can access basic public features, such as browsing the Discover page or viewing user profiles. However, to interact meaningfully with the platform — including creating posts, liking and commenting, or engaging in direct messaging — users must be authenticated. This layered access model helps protect user data, encourage meaningful engagement, and preserve the integrity of the creative community.
+
+I discuss authorisation further in the README for my backend DRF API, which you can read [here]().
+
+<!-- MOVE TO BACKEND README: Inspyre implements a robust authorisation system using Django REST Auth and Django Allauth on the backend. This ensures secure authentication while streamlining user registration, login, and session management.
+
+Behind the scenes, Jason Web Token (JWT) authentication is used to manage user sessions securely. Upon login, users are issued an authentication token that must be included with each API request requiring authorisation. Django REST Auth handles the issuing and validation of these tokens, ensuring only authenticated users can access protected endpoints.
+
+Permissions are carefully scoped using Django REST Framework’s built-in permission classes, along with custom logic. This ensures users can only perform actions they’re authorised for — for example, editing their own posts, accessing their conversations, or managing their own profile — while preventing unauthorised access to other users' data or actions. -->
+
+### Homepage, Pyres & Sparks
+
+#### Homepage & Browsing Experience
+
+The Inspyre homepage was designed to place creative work front and center, with an emphasis on visual clarity, minimalism, and flow. On desktop, the layout adopts a gallery-style grid that maintains a consistent height for each post preview across a row, while allowing their widths to vary naturally. This creates an aesthetic that’s both orderly and visually dynamic — encouraging exploration while avoiding monotony.
+
+Each post preview is deliberately stripped back to its core content: a thumbnail for image posts or a truncated excerpt for text posts. There are no avatars, usernames, tags, like buttons, or comment threads on the desktop homepage. This intentional minimalism fosters a distraction-free browsing experience — clean, immersive, and focused entirely on the work itself. Hovering over a preview subtly enlarges it and reveals the post’s title, offering a tactile, modern feel that rewards interaction without cluttering the view.
+
+On mobile, the layout adapts to suit smaller screens with a more familiar vertical, feed-style format akin to platforms like Instagram or Facebook. Posts appear one after another in a scrollable column, each displaying the author’s avatar and username, any added post tags, the like button with total likes, comment count, and — where relevant — an “Original” tag. This format is designed for easy engagement and intuitive navigation, making it feel instantly familiar to mobile-first users while maintaining the platform’s visual identity.
+
+Regardless of device, the homepage uses React’s InfiniteScroll component to deliver a seamless browsing experience. Users can explore an unbroken feed of creative content, loading more posts effortlessly as they scroll — keeping inspiration flowing without interruption.
+
+#### Pyres & Sparks Filters
+
+<details>
+<summary> Pyres </summary>
+
+<br>
+
+![Pyres Filter](./README/images/filter-pyres.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Sparks </summary>
+
+<br>
+
+![Sparks Filter](./README/images/filter-sparks.png)
+
+</details>
+
+<br>
+
+To give users more control over their experience, the homepage includes two personalised filters: Pyres and Sparks, accessible via the dropdown menu in the navbar.
+
+Pyres shows posts only from creators the user follows, effectively turning the homepage into a curated feed of trusted and favourite voices.
+
+Sparks displays posts the user has liked — a personal trail of past inspiration, perfect for revisiting impactful work.
+
+These filters reflect Inspyre’s core theme: connection through creativity. Whether discovering new posts, revisiting saved work, or focusing on your creative circle, Pyres and Sparks ensure your feed remains meaningful and relevant.
