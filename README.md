@@ -36,7 +36,7 @@ Built with a clean, responsive UI and a focus on discoverability, Inspyre suppor
 - [Authorisation](#authorisation)
 - [Homepage, Pyres & Sparks](#homepage-pyres--sparks)
 - [Post Searchbar](#post-searchbar)
-- [Post Detail](#post-detail)
+- [Detailed Post View](#detailed-post-view)
 - [Comments, Replies & Threads](#comments-replies--threads)
 - [Likes & Trending Posts](#likes--trending-posts)
 - [Post Creation](#post-creation)
@@ -400,3 +400,78 @@ Pyres shows posts only from creators the user follows, effectively turning the h
 Sparks displays posts the user has liked — a personal trail of past inspiration, perfect for revisiting impactful work.
 
 These filters reflect Inspyre’s core theme: connection through creativity. Whether discovering new posts, revisiting saved work, or focusing on your creative circle, Pyres and Sparks ensure your feed remains meaningful and relevant.
+
+### Post Searchbar
+
+<details>
+<summary> Searchbar </summary>
+
+<br>
+
+![Post Searchbar](./README/images/post-searchbar.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Searchbar - No Results </summary>
+
+<br>
+
+![Post Searchbar - No Results](./README/images/post-searchbar-no-results.png)
+
+</details>
+
+<br>
+
+The post searchbar offers users a quick and intuitive way to discover content on Inspyre. It allows filtering by keywords found in a post’s title or body, by a creator’s username, or by relevant tags — making it easy to discover specific topics or creators of interest.
+
+To ensure a smooth and responsive UX, the searchbar listens to every keystroke with a built-in 1-second debounce delay. This delay prevents excessive queries from being fired in rapid succession, striking a balance between real-time feedback and performance efficiency. The result is a search feature that feels fast and fluid, without overloading the system or interrupting the flow of browsing.
+
+Much like the Pyres and Sparks features, searches simply filter the existing gallery to display only the returned results. Searches can also be combined with Pyres or Sparks, allowing users to refine their feed even further — for example, by searching only within posts they’ve liked, or content created by users they follow. This layered filtering system offers powerful, fine-grained control over how the gallery is populated, making discovery both flexible and personal.
+
+### Detailed Post View
+
+<details>
+<summary> Post </summary>
+
+<br>
+
+![Detailed Post View](./README/images/post-detail.png)
+
+</details>
+
+<br>
+
+When a user clicks on a post preview from the homepage, they’re taken to the PostPage — a focused, fully-featured view where they can engage more deeply with the content and its creator. This page surfaces all relevant information about the post in a clean, readable format while supporting interaction and conversation.
+
+From the PostPage, users can:
+
+- View the creator’s username and avatar, both of which link directly to the creator’s profile.
+
+- See the time and date the post was published.
+
+- Read the full title of the post.
+
+- View the main content, whether it’s:
+
+    - An image post, displayed at full size; or
+
+    - A text post, rendered with proper formatting.
+
+- If one has been written, read the description of an image post — ideal for context, backstory, or artist commentary.
+
+- Take note of post tags, which may lead the user to discover similar creations via the post searchbar.
+
+- Like the post using a responsive like button, with the total like count displayed alongside.
+
+- See the comment count.
+
+- Identify whether the creator has tagged the post as 'original'.
+
+- Participate in conversation through the comment section, which displays all existing comments and allows new ones to be submitted.
+
+- If the user is the owner of the post, they’ll also see a dedicated edit/delete menu, allowing them to manage their content directly from this page.
+
+The PostPage strikes a balance between presentation and interaction — celebrating the creative work while making it easy for users to show appreciation, start a dialogue, or explore related content.
