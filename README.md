@@ -18,8 +18,6 @@ Built with a clean, responsive UI and a focus on discoverability, Inspyre suppor
 
 - [User Stories](#user-stories)
 
-### [Logic](#logic-1)
-
 ### [Design](#design-1)
 
 - [Wireframes](#wireframes)
@@ -108,10 +106,6 @@ Inspyre aims to be more than just a platform - it's a creative space that puts t
 ### User Stories
 
 When originally designing Inspyre, I created a Project (organised via a kanban board) in GitHub, containing a list of User Stories that set out my intended features. These User Stories can be viewed [here](https://github.com/users/MattMiles95/projects/8/views/1).
-
-## Logic
-
-I discuss the logic for Inspyre (including my Entity Relationship Diagrams), in the README for my backend repo. [Click here]() to check it out.
 
 ## Design
 

@@ -1,71 +1,70 @@
 .ErrorWrapper {
-    padding: 2rem 1rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 70vh;
-    background: linear-gradient(145deg, #1c1c1c, #0f0f0f);
-    border-radius: 16px;
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.8s ease-out forwards;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  background: linear-gradient(145deg, #1c1c1c, #0f0f0f);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
   }
-  
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .ErrorImage {
-    max-width: 220px;
-    height: auto;
-    filter: drop-shadow(0 0 4px #ff7b00aa);
-    margin-bottom: 1.2rem;
-  }
-  
-  .ErrorTitle {
-    color: #ff7b00;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-shadow: 0 0 6px #ff7b00;
-    font-size: 1.6rem;
-    text-align: center;
-  }
-  
-  .ErrorMessage {
-    color: #ccc;
-    max-width: 420px;
-    font-size: 1rem;
-    margin-top: .8rem;
-    text-align: center;
-  }
-  
-  .ErrorButtonLink {
-    margin-top: 1.5rem;
-    text-decoration: none;
-  }
-  
-  .ErrorButton {
-    background: linear-gradient(to right, #ff7b00, #88300f);
-    color: #fff;
-    border: none;
-    padding: 0.6rem 1.5rem;
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-  }
-  
-  .ErrorButton:hover,
-  .ErrorButton:focus {
-    background: linear-gradient(to right, #ffffff, #ffffff);
-    color: #ff7b00;
-    transform: translateY(-2px);
-  }
-  
+}
+
+.ErrorImage {
+  max-width: 220px;
+  height: auto;
+  filter: drop-shadow(0 0 4px #ff7b00aa);
+  margin-bottom: 1.2rem;
+}
+
+.ErrorTitle {
+  color: #ff7b00;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-shadow: 0 0 6px #ff7b00;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.ErrorMessage {
+  color: #ccc;
+  max-width: 420px;
+  font-size: 1rem;
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+.ErrorButtonLink {
+  margin-top: 1.5rem;
+  text-decoration: none;
+}
+
+.ErrorButton {
+  background: linear-gradient(to right, #ff7b00, #88300f);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+
+.ErrorButton:hover,
+.ErrorButton:focus {
+  background: linear-gradient(to right, #ffffff, #ffffff);
+  color: #ff7b00;
+  transform: translateY(-2px);
+}
