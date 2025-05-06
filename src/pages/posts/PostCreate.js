@@ -42,7 +42,7 @@ const PostCreate = () => {
             <Row className="justify-content-around text-center">
               <Col xs={12} md={5}>
                 <p className={styles.ChoiceDescription}>
-                  Share your world through images — whether it’s digital art,
+                  Share your world through images — whether it's digital art,
                   illustrations, photography, or anything in between.
                 </p>
                 <Button
