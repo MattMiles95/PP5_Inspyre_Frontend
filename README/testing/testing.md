@@ -280,6 +280,7 @@ Extensive manual testing was conducted on each feature of this project to ensure
 | Comment Edit Success              | Given the User confirms the edit, the comment is updated.                                                                                       | Pass       |
 | Comment Reply Button              | Given the User is not the owner of a comment, that comment will display a 'reply' button beneath it.                                            | Pass       |
 | Comment Reply                     | Given the User replies to an existing comment, a visual 'thread' is established. Further replies add to this thread.                            | Pass       |
+| Not Authenticated                 | Given the User is not signed in, they are unable to like or comment on the post.                                                                | Pass       |
 
 <br>
 
@@ -313,6 +314,25 @@ Extensive manual testing was conducted on each feature of this project to ensure
 | Profile Tags              | Given the profile owner has selected profile tags, these will appear below their profile stats.                                                             | Pass       |
 | Profile Bio               | Given the profile owner has written a bio, this will display within their profile header.                                                                   | Pass       |
 | Profile Gallery           | A gallery of only the profile owner's posts will be displayed beneath their profile header. This gallery is functionally identical to the homepage gallery. | Pass       |
+| Not Authenticated         | Given the User is not signed in, they are unable to follow or message the profile owner (these buttons are not displayed).                                  | Pass       |
+
+<br>
+
+### Direct Messages
+
+#### Conversations List
+
+| **Feature**  | **Expected Outcome**                                                                             | **Result** |
+| ------------ | ------------------------------------------------------------------------------------------------ | ---------- |
+| User Profile | Given the User is the owner of the profile, an 'edit' button will display beside their username. | Pass       |
+
+<br>
+
+#### Chat
+
+| **Feature**  | **Expected Outcome**                                                                             | **Result** |
+| ------------ | ------------------------------------------------------------------------------------------------ | ---------- |
+| User Profile | Given the User is the owner of the profile, an 'edit' button will display beside their username. | Pass       |
 
 <br>
 

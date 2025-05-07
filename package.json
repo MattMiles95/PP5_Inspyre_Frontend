@@ -10,6 +10,8 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.8.4",
     "bootstrap": "^4.6.0",
+    "eslint": "^8.57.1",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react-hooks": "^5.2.0",
     "infinite-scroll": "^5.0.0",
     "jwt-decode": "^4.0.0",
@@ -50,7 +52,6 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^9.26.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.1.0"
   }
