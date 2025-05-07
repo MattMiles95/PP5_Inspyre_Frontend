@@ -44,14 +44,14 @@ The below table shows the number of warnings and errors indicated for each page.
 | Post Edit Forms     | 0          | 0            |
 | Profile Page        | 0          | 0            |
 | Profile Edit Form   | 0          | 0            |
-| Conversation List   | 0          | 0            |
 | Conversation Page   | 0          | 0            |
+| Conversations Page  | 0          | 0            |
 
 ### CSS
 
 Due to Bootstrap causing false warnings, I tested my CSS by direct input into W3C's CSS Validation Service.
 
-| **CSS Module**        | **Errors** | **Warnings** |
+| **CSS Module / File** | **Errors** | **Warnings** |
 | --------------------- | ---------- | ------------ |
 | Asset                 | 0          | 0            |
 | Avatar                | 0          | 0            |
@@ -80,176 +80,75 @@ Due to Bootstrap causing false warnings, I tested my CSS by direct input into W3
 
 ### PEP8 (Python)
 
-<details>
-<summary> PEP8 (Python) Validation - CI Python Linter </summary>
-<br>
-blackboard/adapters.py:
+Tested using the [CI Python Linter](https://pep8ci.herokuapp.com/).
 
-![Screenshot of Python Validation for blackboard/adapters](/_readme-docs/images/validator_python_blackboard_adapters.png)
-
-blackboard/settings.py:
-
-![Screenshot of Python Validation for blackboard/settings](/_readme-docs/images/validator_python_blackboard_settings.png)
-
-blackboard/urls.py:
-
-![Screenshot of Python Validation for blackboard/urls](/_readme-docs/images/validator_python_blackboard_urls.png)
-
-blackboard/views.py:
-
-![Screenshot of Python Validation for blackboard/views](/_readme-docs/images/validator_python_blackboard_views.png)
-
-homework/admin.py:
-
-![Screenshot of Python Validation for homework/admin](/_readme-docs/images/validator_python_homework_admin.png)
-
-homework/forms.py:
-
-![Screenshot of Python Validation for homework/forms](/_readme-docs/images/validator_python_homework_forms.png)
-
-homework/models.py:
-
-![Screenshot of Python Validation for homework/models](/_readme-docs/images/validator_python_homework_models.png)
-
-homework/urls.py:
-
-![Screenshot of Python Validation for homework/urls](/_readme-docs/images/validator_python_homework_urls.png)
-
-homework/views.py:
-
-![Screenshot of Python Validation for homework/views](/_readme-docs/images/validator_python_homework_views.png)
-
-lessons/admin.py:
-
-![Screenshot of Python Validation for lessons/admin](/_readme-docs/images/validator_python_lessons_admin.png)
-
-lessons/forms.py:
-
-![Screenshot of Python Validation for lessons/forms](/_readme-docs/images/validator_python_lessons_forms.png)
-
-lessons/models.py:
-
-![Screenshot of Python Validation for lessons/models](/_readme-docs/images/validator_python_lessons_models.png)
-
-lessons/urls.py:
-
-![Screenshot of Python Validation for lessons/urls](/_readme-docs/images/validator_python_lessons_urls.png)
-
-lessons/views.py:
-
-![Screenshot of Python Validation for lessons/views](/_readme-docs/images/validator_python_lessons_views.png)
-
-</details>
-<br>
-
-| **Directory**        | **adapters.py** | **admin.py** | **forms.py** | **models.py** | **settings.py** | **urls.py** | **views.py** |
-| -------------------- | --------------- | ------------ | ------------ | ------------- | --------------- | ----------- | ------------ |
-| Blackboard (Project) | Pass            | n/a          | n/a          | n/a           | Pass            | Pass        | Pass         |
-| Lessons (App)        | n/a             | Pass         | Pass         | Pass          | n/a             | Pass        | Pass         |
-| Homework (App)       | n/a             | Pass         | Pass         | Pass          | n/a             | Pass        | Pass         |
+| **Directory**   | **admin** | **apps** | **models** | **permissions** | **serializers** | **settings** | **urls** | **views** |
+| --------------- | --------- | -------- | ---------- | --------------- | --------------- | ------------ | -------- | --------- |
+| comments        | Pass      | Pass     | Pass       | n/a             | Pass            | n/a          | Pass     | Pass      |
+| direct_messages | Pass      | Pass     | Pass       | n/a             | Pass            | n/a          | Pass     | Pass      |
+| followers       | Pass      | Pass     | Pass       | n/a             | Pass            | n/a          | Pass     | Pass      |
+| inspyre_api     | n/a       | n/a      | n/a        | Pass            | Pass            | Pass         | Pass     | Pass      |
+| likes           | Pass      | Pass     | Pass       | n/a             | Pass            | n/a          | Pass     | Pass      |
+| posts           | Pass      | Pass     | Pass       | n/a             | Pass            | n/a          | Pass     | Pass      |
+| profiles        | Pass      | Pass     | Pass       | n/a             | Pass            | n/a          | Pass     | Pass      |
 
 ### JavaScript
 
+I implemented ESLint (v.9.x) to validate JavaScript files across the entire codebase ('npx eslint . --ext .js'). This resulted in a nil return, confirming that no errors were detected and my JavaScript code is clean.
+
 <details>
-<summary> JS Validation - JSHint </summary>
+<summary> ESLint Terminal Result </summary>
+
 <br>
-comments.js:
 
-![Screenshot of JS Validation for comments.js](/_readme-docs/images/validator_js_comments.png)
-
-homework.js:
-
-![Screenshot of JS Validation for homework.js](/_readme-docs/images/validator_js_homework.png)
+![ESLint Terminal Result](./images/eslint-result.png)
 
 </details>
+
 <br>
 
-Both JavaScript files passed with no errors or warnings.
+To eliminate false errors and warnings, the following rule adjustments were made:
+
+- react/react-in-jsx-scope: disabled as React 17+ no longer requires explicit import of React in files using JSX.
+
+- react/prop-types: disabled to avoid unnecessary prop validation warnings. This is appropriate given my focus on internal validation rather than prop type enforcement.
+
+- react/no-unescaped-entities: disabled globally following excessive warnings for JSX content containing apostrophes ('). Each of these warnings were simply a case of an apostrophe being used as common punctuation within a `<div>`, `<span>`, `<p>`, etc. and were not genuine syntax errors.
 
 ## Lighthouse Testing
 
-Using the Lighthouse feature of Google Chrome's Dev Tools, I tested each of my site's pages for Performance, Accessibility, Best Practices and SEO (Search Engine Optimisation).
+Using the Lighthouse feature of Google Chrome's Dev Tools, I tested each of Inspyre's webpages for Performance, Accessibility, Best Practices and SEO (Search Engine Optimisation).
 
-<details>
-<summary> Lighthouse Reports </summary>
-<br>
-Homepage (Authenticated):
+| **Page**             | **Performance** | **Accessibility** | **Best Practices** | **SEO** |
+| -------------------- | --------------- | ----------------- | ------------------ | ------- |
+| Sign Up              | 79              | 93                | 100                | 92      |
+| Sign In              | 83              | 93                | 100                | 92      |
+| Homepage             | 71              | 100               | 100                | 100     |
+| Pyres                | 68              | 95                | 78                 | 100     |
+| Sparks               | 67              | 95                | 78                 | 100     |
+| Detailed Post View   | 87              | 93                | 100                | 100     |
+| Post Creation Forms  | 94              | 95                | 78                 | 100     |
+| Post Edit Forms      | 88              | 85                | 74                 | 92      |
+| Profile Page         | 99              | 90                | 100                | 90      |
+| Profile Edit Form \* | N/A             | N/A               | N/A                | N/A     |
+| Conversation Page    | 92              | 95                | 78                 | 100     |
+| Conversations Page   | 88              | 88                | 78                 | 100     |
 
-![Screenshot of Lighthouse Report for Homepage (Authenticated)](/_readme-docs/images/lighthouse_homepage_auth.png)
+Where possible, all testing was conducted in Incognito mode to limit the browser interfering with the results. However, due to the authentication logic I've used (namely the use of auth tokens within CurrentUserContext.js), you can't login to an account while in Incognito mode. This is a known issue with the CurrentUserContext logic taught in the Code Institute 'Moments' walkthrough project (which is likewise effected). As such, features that require authentication (Pyres, Sparks, Post Creation Forms, Post Edit Forms, Profile Edit Form, Conversation List and Conversation Page) were tested in a regular Chrome Browser. As visible from the Lighthouse scores, the use of cookies (specifically, the auth tokens) has led to a significant reduction in **Best Practices** scores.
 
-Homepage (Not Authenticated):
+\* The Profile Edit Form could not be analysed using Lighthouse testing, as running the test kept causing the page to redirect to the homepage. I beleive this is another issue that stems from CurrentUserContext, specifically the useCurrentUser() hook briefly returning 'null' upon page refresh. As the profile edit forms require authorisation, this triggers a redirect to '/'. As this is not an app-breaking bug, I will address it as a fix in 'future features'.
 
-![Screenshot of Lighthouse Report for Homepage (Not Authenticated)](/_readme-docs/images/lighthouse_homepage_unauth.png)
-
-Lesson Feed (English):
-
-![Screenshot of Lighthouse Report for Lesson Feed (English)](/_readme-docs/images/lighthouse_eng.png)
-
-Lesson Feed (History):
-
-![Screenshot of Lighthouse Report for Lesson Feed (History)](/_readme-docs/images/lighthouse_hist.png)
-
-Lesson Feed (Psychology):
-
-![Screenshot of Lighthouse Report for Lesson Feed (Psychology)](/_readme-docs/images/lighthouse_psych.png)
-
-Lesson Detail:
-
-![Screenshot of Lighthouse Report for Lesson Detail](/_readme-docs/images/lighthouse_lesson-detail.png)
-
-Homework Dashboard:
-
-![Screenshot of Lighthouse Report for Homework Dashboard](/_readme-docs/images/lighthouse_homework-dashboard.png)
-
-Homework Submission:
-
-![Screenshot of Lighthouse Report for Homework Submission](/_readme-docs/images/lighthouse_homework-submission.png)
-
-Login:
-
-![Screenshot of Lighthouse Report for Login](/_readme-docs/images/lighthouse_login.png)
-
-Logout:
-
-![Screenshot of Lighthouse Report for Logout](/_readme-docs/images/lighthouse_logout.png)
-
-Register:
-
-![Screenshot of Lighthouse Report for Register](/_readme-docs/images/lighthouse_reg.png)
-
-</details>
-<br>
-
-| **Page**                     | **Performance** | **Accessibility** | **Best Practices** | **SEO** |
-| ---------------------------- | --------------- | ----------------- | ------------------ | ------- |
-| Homepage (Authenticated)     | 98              | 98                | 100                | 90      |
-| Homepage (Not Authenticated) | 98              | 98                | 100                | 90      |
-| Lesson Feed (Eng)            | 95              | 95                | 100                | 91      |
-| Lesson Feed (Hist)           | 95              | 95                | 100                | 91      |
-| Lesson Feed (Psych)          | 100             | 100               | 100                | 91      |
-| Lesson Detail                | 100             | 91                | 100                | 82      |
-| Homework Dashboard           | 98              | 98                | 100                | 90      |
-| Homework Submission          | 99              | 90                | 100                | 90      |
-| Login                        | 98              | 95                | 100                | 90      |
-| Logout                       | 98              | 94                | 100                | 90      |
-| Account Registration         | 98              | 95                | 100                | 90      |
-
-The only page to have any of the test categories score below 90 is 'lesson_detail.html'. This is due to 4 anchor tags not having crawlable links. These are the two anchor tags for each the 'report' button and the 'delete' button. The reason these anchor tags don't have crawlable links is because they are intentionally written with placeholder text (href="javascript:void(0)">), as the JavaScript that enables the functionality of these buttons does so by replacing the href with 'delete/report_comment/${commentId}' when clicked.
-
-## Manual Testing & Bug Fixes
+## Manual Testing
 
 Extensive manual testing was conducted on each feature of this project to ensure all were functioning as expected. The outcome of this testing and any bug fixes made during the project's development are recorded in the tables below.
 
-### Manual Testing
+### Authentication:
 
-#### Authentication - Account Registration
+#### Account Registration
 
 | **Feature**                                                                           | **Expected Outcome**                                                                                                               | **Result** |
 | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | Account Registration (success)                                                        | Given the correct details provided, a new User account is created.                                                                 | Pass       |
-| Account Registration (no email)                                                       | Given no email is provided, the User is prompted to complete this field                                                            | Pass       |
-| Account Registration (incorrect email)                                                | Given an email that does not meet the specifications is provided, the User is advised accordingly                                  | Pass       |
-| Account Registration (duplicated email)                                               | Given an email that already belongs to an account is provided, the User is advised accordingly                                     | Pass       |
 | Account Registration (no username)                                                    | Given no username is provided, the User is prompted to complete this field                                                         | Pass       |
 | Account Registration (duplicated username)                                            | Given a username that already belongs to an account is provided, the User is advised accordingly                                   | Pass       |
 | Account Registration (no password)                                                    | Given no password is provided, the User is prompted to complete this field                                                         | Pass       |
@@ -258,121 +157,188 @@ Extensive manual testing was conducted on each feature of this project to ensure
 | Account Registration (incorrect password - common password)                           | Given a password that does not meet this specification is provided, the User is advised accordingly                                | Pass       |
 | Account Registration (incorrect password - entirely numeric)                          | Given a password that does not meet this specification is provided, the User is advised accordingly                                | Pass       |
 | Account Registration (password confirmation error)                                    | Given the password provided in the confrimation box does not match the original password provided, the User is advised accordingly | Pass       |
-| 'Sign in' link                                                                        | Given the User clicks the 'Sign in' link, they are directed to the Login page                                                      | Pass       |
+| Confirmation Modal                                                                    | Given the User successfully creates an account, a confirmation message appears.                                                    | Pass       |
 
 <br>
 
-#### Authentication - Login
+#### Login
 
 | **Feature**               | **Expected Outcome**                                                                                                      | **Result** |
 | ------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ---------- |
 | Login (success)           | Given the correct details provided, the User is signed in.                                                                | Pass       |
 | Login (missing details)   | Given the User tries to sign in without providing a username and/or password, they are prompted to complete these fields. | Pass       |
 | Login (incorrect details) | Given the User tries to sign in by providing an incorrect username and/or password, they are advised accordingly.         | Pass       |
-| 'Sign up' link            | Given the User clicks the 'Sign up' link, they are directed to the Registration page                                      | Pass       |
-| Confirmation Message      | Given the User successfully signs in, a confirmation message appears.                                                     | Pass       |
 
 <br>
 
-#### Authentication - Logout
+#### Logout
 
-| **Feature**          | **Expected Outcome**                                                   | **Result** |
-| -------------------- | ---------------------------------------------------------------------- | ---------- |
-| Logout               | Given the User clicks the 'sign out' button, the User is logged out.   | Pass       |
-| Confirmation Message | Given the User successfully signs out, a confirmation message appears. | Pass       |
+| **Feature** | **Expected Outcome**                                                 | **Result** |
+| ----------- | -------------------------------------------------------------------- | ---------- |
+| Logout      | Given the User clicks the 'sign out' button, the User is logged out. | Pass       |
 
 <br>
 
-#### Authentication - Security
+#### Security
 
 | **Feature**       | **Expected Outcome**                                                                                                                | **Result** |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Authenticated     | Given the User is authenticated, they can freely navigate all pages of the site (excluding admin panel for non-staff accounts).     | Pass       |
+| Authenticated     | Given the User is authenticated, they can freely navigate all pages of the site                                                     | Pass       |
 | Not Authenticated | Given the User is not authenticated, they are redirected to the login page should they try to access any of the site's other pages. | Pass       |
 
 <br>
 
-#### Base Template Features
+### Navbar
 
-| **Feature**        | **Expected Outcome**                                                                                                                                        | **Result** |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Nav Links          | All navigation links contained within the header direct the User to the expected page.                                                                      | Pass       |
-| Authenticated      | Given the User is authenticated, a welcome message shows in the header, as do the links to the subjects lesson feeds, homework dashboard and sign out page. | Pass       |
-| Not Authenticated  | Given the User is not authenticated, a message shows in the header advising them of this, as do the links to the account registration and sign in pages.    | Pass       |
-| Template Extending | The Base template is correctly extended on every page.                                                                                                      | Pass       |
-
-<br>
-
-#### Homepage
-
-| **Feature**       | **Expected Outcome**                                                                                         | **Result** |
-| ----------------- | ------------------------------------------------------------------------------------------------------------ | ---------- |
-| Authenticated     | Given the User is authenticated, the three subject buttons appear.                                           | Pass       |
-| Not Authenticated | Given the User is not authenticated, a message appears to direct them to sign in or register for an account. | Pass       |
-| Subject Buttons   | Given the User clicks on a subject button, they are directed to the correct lesson feed.                     | Pass       |
+| **Feature**       | **Expected Outcome**                                                                                                                                          | **Result** |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Nav Links         | All navigation links contained within the header direct the User to the expected page url.                                                                    | Pass       |
+| Authenticated     | Given the User is authenticated, the specific 'authenticated' NavLink items are rendered, and the specific 'not authenticated' NavLink items are removed.     | Pass       |
+| Not Authenticated | Given the User is not authenticated, the specific 'not authenticated' NavLink items are rendered, and the specific 'authenticated' NavLink items are removed. | Pass       |
+| Avatar            | Given the User is signed in, their profile image is displayed by the 'Avatar' component.                                                                      | Pass       |
+| Profile Link      | Given the User is signed in, the 'profile' link directs them to their profile                                                                                 | Pass       |
+| Pyres             | Given the User is signed in, the 'pyres' link populates the homepage with only content posted by the users they follow                                        | Pass       |
+| Sparks            | Given the User is signed in, the 'sparks' link populates the homepage with only content they have liked                                                       | Pass       |
 
 <br>
 
-#### Lesson Feeds
+### Homepage
 
-| **Feature**   | **Expected Outcome**                                                                                            | **Result** |
-| ------------- | --------------------------------------------------------------------------------------------------------------- | ---------- |
-| Lesson Feed   | All published lessons belonging to the selected subject appear in a single unbroken list.                       | Pass       |
-| Draft Lessons | No draft lessons appear in the lesson feed.                                                                     | Pass       |
-| Lesson Detail | Given the User clicks on the title or summary of a lesson, they are directed to a detailed view of that lesson. | Pass       |
-
-<br>
-
-#### Lesson Detail
-
-| **Feature**                       | **Expected Outcome**                                                                                                                                                                                                                                                          | **Result** |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Comment Counter                   | The comment counter displays the correct number of approved comments for that lesson.                                                                                                                                                                                         | Pass       |
-| Comment Thread                    | All approved comments and are displayed within the Comment Thread.                                                                                                                                                                                                            | Pass       |
-| Comment Report Button             | Given the User is not the author of a comment, a 'report' button appears beneath the comment.                                                                                                                                                                                 | Pass       |
-| Comment Report Confirmation Modal | Given the User clicks the 'report' button, a confirmation modal appears.                                                                                                                                                                                                      | Pass       |
-| Comment Report Success            | Given the User confirms the report, the comment is hidden from view of all Users (notwithstanding the comment author, who seems a faded version of the comment with a message advising it has been reported). A success message appears to the User who reported the comment. | Pass       |
-| Comment Delete Button             | Given the User is the author of a comment, a 'delete' button appears beneath the comment.                                                                                                                                                                                     | Pass       |
-| Comment Delete Confirmation Modal | Given the User clicks the 'delete' button, a confirmation modal appears.                                                                                                                                                                                                      | Pass       |
-| Comment Delete Success            | Given the User confirms the deletion, the comment is deleted from the database and a success message appears confirming the deletion. The comment disappears from the Comment Thread.                                                                                         | Pass       |
-| Comment Edit Button               | Given the User is the author of a comment, an 'edit' button appears beneath the comment.                                                                                                                                                                                      | Pass       |
-| Comment Edit Process              | Given the User clicks the 'edit' button, they are given the ability to edit the comment in the 'leave a comment' textbox.                                                                                                                                                     | Pass       |
-| Comment Edit Success              | Given the User confirms the edit, the comment is updated and a message appears confirming the same.                                                                                                                                                                           | Pass       |
+| **Feature**                          | **Expected Outcome**                                                                                                                          | **Result** |
+| ------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Posts ordered by recency             | Posts are ordered by newest first, descending to oldest.                                                                                      | Pass       |
+| Gallery updating per post submission | Each time new content is posted, the gallery automatically updates (upon refresh) to show the latest posts.                                   | Pass       |
+| Infinite Scroll                      | Given more than 10 posts in the gallery, upon scrolling to the bottom of the currently rendered feed, more posts are automatically loaded.    | Pass       |
+| Post Links                           | Clicking on a posts directs the user to a detailed view of that post.                                                                         | Pass       |
+| Pyres Filter                         |                                                                                                                                               | Pass       |
+| Sparks Filter                        |                                                                                                                                               | Pass       |
+| Searchbar                            |                                                                                                                                               | Pass       |
+| Mobile layout                        | Given a screen width of ≤600px, the gallery format changes to a single column feed displaying a more complete instance of the Post component. | Pass       |
 
 <br>
 
-#### Homework Dashboard
+### Post Creation Menu
 
-| **Feature**       | **Expected Outcome**                                                                    | **Result** |
-| ----------------- | --------------------------------------------------------------------------------------- | ---------- |
-| Subject Iteration | All subjects available to the User appear as buttons.                                   | Pass       |
-| Subject Buttons   | Given the User clicks a subject button, they are taken to the Homework Submission page. | Pass       |
-
-<br>
-
-#### Homework Submission
-
-| **Feature**                  | **Expected Outcome**                                                                                                                                                                           | **Result** |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Subject                      | The subject selected by the User in the homework dashboard is displayed after the "Submit Homework -" message. The lessons available to the User are only those contained within that subject. | Pass       |
-| Form Submission (success)    | Given the User correctly fills out the form, they are able to submit it by clicking the 'submit homework' button. A success message appears when this is done.                                 | Pass       |
-| Form Submission (no lesson)  | Given the User attempts to submit the homework without selecting a lesson, a message prompts them to complete this field.                                                                      | Pass       |
-| Form Submission (no content) | Given the User attempts to submit the homework without providing any content, a message prompts them to complete this field.                                                                   | Pass       |
+| **Feature**              | **Expected Outcome**                                                                                                                                 | **Result** |
+| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Post Creation Menu       | Given the User follows a link to make a post, they are directed to a menu where they must choose if they want to create an image or text based post. | Pass       |
+| Post Creation Navigation | The option buttons correctly navigate the User to the expected form (i.e. image or text).                                                            | Pass       |
 
 <br>
 
-#### Admin Panel
+### Post Creation - Image Form
 
-| **Feature**       | **Expected Outcome**                                                                                                                                                                                                      | **Result** |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| Restricted Access | Only accounts designated as 'staff' by a superuser can access the admin panel.                                                                                                                                            | Pass       |
-| Permissions       | The features available to the User are restricted based on their account's permissions.                                                                                                                                   | Pass       |
-| Filters           | All filters are correctly applied/removed when selected/deselected.                                                                                                                                                       | Pass       |
-| Homeworks         | All homework submitted to the database is viewable with full CRUD functionality.                                                                                                                                          | Pass       |
-| Comments          | All comments submitted to the database are viewable with full CRUD functionality.                                                                                                                                         | Pass       |
-| Lessons           | Access to lessons is restricted so that only superusers and the staff that created each lesson can access the given lesson via the Admin Panel. Users have fully CRUD fucntionality over the lessons they have access to. | Pass       |
-| Subjects          | Subjects are viewable by staff, but only editable by superusers.                                                                                                                                                          | Pass       |
-| Users             | Users are viewable by staff, but only editable by superusers.                                                                                                                                                             | Pass       |
+| **Feature**          | **Expected Outcome**                                                                                                                                                 | **Result** |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Back Button          | Given the User clicks the 'back' button, they are navigated back to the post creation menu.                                                                          | Pass       |
+| Image Uploading      | Given the User clicks the upload asset, their file explorer window opens and they may select an image file to upload. Only image files are available to be selected. | Pass       |
+| File Size Limitation | If the User attempts to upload an file larger than 2MB, the upload will fail and they will be notified of this limitation.                                           | Pass       |
+| Input Fields         | All input fields correctly display their labels, placeholder text and work as expected.                                                                              | Pass       |
+| Cancel Button        | Cancelling the post will navigate the User back to the window where they first accessed the post creation menu. The post is not saved.                               | Pass       |
+| Save Button          | Saving the post will publish it and navigate the User to the detailed view of the post.                                                                              | Pass       |
+
+<br>
+
+### Post Creation - Text Form
+
+| **Feature**          | **Expected Outcome**                                                                                                                                                                            | **Result** |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Back Button          | Given the User clicks the 'back' button, they are navigated back to the post creation menu.                                                                                                     | Pass       |
+| Quill Editor         | The User has access to the Quill Editor, with all features therein working as expected. Styles applied in the editor are visible within the editor and the published post (excluding previews). | Pass       |
+| File Size Limitation | If the User attempts to upload an file larger than 2MB, the upload will fail and they will be notified of this limitation.                                                                      | Pass       |
+| Cancel Button        | Cancelling the post will navigate the User back to the window where they first accessed the post creation menu. The post is not saved.                                                          | Pass       |
+| Save Button          | Saving the post will publish it and navigate the User to the detailed view of the post.                                                                                                         | Pass       |
+
+<br>
+
+### Detailed Post View
+
+| **Feature**                       | **Expected Outcome**                                                                                                                            | **Result** |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Post Edit & Delete Buttons        | Given the User is the owner of the post, 'delete' and 'edit' buttons appears when accessing the dropdown menu beside the post.                  | Pass       |
+| Post Edit                         | Given the User clicks the 'edit' button, they are directed to the post edit form.                                                               | Pass       |
+| Post Delete Confirmation Modal    | Giveen the User clicks the 'delete' button, a confirmation modal appears.                                                                       | Pass       |
+| Post Delete Success               | Given the User confirms the deletion, the post and any comments are deleted from the database. The User is redirected to their previous window. | Pass       |
+| Post Owner Avatar Link            | Given the User clicks on the avatar or username of the post owner, they are directed to that user's profile page.                               | Pass       |
+| Post Tags                         | Given the creator added tags to their post, these tag appear beneath the post.                                                                  | Pass       |
+| Like Button & Counter             | The 'like' button and counter are displayed with the correct number of likes for that post.                                                     | Pass       |
+| Liking a Post                     | Given the user clicks the 'like' button, the icon and counter update accordingly.                                                               | Pass       |
+| Unliking a Post                   | Given the user clicks the 'unlike' button, the icon and counter update accordingly.                                                             | Pass       |
+| 'Original' Tag                    | Given the creator marked the post as an 'original', an 'original' tag appears beneath the post.                                                 | Pass       |
+| Comment Counter                   | The comment counter displays the correct number of comments for that post.                                                                      | Pass       |
+| Comment Thread                    | All comments and are displayed within the Comment Thread.                                                                                       | Pass       |
+| Comment Thread                    | Given a post has no comments, a message appears in the comment section confirming this fact.                                                    | Pass       |
+| Comment Avatar                    | Clicking on the avatar of a user within the comment section will direct the user to the profile associated with that avatar.                    | Pass       |
+| Comment Report Button             | Given the User is not the author of a comment, a 'report' button appears when accessing the dropdown menu beside each comment.                  | Pass       |
+| Comment Report Confirmation Modal | Given the User clicks the 'report' button, a confirmation modal appears.                                                                        | Pass       |
+| Comment Reporting                 | Given the User reports a comment, the comment is replaced with a ‘reported’ message until approved by a moderator or outright deleted.          | Pass       |
+| Comment Delete & Edit Buttons     | Given the User is the author of a comment, 'delete' and 'edit' buttons appears when accessing the dropdown menu beside each comment.            | Pass       |
+| Comment Delete Confirmation Modal | Given the User clicks the 'delete' button, a confirmation modal appears.                                                                        | Pass       |
+| Comment Delete Success            | Given the User confirms the deletion, the comment is deleted from the database. The comment disappears from the Comment Thread.                 | Pass       |
+| Comment Edit Process              | Given the User clicks the 'edit' button, they are given the ability to edit the comment in the comment textarea.                                | Pass       |
+| Comment Edit Success              | Given the User confirms the edit, the comment is updated.                                                                                       | Pass       |
+| Comment Reply Button              | Given the User is not the owner of a comment, that comment will display a 'reply' button beneath it.                                            | Pass       |
+| Comment Reply                     | Given the User replies to an existing comment, a visual 'thread' is established. Further replies add to this thread.                            | Pass       |
+
+<br>
+
+### Post Edit Form
+
+| **Feature**           | **Expected Outcome**                                                                                                                                                                                                                     | **Result** |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| Pre-populated details | The post edit form is pre-populated with the existing post's details.                                                                                                                                                                    | Pass       |
+| Change Image Button   | Given the User is editing an image post, they can upload a new image via the 'change image' button.                                                                                                                                      | Pass       |
+| File Size Limitation  | If the User attempts to upload an file larger than 2MB, the upload will fail and they will be notified of this limitation.                                                                                                               | Pass       |
+| Quill Editor          | Given the User is editing a text post, they will have access to the Quill Editor, with all features therein working as expected. Styles applied in the editor are visible within the editor and the published post (excluding previews). | Pass       |
+| Cancel Button         | Cancelling the edit will navigate the User back to the detailed view of the post and discard any changes made.                                                                                                                           | Pass       |
+| Save Button           | Saving the edit will navigate the User back to the detailed view of the post and apply any changes made.                                                                                                                                 | Pass       |
+
+<br>
+
+### Profile Page
+
+| **Feature**        | **Expected Outcome**                                                                                                                        | **Result** |
+| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| User Profile       | Given the User is the owner of the profile, an 'edit' button will display beside their username.                                            | Pass       |
+| Other User Profile | Given the User is not the owner of the profile, an 'un/follow' and 'message' button will display next to the profile owner's username.      | Pass       |
+| Edit Button        | Given the User clicks the 'edit' button, they are directed to the profile edit form.                                                        | Pass       |
+| Follow Button      | Given the User clicks the 'follow' button, the 'followers' counter will increase by one and the button will update to an 'unfollow' button. | Pass       |
+
+<br>
+
+### Backend
+
+#### Database
+
+| **Feature**           | **Expected Outcome** | **Result** |
+| --------------------- | -------------------- | ---------- |
+| Create Account        |                      | Pass       |
+| Delete Account        |                      | Pass       |
+| Post                  |                      | Pass       |
+| Post Edit             |                      | Pass       |
+| Post Delete           |                      | Pass       |
+| Follow                |                      | Pass       |
+| Unfollow              |                      | Pass       |
+| Like                  |                      | Pass       |
+| Unlike                |                      | Pass       |
+| Create Comment        |                      | Pass       |
+| Edit Comment          |                      | Pass       |
+| Delete Comment        |                      | Pass       |
+| Create Comment Thread |                      | Pass       |
+| Create Conversation   |                      | Pass       |
+| Delete Conversation   |                      | Pass       |
+| Send Message          |                      | Pass       |
+
+<br>
+
+#### Cloudinary
+
+| **Feature**           | **Expected Outcome** | **Result** |
+| --------------------- | -------------------- | ---------- |
+| File Upload           |                      | Pass       |
+| Default Profile Image |                      | Pass       |
+
+<br>
 
 ### Bug Fixes
 

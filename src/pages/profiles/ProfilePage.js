@@ -230,14 +230,14 @@ function ProfilePage() {
   );
 
   const profileGallery = (
-    <div className={styles.GalleryWrapper}>
+    <div className={galleryStyles.GalleryWrapper}>
       {profilePosts.results.length ? (
         <InfiniteScroll
           dataLength={profilePosts.results.length}
           loader={<Asset spinner />}
           hasMore={!!profilePosts.next}
           next={() => fetchMoreData(profilePosts, setProfilePosts)}
-          className={isMobile ? "" : styles.GalleryGrid}
+          className={isMobile ? "" : galleryStyles.GalleryGrid}
         >
           {profilePosts.results.map((post) =>
             isMobile ? (
@@ -261,6 +261,9 @@ function ProfilePage() {
                       alt="Post"
                       className={galleryStyles.Thumb}
                     />
+                    <div className={galleryStyles.ImageHoverTitle}>
+                      {post.title}
+                    </div>
                   </div>
                 ) : (
                   <div className={galleryStyles.TextThumb}>

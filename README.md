@@ -423,7 +423,7 @@ The Inspyre homepage was designed to place creative work front and center, with 
 
 Each post preview is deliberately stripped back to its core content: a thumbnail for image posts or a truncated excerpt for text posts. There are no avatars, usernames, tags, like buttons, or comment threads on the desktop homepage. This intentional minimalism fosters a distraction-free browsing experience - clean, immersive, and focused entirely on the work itself. Hovering over a preview subtly enlarges it and reveals the post's title, offering a tactile, modern feel that rewards interaction without cluttering the view.
 
-On mobile, the layout adapts to suit smaller screens with a more familiar vertical, feed-style format akin to platforms like Instagram or Facebook. Posts appear one after another in a scrollable column, each displaying the author's avatar and username, any added post tags, the like button with total likes, comment count, and - where relevant - an “Original” tag. This format is designed for easy engagement and intuitive navigation, making it feel instantly familiar to mobile-first users while maintaining the platform's visual identity.
+On mobile, the layout adapts to suit smaller screens with a more familiar vertical, feed-style format akin to platforms like Instagram or Facebook. Posts appear one after another in a scrollable column, each now also displaying the author's avatar and username (which link directly to the User's profile). This format is designed for easy engagement and intuitive navigation, making it feel instantly familiar to mobile-first users while maintaining the platform's visual identity.
 
 Regardless of device, the homepage uses React's InfiniteScroll component to deliver a seamless browsing experience. Users can explore an unbroken feed of creative content, loading more posts effortlessly as they scroll - keeping inspiration flowing without interruption.
 
@@ -869,6 +869,17 @@ The profile editing experience is designed to be fast and easy, ensuring users c
 <br>
 
 ![Unfollow Button](./README/images/unfollow-btn.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Following Modal </summary>
+
+<br>
+
+![Following Modal](./README/images/following-modal.png)
 
 </details>
 

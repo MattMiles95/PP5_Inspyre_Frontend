@@ -53,7 +53,6 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
-
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleEdit = () => navigate(`/posts/${id}/edit`);
@@ -62,12 +61,11 @@ const Post = (props) => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
       navigate(-1);
-    } catch (err) {
-      // console.error(err);
-    }
+    } catch (err) {}
   };
 
-  const handleLike = async () => {
+  const handleLike = async (e) => {
+    e.stopPropagation();
     try {
       const { data } = await axiosRes.post("/likes/", { post: id });
       setPosts((prevPosts) => ({
@@ -78,12 +76,11 @@ const Post = (props) => {
             : post
         ),
       }));
-    } catch (err) {
-      // console.error(err);
-    }
+    } catch (err) {}
   };
 
-  const handleUnlike = async () => {
+  const handleUnlike = async (e) => {
+    e.stopPropagation();
     try {
       await axiosRes.delete(`/likes/${like_id}/`);
       setPosts((prevPosts) => ({
@@ -94,26 +91,33 @@ const Post = (props) => {
             : post
         ),
       }));
-    } catch (err) {
-      // console.error(err);
+    } catch (err) {}
+  };
+
+  const handlePostClick = () => {
+    if (isPreview) {
+      navigate(`/posts/${id}`);
     }
   };
 
   return (
     <Card
-      className={styles.Post}
-      onClick={() => isPreview && navigate(`/posts/${id}`)}
+      className={`${styles.Post} ${isPreview ? styles.PreviewCard : ""}`}
+      onClick={handlePostClick}
       style={isPreview ? { cursor: "pointer" } : {}}
     >
+      {/* Header */}
       <Card.Body>
         <div className="d-flex align-items-center justify-content-between">
           <Link
             to={`/profiles/${profile_id}`}
             className="d-flex align-items-center text-reset text-decoration-none"
+            onClick={(e) => e.stopPropagation()}
           >
             <Avatar src={profile_image} height={55} />
             <span className="ml-2 font-weight-bold">{owner}</span>
           </Link>
+
           {is_owner && postPage && (
             <CustomDropdown
               handleEdit={handleEdit}
@@ -124,8 +128,10 @@ const Post = (props) => {
         <div className="text-muted small mt-1 text-right">{updated_at}</div>
       </Card.Body>
 
+      {/* Content */}
       <Card.Body className={styles.MediaContainer}>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
+
         {image && (
           <div className={styles.ImageWrapper}>
             <Card.Img src={image} alt={title} className={styles.PostImage} />
@@ -156,55 +162,61 @@ const Post = (props) => {
         )}
       </Card.Body>
 
-      <Card.Body>
-        <div className={styles.PostBar}>
-          {is_owner ? (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>You can't like your own post!</Tooltip>}
-            >
-              <div className={styles.IconWithCount}>
-                <Fire className={styles.OwnerFlame} size={20} />
+      {/* Interactions */}
+      {!isPreview && (
+        <Card.Body>
+          <div className={styles.PostBar}>
+            {is_owner ? (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>You can't like your own post!</Tooltip>}
+              >
+                <div className={styles.IconWithCount}>
+                  <Fire className={styles.OwnerFlame} size={20} />
+                  <span>{likes_count}</span>
+                </div>
+              </OverlayTrigger>
+            ) : like_id ? (
+              <div onClick={handleUnlike} className={styles.IconWithCount}>
+                <Fire className={styles.LikedFlame} size={20} />
                 <span>{likes_count}</span>
               </div>
-            </OverlayTrigger>
-          ) : like_id ? (
-            <div onClick={handleUnlike} className={styles.IconWithCount}>
-              <Fire className={styles.LikedFlame} size={20} />
-              <span>{likes_count}</span>
-            </div>
-          ) : currentUser ? (
-            <div onClick={handleLike} className={styles.IconWithCount}>
-              <Fire className={styles.UnlikedFlame} size={20} />
-              <span>{likes_count}</span>
-            </div>
-          ) : (
-            <OverlayTrigger
-              placement="top"
-              overlay={<Tooltip>Log in to like posts!</Tooltip>}
-            >
-              <div className={styles.IconWithCount}>
-                <Fire className={styles.OwnerFlame} size={20} />
+            ) : currentUser ? (
+              <div onClick={handleLike} className={styles.IconWithCount}>
+                <Fire className={styles.UnlikedFlame} size={20} />
                 <span>{likes_count}</span>
               </div>
-            </OverlayTrigger>
-          )}
+            ) : (
+              <OverlayTrigger
+                placement="top"
+                overlay={<Tooltip>Log in to like posts!</Tooltip>}
+              >
+                <div className={styles.IconWithCount}>
+                  <Fire className={styles.OwnerFlame} size={20} />
+                  <span>{likes_count}</span>
+                </div>
+              </OverlayTrigger>
+            )}
 
-          <div className={styles.IconWithCount}>
-            <Chat size={20} />
-            <span>{comments_count}</span>
+            <div
+              className={styles.IconWithCount}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Chat size={20} />
+              <span>{comments_count}</span>
+            </div>
+
+            {original_author && (
+              <div className={styles.OriginalIndicator}>
+                <i className="fa-solid fa-lightbulb"></i>
+                <span>Original</span>
+              </div>
+            )}
           </div>
+        </Card.Body>
+      )}
 
-          {original_author && (
-            <div className={styles.OriginalIndicator}>
-              <i className="fa-solid fa-lightbulb"></i>
-              <span>Original</span>
-            </div>
-          )}
-        </div>
-      </Card.Body>
-
-      {/* Deletion Confirmation Overlay */}
+      {/* Delete Confirmation */}
       {showConfirm && (
         <div className={styles.ConfirmationOverlay}>
           <div className={styles.ConfirmBox}>

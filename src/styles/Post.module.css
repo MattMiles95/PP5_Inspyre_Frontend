@@ -163,6 +163,10 @@
   color: #eaeaea;
 }
 
+.PreviewCard .PostBar {
+  display: none;
+}
+
 /* ------------------------------------------ MEDIA QUERIES */
 
 /* -------------------------------------- Small Screens */
