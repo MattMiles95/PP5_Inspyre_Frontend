@@ -2,7 +2,7 @@
 
 ### Create boldly. Share freely. Discover endlessly.
 
-![Responsive Demo](./README/images/Am-I-Responsive.png)
+![Responsive Demo](./_README_docs/images/Am-I-Responsive.png)
 
 #### Frontend React app - for the backend DRF API, [click here](https://github.com/MattMiles95/PP5_Inspyre_Backend).
 
@@ -36,7 +36,7 @@ Built with a clean, responsive UI and a focus on discoverability, Inspyre suppor
 - [Homepage, Pyres & Sparks](#homepage-pyres--sparks)
 - [Post Searchbar](#post-searchbar)
 - [Detailed Post View](#detailed-post-view)
-- [Comments, Replies & Threads](#comments-replies--threads)
+- [Comments](#comments)
 - [Likes & Trending Posts](#likes--trending-posts)
 - [Post Creation](#post-creation)
 - [Post Editing & Deleting](#post-editing--deleting)
@@ -76,16 +76,17 @@ Built with a clean, responsive UI and a focus on discoverability, Inspyre suppor
 
 ### [Local Development & Deployment](#local-development--deployment-1)
 
+- [Deployment](#deployment)
 - [Forking the GitHub Repository](#forking-the-github-repository)
 - [Local Clone](#local-clone)
-- [Code Institute PostgreSQL Database](#code-institute-postgresql-database)
-- [Cloudinary](#cloudinary)
 
 ### [Credits](#credits-1)
 
 - [Affiliations](#affiliations)
 - [Copy (Written Material)](#copy-written-material)
 - [Code Credits](#code-credits)
+
+<br>
 
 ## User Experience (UX)
 
@@ -103,9 +104,13 @@ _Mobile-Ready Design:_ Inspyre scales gracefully to any device, with thoughtful 
 
 Inspyre aims to be more than just a platform - it's a creative space that puts the user's work front and center, while offering just enough social functionality to foster genuine connection and growth.
 
+<br>
+
 ### User Stories
 
 When originally designing Inspyre, I created a Project (organised via a kanban board) in GitHub, containing a list of User Stories that set out my intended features. These User Stories can be viewed [here](https://github.com/users/MattMiles95/projects/8/views/1).
+
+<br>
 
 ## Design
 
@@ -118,7 +123,7 @@ Below are the wireframes I used to create the initial layout and design for Insp
 
 <br>
 
-![Wireframe for the sign up page](./README/wireframes/wf-signup-page.png)
+![Wireframe for the sign up page](./_README_docs/wireframes/wf-signup-page.png)
 
 </details>
 
@@ -129,7 +134,7 @@ Below are the wireframes I used to create the initial layout and design for Insp
 
 <br>
 
-![Wireframe for the homepage](./README/wireframes/wf-homepage.png)
+![Wireframe for the homepage](./_README_docs/wireframes/wf-homepage.png)
 
 </details>
 
@@ -140,7 +145,7 @@ Below are the wireframes I used to create the initial layout and design for Insp
 
 <br>
 
-![Wireframe for the homepage (mobile view)](./README/wireframes/wf-homepage-mobile.png)
+![Wireframe for the homepage (mobile view)](./_README_docs/wireframes/wf-homepage-mobile.png)
 
 </details>
 
@@ -151,7 +156,7 @@ Below are the wireframes I used to create the initial layout and design for Insp
 
 <br>
 
-![Wireframe for the profile page](./README/wireframes/wf-profile-page.png)
+![Wireframe for the profile page](./_README_docs/wireframes/wf-profile-page.png)
 
 </details>
 
@@ -162,9 +167,11 @@ Below are the wireframes I used to create the initial layout and design for Insp
 
 <br>
 
-![Wireframe for the profile page](./README/wireframes/wf-chat-page.png)
+![Wireframe for the profile page](./_README_docs/wireframes/wf-chat-page.png)
 
 </details>
+
+<br>
 
 ### Theme
 
@@ -181,6 +188,8 @@ Below are the wireframes I used to create the initial layout and design for Insp
 
 The theme for Inspyre began with its logo. Fire has long been a symbol of creativity - the _spark_ of inspiration, the _flames_ of the forge where the blacksmith shapes his creations, storytellers sharing tales of wonder around a _campfire_. I wanted a logo that embodied this elemental energy - something simple, bold, and immediately evocative of the act of creation. From that foundation, the visual identity of Inspyre took shape.
 
+<br>
+
 ### Colours
 
 <details>
@@ -189,7 +198,7 @@ The theme for Inspyre began with its logo. Fire has long been a symbol of creati
 <br>
 
 ![Background](./src/assets/inspyre_bg.jpg)
-![Colour Palette](./README/images/inspyre-palette.png)
+![Colour Palette](./_README_docs/images/inspyre-palette.png)
 
 </details>
 
@@ -202,9 +211,11 @@ The background and colour scheme builds on this concept of fire and emberlight. 
 
 <br>
 
-![Post Creation Page](./README/images/post-creation-page.png)
+![Post Creation Page](./_README_docs/images/post-creation-page.png)
 
 </details>
+
+<br>
 
 ### Brand: Meet Ember
 
@@ -213,7 +224,7 @@ The background and colour scheme builds on this concept of fire and emberlight. 
 
 <br>
 
-![Ember](./README/images/ember.png)
+![Ember](./_README_docs/images/ember.png)
 
 </details>
 
@@ -278,6 +289,8 @@ To bring personality and playfulness into the design, I created Ember, the platf
 
 A brand mascot like Ember creates an emotional resonance between the user and the platform, helping users form a more memorable and relatable connection with the brand. It can make interactions feel more engaging and human, while also reinforcing core themes - in this case, creativity, warmth, and playful inspiration.
 
+<br>
+
 ### Favicon
 
 <details>
@@ -285,13 +298,15 @@ A brand mascot like Ember creates an emotional resonance between the user and th
 
 <br>
 
-![Favicon](./README/images/favicon.png)
+![Favicon](./_README_docs/images/favicon.png)
 
 </details>
 
 <br>
 
 For Inspyre's favicon, I've used a scaled down image of Ember. I've done this to reaffirm the User's recogintion of the platform's brand.
+
+<br>
 
 ### Typography
 
@@ -300,13 +315,15 @@ For Inspyre's favicon, I've used a scaled down image of Ember. I've done this to
 
 <br>
 
-![Font Specimen - Montserrat](./README/images/font-specimen-montserrat.png)
+![Font Specimen - Montserrat](./_README_docs/images/font-specimen-montserrat.png)
 
 </details>
 
 <br>
 
 I chose **Montserrat** as the default font for Inspyre because its clean, geometric style aligns perfectly with the platform's modern and creative aesthetic. It feels contemporary without being cold, giving the site a sense of clarity and polish. Additionally, as a Google Font, it's widely supported across browsers and devices, ensuring consistent rendering and accessibility for all users.
+
+<br>
 
 ### Accessibility
 
@@ -316,6 +333,8 @@ To ensure every User has equal opportunity to enjoy the platform, I ensured maxi
 
 - All colour schemes utilise contrast between background and foreground to ensure ease of readability.
 
+<br>
+
 ### Responsiveness
 
 <details>
@@ -323,7 +342,7 @@ To ensure every User has equal opportunity to enjoy the platform, I ensured maxi
 
 <br>
 
-![Homepage - Desktop](./README/images/homepage-desktop.png)
+![Homepage - Desktop](./_README_docs/images/homepage-desktop.png)
 
 </details>
 
@@ -334,7 +353,7 @@ To ensure every User has equal opportunity to enjoy the platform, I ensured maxi
 
 <br>
 
-![Homepage - Mobile](./README/images/homepage-mobile.png)
+![Homepage - Mobile](./_README_docs/images/homepage-mobile.png)
 
 </details>
 
@@ -342,50 +361,48 @@ To ensure every User has equal opportunity to enjoy the platform, I ensured maxi
 
 While Inspyre is primarily designed with desktop users in mind - where creative content can be viewed and edited most comfortably - the platform is fully responsive across a range of devices, including tablets and smartphones. By combining Bootstrap's responsive flexbox system with custom CSS media queries, I've ensured that layouts adapt seamlessly to different screen sizes, maintaining usability, visual clarity, and an intuitive experience no matter where or how users access the site.
 
+<br>
+
 ## Features
 
 ### Authorisation
 
 Authorisation follows a typical model for content-sharing and social platforms: non-authenticated users can access basic public features, such as browsing the Discover page or viewing user profiles. However, to interact meaningfully with the platform - including creating posts, liking and commenting, or engaging in direct messaging - users must be authenticated. This layered access model helps protect user data, encourage meaningful engagement, and preserve the integrity of the creative community.
 
-I discuss authorisation further in the README for my backend DRF API, which you can read [here]().
+I discuss authorisation further in the README for my backend DRF API, which you can read [here](https://github.com/MattMiles95/PP5_Inspyre_Backend/blob/main/README.md).
 
-<!-- MOVE TO BACKEND README: Inspyre implements a robust authorisation system using Django REST Auth and Django Allauth on the backend. This ensures secure authentication while streamlining user registration, login, and session management.
-
-Behind the scenes, Jason Web Token (JWT) authentication is used to manage user sessions securely. Upon login, users are issued an authentication token that must be included with each API request requiring authorisation. Django REST Auth handles the issuing and validation of these tokens, ensuring only authenticated users can access protected endpoints.
-
-Permissions are carefully scoped using Django REST Framework's built-in permission classes, along with custom logic. This ensures users can only perform actions they're authorised for - for example, editing their own posts, accessing their conversations, or managing their own profile - while preventing unauthorised access to other users' data or actions. -->
+<br>
 
 ### Navbar
 
 <details>
-<summary> Navbar - Desktop </summary>
+<summary> Desktop </summary>
 
 <br>
 
-![Navbar - Desktop](./README/images/navbar-desktop.png)
+![Navbar - Desktop](./_README_docs/images/navbar-desktop.png)
 
 </details>
 
 <br>
 
 <details>
-<summary> Navbar - Desktop </summary>
+<summary> Mobile </summary>
 
 <br>
 
-![Navbar - Mobile](./README/images/navbar-mobile.png)
+![Navbar - Mobile](./_README_docs/images/navbar-mobile.png)
 
 </details>
 
 <br>
 
 <details>
-<summary> Navbar - Desktop </summary>
+<summary> Dropdown Menu </summary>
 
 <br>
 
-![Navbar - Menu](./README/images/navbar-menu.png)
+![Navbar - Menu](./_README_docs/images/navbar-menu.png)
 
 </details>
 
@@ -415,6 +432,8 @@ Key elements of the navbar include:
 
 To help users stay oriented, the Discover, Inspyre +, and Messages buttons visually indicate the active route by switching from their default orange color to white when selected. This provides clear, subtle feedback about the user's current location within the platform.
 
+<br>
+
 ### Homepage, Pyres & Sparks
 
 #### Homepage & Browsing Experience
@@ -434,7 +453,7 @@ Regardless of device, the homepage uses React's InfiniteScroll component to deli
 
 <br>
 
-![Pyres Filter](./README/images/filter-pyres.png)
+![Pyres Filter](./_README_docs/images/filter-pyres.png)
 
 </details>
 
@@ -445,7 +464,7 @@ Regardless of device, the homepage uses React's InfiniteScroll component to deli
 
 <br>
 
-![Sparks Filter](./README/images/filter-sparks.png)
+![Sparks Filter](./_README_docs/images/filter-sparks.png)
 
 </details>
 
@@ -459,6 +478,8 @@ Sparks displays posts the user has liked - a personal trail of past inspiration,
 
 These filters reflect Inspyre's core theme: connection through creativity. Whether discovering new posts, revisiting saved work, or focusing on your creative circle, Pyres and Sparks ensure your feed remains meaningful and relevant.
 
+<br>
+
 ### Post Searchbar
 
 <details>
@@ -466,7 +487,7 @@ These filters reflect Inspyre's core theme: connection through creativity. Wheth
 
 <br>
 
-![Post Searchbar](./README/images/post-searchbar.png)
+![Post Searchbar](./_README_docs/images/post-searchbar.png)
 
 </details>
 
@@ -477,7 +498,7 @@ These filters reflect Inspyre's core theme: connection through creativity. Wheth
 
 <br>
 
-![Post Searchbar - No Results](./README/images/post-searchbar-no-results.png)
+![Post Searchbar - No Results](./_README_docs/images/post-searchbar-no-results.png)
 
 </details>
 
@@ -489,6 +510,8 @@ To ensure a smooth and responsive UX, the searchbar listens to every keystroke w
 
 Much like the Pyres and Sparks features, searches simply filter the existing gallery to display only the returned results. Searches can also be combined with Pyres or Sparks, allowing users to refine their feed even further - for example, by searching only within posts they've liked, or content created by users they follow. This layered filtering system offers powerful, fine-grained control over how the gallery is populated, making discovery both flexible and personal.
 
+<br>
+
 ### Detailed Post View
 
 <details>
@@ -496,7 +519,7 @@ Much like the Pyres and Sparks features, searches simply filter the existing gal
 
 <br>
 
-![Detailed Post View](./README/images/post-detail.png)
+![Detailed Post View](./_README_docs/images/post-detail.png)
 
 </details>
 
@@ -534,6 +557,8 @@ From the PostPage, users can:
 
 The PostPage strikes a balance between presentation and interaction - celebrating the creative work while making it easy for users to show appreciation, start a dialogue, or explore related content.
 
+<br>
+
 ### Comments
 
 <details>
@@ -541,7 +566,7 @@ The PostPage strikes a balance between presentation and interaction - celebratin
 
 <br>
 
-![Comment Thread](./README/images/comment-thread.png)
+![Comment Thread](./_README_docs/images/comment-thread.png)
 
 </details>
 
@@ -570,7 +595,7 @@ Key features of the comment system include:
 
 <br>
 
-![Comment Editing](./README/images/comment-edit.png)
+![Comment Editing](./_README_docs/images/comment-edit.png)
 
 </details>
 
@@ -585,7 +610,7 @@ For deletions, a confirmation modal appears to prevent accidental loss of conten
 
 <br>
 
-![Comment Reported](./README/images/comment-reported.png)
+![Comment Reported](./_README_docs/images/comment-reported.png)
 
 </details>
 
@@ -596,7 +621,7 @@ For deletions, a confirmation modal appears to prevent accidental loss of conten
 
 <br>
 
-![Comment Moderating](./README/images/comment-moderating.png)
+![Comment Moderating](./_README_docs/images/comment-moderating.png)
 
 </details>
 
@@ -608,6 +633,10 @@ All comments are accessible by moderators via the admin panel of the DRF API. On
 
 This system strikes a balance between expressive discussion and responsible moderation, offering users a clear, intuitive way to engage with content while maintaining community standards.
 
+It should be noted that there is **no custom interface for moderators** - I have included this feature as a demonstration, and it is rendered functional by Django's admin panel. However, as the focus of this project was to build a frontend React app for users (namely, a content creation / sharing platform), I have not created a dedicated interface for moderators.
+
+<br>
+
 ### Likes & Trending Posts
 
 <details>
@@ -615,7 +644,7 @@ This system strikes a balance between expressive discussion and responsible mode
 
 <br>
 
-![Like Button & Counter](./README/images/likes-comment-count-original-icon.png)
+![Like Button & Counter](./_README_docs/images/likes-comment-count-original-icon.png)
 
 </details>
 
@@ -626,7 +655,7 @@ This system strikes a balance between expressive discussion and responsible mode
 
 <br>
 
-![Like Button & Counter](./README/images/trending-posts.png)
+![Like Button & Counter](./_README_docs/images/trending-posts.png)
 
 </details>
 
@@ -636,6 +665,8 @@ Inspyre uses a simple, intuitive like system to let users show appreciation for 
 
 The Trending Posts feature highlights the most popular content on the platform in real time. It tracks the total number of likes across all posts and displays the top 10 most liked posts within the “Trending Right Now” section at the top of the homepage. This gives users a quick snapshot of what's currently resonating with the community and helps elevate standout content for greater visibility.
 
+<br>
+
 ### Post Creation
 
 <details>
@@ -643,7 +674,7 @@ The Trending Posts feature highlights the most popular content on the platform i
 
 <br>
 
-![Post Creation Form](./README/images/post-creation-page.png)
+![Post Creation Form](./_README_docs/images/post-creation-page.png)
 
 </details>
 
@@ -660,7 +691,7 @@ When starting a new post, users are first presented with a creation type menu, p
 
 <br>
 
-![Visual Creation Form](./README/images/post-creation-image.png)
+![Visual Creation Form](./_README_docs/images/post-creation-image.png)
 
 </details>
 
@@ -677,7 +708,7 @@ When starting a new post, users are first presented with a creation type menu, p
 
 <br>
 
-![Written Creation Form](./README/images/post-creation-text.png)
+![Written Creation Form](./_README_docs/images/post-creation-text.png)
 
 </details>
 
@@ -688,7 +719,7 @@ When starting a new post, users are first presented with a creation type menu, p
 
 <br>
 
-![React Quill Editor](./README/images/quill-editor.png)
+![React Quill Editor](./_README_docs/images/quill-editor.png)
 
 </details>
 
@@ -699,7 +730,7 @@ When starting a new post, users are first presented with a creation type menu, p
 
 <br>
 
-![React Quill Demo Post](./README/images/quill-editor-rendered.png)
+![React Quill Demo Post](./_README_docs/images/quill-editor-rendered.png)
 
 </details>
 
@@ -717,6 +748,8 @@ When starting a new post, users are first presented with a creation type menu, p
 
 The post creation system is built to be quick, expressive, and respectful of creative ownership - ensuring that users can share confidently and authentically.
 
+<br>
+
 ### Post Editing & Deleting
 
 Inspyre gives creators full control over their content even after it's been published. From the detailed post view, users who own the post can access the edit/delete menu, allowing them to manage their work with ease.
@@ -728,7 +761,7 @@ Inspyre gives creators full control over their content even after it's been publ
 
 <br>
 
-![Edit Post Form](./README/images/post-edit.png)
+![Edit Post Form](./_README_docs/images/post-edit.png)
 
 </details>
 
@@ -750,6 +783,8 @@ Inspyre gives creators full control over their content even after it's been publ
 
 This streamlined approach ensures that users can revise, refine, or remove their work as they see fit, maintaining creative ownership and control throughout the lifecycle of each post.
 
+<br>
+
 ### Profile Page
 
 <details>
@@ -757,7 +792,7 @@ This streamlined approach ensures that users can revise, refine, or remove their
 
 <br>
 
-![Profile Page](./README/images/profile-page.png)
+![Profile Page](./_README_docs/images/profile-page.png)
 
 </details>
 
@@ -768,7 +803,7 @@ This streamlined approach ensures that users can revise, refine, or remove their
 
 <br>
 
-![Profile Page (Other User) ](./README/images/profile-page-other.png)
+![Profile Page (Other User) ](./_README_docs/images/profile-page-other.png)
 
 </details>
 
@@ -797,7 +832,7 @@ From any profile page, users can:
 
 <br>
 
-![Profile - No Posts](./README/images/profile-page-empty.png)
+![Profile - No Posts](./_README_docs/images/profile-page-empty.png)
 
 </details>
 
@@ -812,7 +847,7 @@ Should a user not have any posts to display on their profile, their gallery will
 
 <br>
 
-![Profile Editing - Details](./README/images/profile-edit-details.png)
+![Profile Editing - Details](./_README_docs/images/profile-edit-details.png)
 
 </details>
 
@@ -823,7 +858,7 @@ Should a user not have any posts to display on their profile, their gallery will
 
 <br>
 
-![Profile Editing - Username](./README/images/profile-edit-username.png)
+![Profile Editing - Username](./_README_docs/images/profile-edit-username.png)
 
 </details>
 
@@ -834,7 +869,7 @@ Should a user not have any posts to display on their profile, their gallery will
 
 <br>
 
-![Profile Editing - Password](./README/images/profile-edit-password.png)
+![Profile Editing - Password](./_README_docs/images/profile-edit-password.png)
 
 </details>
 
@@ -850,6 +885,8 @@ When viewing your own profile, you’ll have access to an Edit Profile button, w
 
 The profile editing experience is designed to be fast and easy, ensuring users can maintain an identity that evolves alongside their creative journey.
 
+<br>
+
 ### Following System
 
 <details>
@@ -857,7 +894,7 @@ The profile editing experience is designed to be fast and easy, ensuring users c
 
 <br>
 
-![Follow Button](./README/images/follow-btn.png)
+![Follow Button](./_README_docs/images/follow-btn.png)
 
 </details>
 
@@ -868,7 +905,7 @@ The profile editing experience is designed to be fast and easy, ensuring users c
 
 <br>
 
-![Unfollow Button](./README/images/unfollow-btn.png)
+![Unfollow Button](./_README_docs/images/unfollow-btn.png)
 
 </details>
 
@@ -879,7 +916,7 @@ The profile editing experience is designed to be fast and easy, ensuring users c
 
 <br>
 
-![Following Modal](./README/images/following-modal.png)
+![Following Modal](./_README_docs/images/following-modal.png)
 
 </details>
 
@@ -905,6 +942,8 @@ Inspyre includes a modern, conventional following system to help users build cre
 
 This system reinforces Inspyre’s ethos of creative connection: you follow the people who inspire you, and your 'Pyres' feed becomes a reflection of that inspiration.
 
+<br>
+
 ### Direct Messaging
 
 <details>
@@ -912,7 +951,7 @@ This system reinforces Inspyre’s ethos of creative connection: you follow the 
 
 <br>
 
-![Chat List](./README/images/chat-list.png)
+![Chat List](./_README_docs/images/chat-list.png)
 
 </details>
 
@@ -923,7 +962,7 @@ This system reinforces Inspyre’s ethos of creative connection: you follow the 
 
 <br>
 
-![Chat Page](./README/images/chat-page.png)
+![Chat Page](./_README_docs/images/chat-page.png)
 
 </details>
 
@@ -934,7 +973,7 @@ This system reinforces Inspyre’s ethos of creative connection: you follow the 
 
 <br>
 
-![Chat Searchbar](./README/images/chat-searchbar.png)
+![Chat Searchbar](./_README_docs/images/chat-searchbar.png)
 
 </details>
 
@@ -962,6 +1001,8 @@ Due to this constraint, the messaging system currently lacks true real-time comm
 
 This design decision reflects the balance between technical depth and project scope - and is something I expand on in the Future Features section below.
 
+<br>
+
 ### Custom Modal
 
 <details>
@@ -969,7 +1010,7 @@ This design decision reflects the balance between technical depth and project sc
 
 <br>
 
-![Deletion Modal](./README/images/modal-deletion.png)
+![Deletion Modal](./_README_docs/images/modal-deletion.png)
 
 </details>
 
@@ -980,7 +1021,7 @@ This design decision reflects the balance between technical depth and project sc
 
 <br>
 
-![Confirmation Modal](./README/images/modal-confirmation.png)
+![Confirmation Modal](./_README_docs/images/modal-confirmation.png)
 
 </details>
 
@@ -1000,6 +1041,8 @@ Key Use Cases:
 
 By building this modal component myself, I was able to tailor both its appearance and functionality to the needs of the platform — and maintain flexibility as new features are added.
 
+<br>
+
 ### Custom Dropdown Menu
 
 <details>
@@ -1007,7 +1050,7 @@ By building this modal component myself, I was able to tailor both its appearanc
 
 <br>
 
-![Dropdown Menu - User Comment](./README/images/modal-confirmation.png)
+![Dropdown Menu - User Comment](./_README_docs/images/modal-confirmation.png)
 
 </details>
 
@@ -1017,6 +1060,8 @@ Similar to my custom modal, I also decided to build a custom dropdown menu compo
 
 This custom dropdown is a modular, reusable menu that supports dynamic action rendering — it adapts its available options (e.g., Edit, Delete, Report) based on the props passed to it. This makes it suitable for multiple contexts across the platform, including post menus and comment threads. It also dynamically calculates its position and renders to a dedicated DOM node for better control over layering and z-indexing.
 
+<br>
+
 ### Custom Error Pages
 
 <details>
@@ -1024,7 +1069,7 @@ This custom dropdown is a modular, reusable menu that supports dynamic action re
 
 <br>
 
-![401 Error Page](./README/images/custom-error-401.png)
+![401 Error Page](./_README_docs/images/custom-error-401.png)
 
 </details>
 
@@ -1035,7 +1080,7 @@ This custom dropdown is a modular, reusable menu that supports dynamic action re
 
 <br>
 
-![403 Error Page](./README/images/custom-error-403.png)
+![403 Error Page](./_README_docs/images/custom-error-403.png)
 
 </details>
 
@@ -1046,7 +1091,7 @@ This custom dropdown is a modular, reusable menu that supports dynamic action re
 
 <br>
 
-![404 Error Page](./README/images/custom-error-404.png)
+![404 Error Page](./_README_docs/images/custom-error-404.png)
 
 </details>
 
@@ -1057,7 +1102,7 @@ This custom dropdown is a modular, reusable menu that supports dynamic action re
 
 <br>
 
-![500 Error Page](./README/images/custom-error-500.png)
+![500 Error Page](./_README_docs/images/custom-error-500.png)
 
 </details>
 
@@ -1068,7 +1113,7 @@ This custom dropdown is a modular, reusable menu that supports dynamic action re
 
 <br>
 
-![503 Error Page](./README/images/custom-error-503.png)
+![503 Error Page](./_README_docs/images/custom-error-503.png)
 
 </details>
 
@@ -1080,37 +1125,55 @@ Rather than relying on browser defaults or abrupt server messages, each custom p
 
 This approach helps ensure that even when something goes wrong, the UX remains polished and consistent with Inspyre’s theme and tone — keeping users engaged instead of frustrated.
 
+<br>
+
 ## Future Features
 
 As Inspyre continues to evolve, there are several planned features aimed at improving functionality, enhancing user safety, and expanding the creative and social potential of the platform:
+
+<br>
 
 ### Notifications
 
 A real-time notification system to alert users of new likes, comments, follows, and messages — keeping them engaged and informed without needing to refresh or check manually.
 
+<br>
+
 ### Email Integration
 
 Linking user accounts to verified email addresses will allow for secure account recovery, email-based notifications, and better user identity management.
+
+<br>
 
 ### Comment Likes
 
 The ability to like individual comments — a small but meaningful way to encourage thoughtful discussion and highlight valuable contributions.
 
+<br>
+
 ### Image File Compression
 
 Built-in file compression for image uploads to improve performance, reduce bandwidth usage, and streamline the upload process without compromising visual quality.
+
+<br>
 
 ### Post Drafts
 
 Support for saving draft posts — allowing users to start a visual or written piece and return to finish it later without losing their progress.
 
+<br>
+
 ### Expanded Reporting System
 
 Enhancing the current reporting flow to include posts and user profiles, not just comments. Reported content will be flagged for moderator review rather than hidden immediately, helping prevent abuse and aligning with modern moderation practices.
 
+<br>
+
 ### Global Searchbar
 
 A powerful searchbar integrated into the navbar that allows users to search across profiles, profile tags, posts, and post tags. Unlike the current filtering system, this will return a dedicated results page, improving discovery across the entire platform.
+
+<br>
 
 ### Messaging System Upgrade
 
@@ -1130,13 +1193,19 @@ Replacing the current custom-built messaging system with a plug-and-play solutio
 
 This will elevate Inspyre’s messaging experience to match modern standards.
 
+<br>
+
 ### Blocking Users
 
 A block system to allow users to protect themselves from unwanted interaction. Blocked users will be unable to view your profile, posts, comments, or message you, ensuring personal boundaries are respected. Likewise, if you block a user, they will become entirely hidden from your experience of the platform.
 
+<br>
+
 ### Private Profiles
 
 Support for private account modes. These profiles will remain searchable and visible, but their content will only be accessible to approved followers. Follow requests will require approval, and the entire profile interaction system will adjust to accommodate this added layer of control and privacy.
+
+<br>
 
 ### User Account Deletion (Temporarily Removed)
 
@@ -1148,15 +1217,15 @@ Despite significant effort — including extensive independent debugging, collab
 
 However, I have preserved the original handleDelete logic within the project codebase, and fully intend to re-implement account deletion in the future, once the context/interceptor bug is addressed or a more robust session management strategy is in place.
 
-## Testing
-
-For manual testing, lighthouse reports and validator results, please head to [testing.md](./README/testing/testing.md).
+<br>
 
 ## Project Management - an Agile Approach
 
 ### Agile Methodology
 
 I used the Agile methodology to plan my project in terms of iterations. Tasks were created as segmented 'User Stories', each with their own acceptance criteria. These User Stories were prioritised using the MoSCoW method (see below) and worked through incrementally, allowing for an objective driven yet adaptable development process. User Stories were also categorised into separate Milestones (i.e., 'Direct Messaging'), to make it easier to track how far progressed I was with each feature group. Features I knew I wanted but wouldn't feasibly achieve by the project deadline were labelled as 'not required in this iteration'.
+
+<br>
 
 ### MoSCoW Prioritisation
 
@@ -1170,126 +1239,67 @@ In order to prioritise my User Stories, I used MoSCoW Prioritisation to label ea
 
 - Won't Have - feature isn't required during this iteration (non-priority)
 
+<br>
+
 ### GitHub Project - Kanban Board
 
 I used GitHub Issues and Projects to manage the above-mentioned process. Each issue provided a User Story, which was placed on a Kanban board in my Inspyre Project. This board was separated into 4 columns: 'To Do', 'In Progress', 'Done' and 'Not Required This Iteration'. I linked both my frontend and backend repos to this project, which can be viewed [here](https://github.com/users/MattMiles95/projects/8/views/1)
+
+<br>
 
 ## Technologies Used
 
 ### Languages
 
 - [HTML 5](https://en.wikipedia.org/wiki/HTML5)
-
 - [CSS 3](https://en.wikipedia.org/wiki/CSS#CSS_3)
-
-- [Python](<https://en.wikipedia.org/wiki/Python_(programming_language)>)
-
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+
+<br>
 
 ### Frameworks, Libraries & Programs Used
 
 #### Frameworks
 
 - [Bootstrap ^4.6.0](https://getbootstrap.com/docs/4.6/getting-started/introduction/) - Open-source CSS framework.
-- [Django 4.2.20](https://www.djangoproject.com/) - Open-source Python framework.
-- [Django Rest Framework 3.15.2](https://www.django-rest-framework.org/) - Open-source Python framework, specifically for building Web APIs.
-- [dj-rest-auth](https://dj-rest-auth.readthedocs.io/en/latest/) - Authentication library for Django REST framework.
-- [django-allauth](https://django-allauth.readthedocs.io/en/latest/) - Authentication system for Django.
-- [django-cloudinary-storage](https://github.com/klis87/django-cloudinary-storage) - Cloudinary integration for Django’s file storage.
-- [django-cors-headers](https://pypi.org/project/django-cors-headers/) - Django app for handling CORS headers.
-- [django-filter](https://django-filter.readthedocs.io/en/stable/) - Filtering library for Django REST Framework.
-- [djangorestframework-simplejwt](https://django-rest-framework-simplejwt.readthedocs.io/en/latest/) - JWT authentication for Django REST Framework.
 - [React ^19.0.0](https://react.dev/) - Open-source JavaScript library.
 
 #### Libraries
 
-- [asgiref](https://docs.djangoproject.com/en/stable/releases/3.0/#asgiref) - ASGI interface reference implementation used in Django.
-- [cffi](https://cffi.readthedocs.io/en/latest/) - Foreign Function Interface for calling C code from Python.
-- [charset-normalizer](https://github.com/Ousret/charset_normalizer) - Encoding detection library for Python.
-- [cloudinary (Python SDK)](https://cloudinary.com/documentation/django_integration) - Media management SDK.
-- [cryptography](https://cryptography.io/en/latest/) - Python library for cryptographic operations.
-- [idna](https://pypi.org/project/idna/) - Internationalized domain names support.
-- [oauthlib](https://oauthlib.readthedocs.io/en/latest/) - OAuth1 and OAuth2 support for Python.
-- [packaging](https://packaging.pypa.io/en/latest/) - Core utilities for Python package versioning.
-- [pillow](https://python-pillow.org/) - Python Imaging Library fork for image processing.
-- [psycopg2 2.9.10](https://www.psycopg.org/) - PostgreSQL database adapter for Python.
-- [PyJWT](https://pyjwt.readthedocs.io/en/stable/) - JSON Web Token library for Python.
-- [python3-openid](https://github.com/necaris/python3-openid) - OpenID authentication support for Python 3.
-- [pytz](https://pypi.org/project/pytz/) - World timezone definitions for Python.
-- [requests](https://docs.python-requests.org/en/latest/) - Python HTTP library.
-- [requests-oauthlib](https://requests-oauthlib.readthedocs.io/en/latest/) - OAuth support for the Python requests library.
-- [setuptools](https://setuptools.pypa.io/en/latest/) - Python package installation and dependency tool.
-- [six](https://six.readthedocs.io/) - Python 2 and 3 compatibility utilities.
-- [sqlparse](https://sqlparse.readthedocs.io/en/latest/) - SQL parser and formatter for Python.
-- [tzdata](https://pypi.org/project/tzdata/) - IANA timezone data for Python.
-- [urllib3](https://urllib3.readthedocs.io/en/latest/) - HTTP client for Python.
-- [webencodings](https://github.com/SimonSapin/python-webencodings) - Character encoding APIs used by HTML5.
-
-#### Programs
-
-- [gunicorn](https://gunicorn.org/) - WSGI HTTP server for Python web apps.
-- [whitenoise](https://whitenoise.readthedocs.io/en/latest/) - Static file serving for Python web apps.
+- [axios](https://axios-http.com/) - Promise-based HTTP client for JavaScript.
+- [Font Awesome](https://fontawesome.com/) - CSS font and icon toolkit.
+- [react-bootstrap-icons](https://react-bootstrap.github.io/icons/) - Bootstrap icons for React.
+- [react-quill](https://github.com/zenoamaro/react-quill) - Rich text editor component for React.
 
 #### Tools & Utilities
 
 - [Balsamiq](https://balsamiq.com/) - Wireframing app.
-- [Chrome DevTools](https://developer.chrome.com/docs/devtools) - Browser developer tools for testing and auditing code.
-- [Chrome Eye Dropper](https://chromewebstore.google.com/detail/eye-dropper/hmdcmlfkchdmnmnmheododdhjedfccka) - Browser extension for colour sampling.
-- [Cloudinary](https://cloudinary.com/home) - Cloud-based file storage service.
-- [Font Awesome](https://fontawesome.com/) - CSS font and icon toolkit.
+- [Chrome DevTools](https://developer.chrome.com/docs/devtools) - Browser developer tools.
+- [Chrome Eye Dropper](https://chromewebstore.google.com/detail/eye-dropper/hmdcmlfkchdmnmnmheododdhjedfccka) - Colour sampling extension.
 - [Git](https://git-scm.com/) - Version control system.
-- [GitHub](https://github.com/) - Online repository storage and Agile project management tools.
+- [GitHub](https://github.com/) - Online repository storage and project management.
+- [Heroku](https://www.heroku.com/home) - App deployment platform.  
 - [Google Fonts](https://fonts.google.com/) - Open-source font library.
-- [Heroku](https://www.heroku.com/home) - Site for app deployment.
-- [Lucid](https://lucid.app/documents#/documents?folder_id=home) - Logic diagram design app.
-- [Photopea](https://www.photopea.com/) - Photo editing software.
-- [PostgreSQL](https://www.postgresql.org/) - Open-source object-relational database system.
+- [Photopea](https://www.photopea.com/) - Online photo editing software.
 - [Visual Studio Code](https://code.visualstudio.com/) - IDE.
+
+<br>
+
+## Testing
+
+For manual testing, lighthouse reports and validator results, please head to my [TESTING](./TESTING.md) file.
+
+<br>
 
 ## Local Development & Deployment
 
-This app was developed using VSCode and both the frontend and backend repos were deployed via Heroku.
+This app was developed using VSCode and deployed via Heroku.
 
-Prior to the below deployment process, enter the `pip freeze > requirements.txt` command in your Git Bash terminal inside the backend project folder to update your requirements.txt file. Once this has been done, you can deploy both the backend and frontend via Heroku using the following steps:
+<br>
 
-### Backend Deployment (API)
+### Deployment
 
-1. Login to [Heroku](https://dashboard.heroku.com/).
-
-2. On the 'Dashboard', click **"New"** then **"Create new app"**.
-
-3. Choose a unique app name for the backend (e.g., `inspyre-api`) and select your region.
-
-4. Click **"Create app"**.
-
-5. Under the **Settings** tab, locate **"Config Vars"**.
-
-6. Click **"Reveal Config Vars"** and add the following variables:
-
-- ALLOWED_HOSTS
-
-- CLIENT_ORIGIN
-
-- CLIENT_ORIGIN_DEV
-
-- CLOUDINARY_URL (if required)
-
-- DATABASE_URL
-
-- SECRET_KEY
-
-7. Under the **Deploy** tab:
-
-- Select **GitHub** as the deployment method.
-- Search for your backend repo and click **"Connect"**.
-- Choose either **"Enable Automatic Deploys"** or **"Manual Deploy"**.
-- Deploy the main branch.
-
-8. Wait for the build and publish process. Once completed, test your API via the Heroku app link to ensure successful deployment.
-
-### Frontend Deployment
-
-1. Return to the [Heroku Dashboard](https://dashboard.heroku.com/) and click **"New" > "Create new app"** again.
+1. Go to the [Heroku Dashboard](https://dashboard.heroku.com/) and click **"New" > "Create new app"**.
 
 2. Choose a unique app name for the frontend (e.g., `inspyre`) and select your region.
 
@@ -1306,21 +1316,25 @@ Prior to the below deployment process, enter the `pip freeze > requirements.txt`
 
 Once both are deployed, test the full integration from your frontend UI, checking authentication, media upload (via Cloudinary), and any protected routes or API endpoints. Ensure that your deployed backend app is set as the base url within your frontend app's **"axiosDefaults"** file.
 
+<br>
+
 ### Forking the GitHub Repository
 
 Forking the repository creates a copy of the original, allowing us to view and change the repository without affecting the original. This can be done by following the below steps:
 
-1. Open the GitHub repository - [PP5_Inspyre_Frontend](https://github.com/MattMiles95/PP5_Inspyre_Frontend) / [PP5_Inspyre_Backend](https://github.com/MattMiles95/PP5_Inspyre_Backend).
+1. Open the GitHub repository - [PP5_Inspyre_Frontend](https://github.com/MattMiles95/PP5_Inspyre_Frontend).
 
 2. Select the "Fork" button in the top-right section of the page.
 
 A copy of the repository should now be in your own GitHub account.
 
+<br>
+
 ### Local Clone
 
 Cloning the repository allows you to copy the files into your own IDE for local development. This can be done by following the below steps:
 
-1. Open the GitHub repository - [PP5_Inspyre_Frontend](https://github.com/MattMiles95/PP5_Inspyre_Frontend) / [PP5_Inspyre_Backend](https://github.com/MattMiles95/PP5_Inspyre_Backend).
+1. Open the GitHub repository - [PP5_Inspyre_Frontend](https://github.com/MattMiles95/PP5_Inspyre_Frontend).
 
 2. Navigate the 'Code' dropdown menu and select whether you wish to clone the code using HTTPS, SSH or GitHub CLI.
 
@@ -1328,39 +1342,7 @@ Cloning the repository allows you to copy the files into your own IDE for local 
 
 4. Use the command 'git clone' followed by the link you copied from the repository.
 
-### Code Institute PostgreSQL Database
-
-1. Create a Code Institute PostgreSQL account.
-
-2. Create a new instance.
-
-3. Copy the database URL.
-
-4. Add database to the **env.py** file in your IDE.
-
-5. Add the database to your Heroku app's **Config Vars**.
-
-### Cloudinary
-
-1. Create an account with [Cloudinary](https://cloudinary.com/).
-
-2. Add your Cloudinary API environment variable to your **env.py** and Heroku app's **Config Vars**.
-
-3. In settings.py, add Cloudinary libraries to INSTALLED_APPS in the following order:
-
-```
-   'cloudinary_storage',
-   'django.contrib.staticfiles',
-   'cloudinary',
-```
-
-4. Also in settings.py, configure Cloudinary to provide secure responses over HTTPS instead of HTTP:
-
-```
-cloudinary.config(
-    secure=True
-)
-```
+<br>
 
 ## Credits
 
@@ -1368,9 +1350,13 @@ cloudinary.config(
 
 Inspyre is a fictional brand I created for this project. I hold no copyright for the brand and am not affiliated with any persons, organisations or platforms.
 
+<br>
+
 ### Copy (Written Material)
 
 Due to the nature of the project, I required a large sample of visual content to use as posts & profile pics. Most of these images were obtained from open source image websites. Those that weren't were either created by me, taken from friends' social media accounts (with their permission), or generated via AI (all instances of the mascot, Ember, were generated via ChatGPT's image generation feature). All text posts were written by me, save for "On the Boundless Machinery of Imagination", "Reclaiming the Web: A Reflection by Tim Berners-Lee" and "'Quiet Luxury': The Rise of Understated Elegance in Fashion", which were generated using ChatGPT.
+
+<br>
 
 ### Code Credits
 
