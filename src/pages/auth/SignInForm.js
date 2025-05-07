@@ -129,7 +129,7 @@ const SignInForm = () => {
           </Container>
           <div className="m-4 text-center">
             Not a member yet?{" "}
-            <Link className={styles.AuthLink} to="/signin">
+            <Link className={styles.AuthLink} to="/signup">
               Join the community
             </Link>
           </div>
