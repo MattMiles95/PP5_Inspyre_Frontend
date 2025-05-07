@@ -213,6 +213,7 @@ Extensive manual testing was conducted on each feature of this project to ensure
 | Pyres Filter                         |                                                                                                                                               | Pass       |
 | Sparks Filter                        |                                                                                                                                               | Pass       |
 | Searchbar                            |                                                                                                                                               | Pass       |
+| Trending Posts                       |                                                                                                                                               | Pass       |
 | Mobile layout                        | Given a screen width of ≤600px, the gallery format changes to a single column feed displaying a more complete instance of the Post component. | Pass       |
 
 <br>
@@ -297,12 +298,21 @@ Extensive manual testing was conducted on each feature of this project to ensure
 
 ### Profile Page
 
-| **Feature**        | **Expected Outcome**                                                                                                                        | **Result** |
-| ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| User Profile       | Given the User is the owner of the profile, an 'edit' button will display beside their username.                                            | Pass       |
-| Other User Profile | Given the User is not the owner of the profile, an 'un/follow' and 'message' button will display next to the profile owner's username.      | Pass       |
-| Edit Button        | Given the User clicks the 'edit' button, they are directed to the profile edit form.                                                        | Pass       |
-| Follow Button      | Given the User clicks the 'follow' button, the 'followers' counter will increase by one and the button will update to an 'unfollow' button. | Pass       |
+| **Feature**               | **Expected Outcome**                                                                                                                                        | **Result** |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| User Profile              | Given the User is the owner of the profile, an 'edit' button will display beside their username.                                                            | Pass       |
+| Other User Profile        | Given the User is not the owner of the profile, an 'un/follow' and 'message' button will display next to the profile owner's username.                      | Pass       |
+| Edit Button               | Given the User clicks the 'edit' button, they are directed to the profile edit form.                                                                        | Pass       |
+| Follow Button             | Given the User clicks the 'follow' button, the 'followers' counter will increase by one and the button will update to an 'unfollow' button.                 | Pass       |
+| Unfollow Button           | Given the User clicks the 'unfollow' button, the 'followers' counter will decrease by one and the button will update to a 'follow' button.                  | Pass       |
+| Message Button            | Given the User clicks the 'message' button, the User is directed to a chat page containing the conversation between the User and the profile owner.         | Pass       |
+| Create Conversation       | Given the User clicks the 'message' button but no conversation between the User and the profile owner exists, a new chat is created.                        | Pass       |
+| Posts Count               | A count of the number of posts published by the profile owner is displayed below their username.                                                            | Pass       |
+| Follower/Following Counts | Counts of the profile owner's 'followers' and 'following' are displayed below their username.                                                               | Pass       |
+| Follower/Following Modals | Given the User clicks either of the 'follow' counts, a modal opens containing a list of the relevant users.                                                 | Pass       |
+| Profile Tags              | Given the profile owner has selected profile tags, these will appear below their profile stats.                                                             | Pass       |
+| Profile Bio               | Given the profile owner has written a bio, this will display within their profile header.                                                                   | Pass       |
+| Profile Gallery           | A gallery of only the profile owner's posts will be displayed beneath their profile header. This gallery is functionally identical to the homepage gallery. | Pass       |
 
 <br>
 
