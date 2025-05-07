@@ -4,7 +4,7 @@ This is the TESTING file for the frontend React app, [Inspyre](https://inspyre-5
 
 Return to the [README](./README.md)
 
-View the TESTING file for the backend DRF API [here](#)
+View the TESTING file for the backend DRF API [here](#https://github.com/MattMiles95/PP5_Inspyre_Backend/blob/main/TESTING.md)
 
 ## Table of Contents
 
@@ -399,17 +399,18 @@ Extensive manual testing was conducted on each feature of this project to ensure
 
 <br>
 
-### API Requests
+### API Requests & Error Handling
 
-| **Feature**            | **Expected Outcome**                                                                                        | **Result** |
-| ---------------------- | ----------------------------------------------------------------------------------------------------------- | ---------- |
-| Base URL Configuration | All Axios requests are directed to the base URL `https://inspyre-api-6e178387b3cb.herokuapp.com/`.          | Pass       |
-| 401 Error Handling     | When a 401 response is received, the User is redirected to the `/401` page and the access token is removed. | Pass       |
-| 403 Error Handling     | When a 403 response is received, the User is redirected to the `/403` page.                                 | Pass       |
-| 404 Error Handling     | When a 404 response is received, the User is redirected to the `/404` page.                                 | Pass       |
-| 500 Error Handling     | When a 500 response is received, the User is redirected to the `/500` page.                                 | Pass       |
-| 503 Error Handling     | When a 503 response is received, the User is redirected to the `/503` page.                                 | Pass       |
-| Response Interceptor   | Handles error responses by redirecting based on status codes (401, 403, 404, 500, 503).                     | Pass       |
+| **Feature**            | **Expected Outcome**                                                                                                                             | **Result** |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| Base URL Configuration | All Axios requests are directed to the base URL `https://inspyre-api-6e178387b3cb.herokuapp.com/`.                                               | Pass       |
+| 401 Error Handling     | When a 401 response is received, the User is redirected to the `/401` page and the access token is removed.                                      | Pass       |
+| 403 Error Handling     | When a 403 response is received, the User is redirected to the `/403` page.                                                                      | Pass       |
+| 404 Error Handling     | When a 404 response is received, the User is redirected to the `/404` page.                                                                      | Pass       |
+| 500 Error Handling     | When a 500 response is received, the User is redirected to the `/500` page.                                                                      | Pass       |
+| 503 Error Handling     | When a 503 response is received, the User is redirected to the `/503` page.                                                                      | Pass       |
+| Response Interceptor   | Handles error responses by redirecting based on status codes (401, 403, 404, 500, 503).                                                          | Pass       |
+| Error Page Home Link   | Given the User clicks the 'return home' button on any of the custom error pages, they are directed to the homepage (the given error permitting). | Pass       |
 
 <br>
 
@@ -493,6 +494,19 @@ Extensive manual testing was conducted on each feature of this project to ensure
 
 Throughout the development of Inspyre's frontend, I carried out the following bug fixes:
 
-| Feature | Expected Outcome | Actual Outcome | Fix |
-| ------- | ---------------- | -------------- | --- |
-|         |                  |                |     |
+| Feature              | Expected Outcome                                                                                              | Actual Outcome                                                                                | Fix                                                                                                                                        |
+| -------------------- | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| Quill Editor         | When accessing the Quill Editor, all features are usable.                                                     | Bullet styles and alignment formatter not responding (appearing as 'undefined').              | Expressly declare all desired features when configuring Quill Editor.                                                                      |
+| Profile Page         | When selecting 'profile' from the navbar menu, the User is directed to their profile page.                    | 404 error.                                                                                    | Fix incorrect route path used in App.js.                                                                                                   |
+| Navbar               | No console errors caused by syntax.                                                                           | Error caused by nested `<a>` tags.                                                            | Refactor parent link into a Dropdown.Item.                                                                                                 |
+| Heroku Deployment    | App successfully deploys.                                                                                     | Heroku build failure due to incorrect casing of 'useRedirect.js' in git repo.                 | Caused by git not acknowledging file changes that only concern casing. Renamed file, pushed to repo, then renamed again with proper casing |
+| Heroku Deployment    | App successfully deploys.                                                                                     | Heroku build failure due to incorrect casing of 'useClickOutsideToggle.js' in git repo.       | Caused by git not acknowledging file changes that only concern casing. Renamed file, pushed to repo, then renamed again with proper casing |
+| Direct Messaging     | A User can send a message directly to another User.                                                           | Message post request denied by API.                                                           | Removed `post["Content-Type"] = "multipart/form-data"` as a global rule in axiosDefaults.                                                  |
+| Direct Messaging     | Messaging another user for the first time creates a conversation with a waving emoji.                         | Message post request denied by API.                                                           | Updated newMessage post method.                                                                                                            |
+| Direct Messaging     | Users are assigned 'sender' or 'receiver' within a conversation, and CSS is applied accordingly.              | Both users assigned as 'receiver'. No distinction in CSS.                                     | Updated logic to correctly assign each participant their respective role.                                                                  |
+| Direct Messaging     | When opening a chat, a waving emoji is only sent when a conversation is first created.                        | Everytime a conversation is opened, a waving emoji is sent, regardless of any prior messages. | Updated logic for determining if prior messages have been exchanged.                                                                       |
+| Custom Dropdown Menu | Given a user clicks the dropdown menu toggle, the menu appears over the top of any other layer.               | Due to overflow, dropdown menu partially obscured by other layers.                            | Updated Custom Dropdown Menu to use ReactDOM Portal when rendering.                                                                        |
+| Modal                | Given a user triggers a modal, the modal appears over the top of any other layer.                             | Due to overflow, modal partially obscured by other layers.                                    | Updated Modal to use ReactDOM Portal when rendering.                                                                                       |
+| Replies              | Given a user replies to another user's reply, the comment thread is updated without requiring a page refresh. | Replies to replies not appearing until after page refresh.                                    | Add insertReply handler to CommentReplyForm.                                                                                               |
+| Sign Up Link         | Given a user clicks the 'join the community' link on the sign in page, they are directed to the sign up page. | User is redirected to the page they are already on.                                           | Fix incorrect navigate() prop.                                                                                                             |
+| Post Deletion        | Upon deleting a post, the User is redirected back to the previous window.                                     | User is redirected to now deleted post, triggering 404 error.                                 | Amend navigate() parameter from (-1) to ('/').                                                                                             |
