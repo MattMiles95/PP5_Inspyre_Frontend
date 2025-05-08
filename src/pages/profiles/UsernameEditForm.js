@@ -16,14 +16,14 @@ import {
 import btnStyles from "../../styles/Buttons.module.css";
 import styles from "../../styles/ProfileEditor.module.css";
 
+// Local Components
+import Modal from "../../components/Modal";
+
 // React
 import React, { useEffect, useState } from "react";
 
 // React Router
 import { useNavigate, useParams } from "react-router-dom";
-
-// Modal
-import Modal from "../../components/Modal";
 
 const UsernameEditForm = () => {
   const [username, setUsername] = useState("");
