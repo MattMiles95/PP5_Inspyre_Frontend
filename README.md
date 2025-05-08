@@ -193,12 +193,22 @@ The theme for Inspyre began with its logo. Fire has long been a symbol of creati
 ### Colours
 
 <details>
-<summary> Background & Colour Palette </summary>
+<summary> Colour Palette </summary>
+
+<br>
+
+![Colour Palette](./_README_docs/images/inspyre-palette.png)
+
+</details>
+
+<br>
+
+<details>
+<summary> Background </summary>
 
 <br>
 
 ![Background](./src/assets/inspyre_bg.jpg)
-![Colour Palette](./_README_docs/images/inspyre-palette.png)
 
 </details>
 
@@ -1063,7 +1073,7 @@ By building this modal component myself, I was able to tailor both its appearanc
 
 <br>
 
-![Dropdown Menu - User Comment](./_README_docs/images/modal-confirmation.png)
+![Dropdown Menu - User Comment](./_README_docs/images/custom-dropdown-menu.png)
 
 </details>
 
