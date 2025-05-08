@@ -5,6 +5,7 @@
   box-shadow: 0 0 10px rgba(255, 122, 0, 0.2);
   color: #ffebd8;
   font-family: "Montserrat", sans-serif;
+  overflow: hidden;
 }
 
 .ImagePreview {
@@ -13,6 +14,7 @@
   border-radius: 8px;
   box-shadow: 0 0 8px rgba(255, 122, 0, 0.25);
   max-height: 300px;
+  max-width: 100%;
   object-fit: contain;
 }
 

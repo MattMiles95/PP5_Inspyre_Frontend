@@ -127,7 +127,8 @@ const Comment = ({
               )}
 
               {/* Reply Button */}
-              {currentUser?.username !== owner &&
+              {currentUser &&
+                currentUser?.username !== owner &&
                 approval_status === 0 &&
                 !showReplyForm && (
                   <button
@@ -150,18 +151,19 @@ const Comment = ({
             </div>
 
             <div className={styles.Dropdown}>
-              {currentUser?.username === owner ? (
-                <CustomDropdown
-                  handleEdit={() => setShowEditForm(true)}
-                  handleDelete={() => setShowDeleteModal(true)}
-                />
-              ) : (
-                approval_status !== 1 && (
+              {currentUser &&
+                (currentUser?.username === owner ? (
                   <CustomDropdown
-                    handleReport={() => setShowReportModal(true)}
+                    handleEdit={() => setShowEditForm(true)}
+                    handleDelete={() => setShowDeleteModal(true)}
                   />
-                )
-              )}
+                ) : (
+                  approval_status !== 1 && (
+                    <CustomDropdown
+                      handleReport={() => setShowReportModal(true)}
+                    />
+                  )
+                ))}
             </div>
           </div>
         </Card.Body>
