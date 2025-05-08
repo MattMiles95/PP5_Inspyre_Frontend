@@ -59,7 +59,7 @@ Built with a clean, responsive UI and a focus on discoverability, Inspyre suppor
 - [Messaging System Upgrade](#messaging-system-upgrade)
 - [Blocking Users](#blocking-users)
 - [Private Profiles](#private-profiles)
-- [User Account Deletion (Temporarily Removed)](#user-account-deletion-temporarily-removed)
+- [bug-fixes](#bug-fixes)
 
 ### [Project Management - an Agile Approach](#project-management---an-agile-approach-1)
 
@@ -1232,7 +1232,9 @@ Support for private account modes. These profiles will remain searchable and vis
 
 <br>
 
-### User Account Deletion (Temporarily Removed)
+### Bug Fixes
+
+#### User Account Deletion (Temporarily Removed)
 
 Inspyre originally included a fully functional user account deletion feature, allowing users to permanently remove their profile and associated content. However, during development, I encountered a persistent bug related to the CurrentUserContext, ProfileDataContext, and axios interceptors — as implemented in Code Institute’s advanced frontend walkthrough project, Moments.
 
@@ -1243,6 +1245,10 @@ Despite significant effort — including extensive independent debugging, collab
 However, I have preserved the original handleDelete logic within the project codebase, and fully intend to re-implement account deletion in the future, once the context/interceptor bug is addressed or a more robust session management strategy is in place.
 
 <br>
+
+#### Profile Edit Form - Page Refresh
+
+When performing Lighthouse testing on the Profile Edit Form, I noticed that the page redirects to the homepage upon refresh, due to the useCurrentUser() hook momentarily returning `null`. Since the profile edit forms require authorisation, this brief `null` state triggers a redirect to `'/'`. Although this is not an app-breaking issue, a future update will address this by refining the user authentication logic to handle transient `null` states without unintended redirects. Due to this being part of a larger issue with the aforementioned CurrentUserContext, it was not feasible to resolve this within the current iteration.
 
 ## Project Management - an Agile Approach
 
@@ -1268,7 +1274,7 @@ In order to prioritise my User Stories, I used MoSCoW Prioritisation to label ea
 
 ### GitHub Project - Kanban Board
 
-I used GitHub Issues and Projects to manage the above-mentioned process. Each issue provided a User Story, which was placed on a Kanban board in my Inspyre Project. This board was separated into 4 columns: 'To Do', 'In Progress', 'Done' and 'Not Required This Iteration'. I linked both my frontend and backend repos to this project, which can be viewed [here](https://github.com/users/MattMiles95/projects/8/views/1)
+I used GitHub Issues and Projects to manage the above-mentioned process. Each issue provided a User Story, which was placed on a Kanban board in my Inspyre Project. This board was separated into 4 columns: 'To Do', 'In Progress', 'Done' and 'Not Required This Iteration'. I linked both my frontend and backend repos to this project, which can be viewed [here](https://github.com/users/MattMiles95/projects/8/views/1).
 
 <br>
 
