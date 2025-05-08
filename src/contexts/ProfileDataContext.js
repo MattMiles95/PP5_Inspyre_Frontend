@@ -17,7 +17,6 @@ export const useSetProfileData = () => useContext(SetProfileDataContext);
 export const ProfileDataProvider = ({ children }) => {
   const [profileData, setProfileData] = useState({
     pageProfile: { results: [] },
-    popularProfiles: { results: [] },
   });
 
   const currentUser = useCurrentUser();
@@ -32,12 +31,6 @@ export const ProfileDataProvider = ({ children }) => {
         ...prevState,
         pageProfile: {
           results: prevState.pageProfile.results.map((profile) =>
-            followHelper(profile, clickedProfile, data.id)
-          ),
-        },
-        popularProfiles: {
-          ...prevState.popularProfiles,
-          results: prevState.popularProfiles.results.map((profile) =>
             followHelper(profile, clickedProfile, data.id)
           ),
         },
@@ -58,12 +51,6 @@ export const ProfileDataProvider = ({ children }) => {
             unfollowHelper(profile, clickedProfile)
           ),
         },
-        popularProfiles: {
-          ...prevState.popularProfiles,
-          results: prevState.popularProfiles.results.map((profile) =>
-            unfollowHelper(profile, clickedProfile)
-          ),
-        },
       }));
     } catch (err) {
       // console.error(err);
@@ -75,12 +62,10 @@ export const ProfileDataProvider = ({ children }) => {
       if (!currentUser) return;
 
       try {
-        const { data } = await axiosReq.get(
-          "/profiles/?ordering=-followers_count"
-        );
+        const { data } = await axiosReq.get("/profiles/");
         setProfileData((prevState) => ({
           ...prevState,
-          popularProfiles: data,
+          pageProfile: data,
         }));
       } catch (err) {
         // console.log(err);
