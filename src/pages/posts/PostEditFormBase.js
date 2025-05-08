@@ -9,10 +9,12 @@ import Row from "react-bootstrap/Row";
 
 // CSS
 import appStyles from "../../App.module.css";
+import btnStyles from "../../styles/Buttons.module.css";
 import postEditStyles from "../../styles/PostEditForm.module.css";
 
 // Local Components
 import Asset from "../../components/Asset";
+import Modal from "../../components/Modal";
 import PostEditImageForm from "./PostEditImageForm";
 import PostEditTextForm from "./PostEditTextForm";
 
@@ -40,6 +42,8 @@ function PostEditFormBase() {
   const { id } = useParams();
   const isTextPost = postData.image === null || postData.image === "";
   const [saving, setSaving] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [postDataResponse, setPostDataResponse] = useState(null);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -88,8 +92,8 @@ function PostEditFormBase() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSaving(true);
-    const formData = new FormData();
 
+    const formData = new FormData();
     formData.append("title", title);
     formData.append("content", content);
     formData.append("tags", tags);
@@ -100,8 +104,9 @@ function PostEditFormBase() {
     }
 
     try {
-      await axiosReq.put(`/posts/${id}/`, formData);
-      navigate(`/posts/${id}`);
+      const { data } = await axiosReq.put(`/posts/${id}/`, formData);
+      setPostDataResponse(data);
+      setShowModal(true);
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
@@ -111,42 +116,64 @@ function PostEditFormBase() {
     }
   };
 
-  return hasLoaded ? (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col xs={12}>
-          <Container
-            className={`${appStyles.Content} ${postEditStyles.FormContainer} d-flex flex-column justify-content-center`}
-          >
-            {image && (
-              <PostEditImageForm
-                image={image}
-                onImageChange={handleChangeImage}
-                imageInputRef={imageInput}
-                errors={errors}
-              />
-            )}
+  const handleModalClose = () => {
+    setShowModal(false);
+    if (postDataResponse?.id) {
+      navigate(`/posts/${postDataResponse.id}`);
+    }
+  };
 
-            <PostEditTextForm
-              title={title}
-              tags={tags}
-              onChange={handleChange}
-              errors={errors}
-              isTextPost={isTextPost}
-              content={content}
-              setContent={(value) =>
-                setPostData((prev) => ({ ...prev, content: value }))
-              }
-              original_author={original_author}
-              setOriginalAuthor={(checked) =>
-                setPostData((prev) => ({ ...prev, original_author: checked }))
-              }
-              saving={saving}
-            />
-          </Container>
-        </Col>
-      </Row>
-    </Form>
+  return hasLoaded ? (
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col xs={12}>
+            <Container
+              className={`${appStyles.Content} ${postEditStyles.FormContainer} d-flex flex-column justify-content-center`}
+            >
+              {image && (
+                <PostEditImageForm
+                  image={image}
+                  onImageChange={handleChangeImage}
+                  imageInputRef={imageInput}
+                  errors={errors}
+                />
+              )}
+
+              <PostEditTextForm
+                title={title}
+                tags={tags}
+                onChange={handleChange}
+                errors={errors}
+                isTextPost={isTextPost}
+                content={content}
+                setContent={(value) =>
+                  setPostData((prev) => ({ ...prev, content: value }))
+                }
+                original_author={original_author}
+                setOriginalAuthor={(checked) =>
+                  setPostData((prev) => ({ ...prev, original_author: checked }))
+                }
+                saving={saving}
+              />
+            </Container>
+          </Col>
+        </Row>
+      </Form>
+
+      <Modal
+        isOpen={showModal}
+        onClose={handleModalClose}
+        title="Post Updated!"
+        customFooter={
+          <button onClick={handleModalClose} className={btnStyles.SuccessBtn}>
+            View Post
+          </button>
+        }
+      >
+        <p>Your post was successfully updated!</p>
+      </Modal>
+    </>
   ) : (
     <Asset spinner />
   );

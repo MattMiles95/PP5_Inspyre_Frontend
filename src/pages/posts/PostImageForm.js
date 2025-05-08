@@ -322,7 +322,7 @@ function PostImageForm({ setPostType, postType }) {
         onClose={handleModalClose}
         title="Published!"
         customFooter={
-          <button onClick={handleModalClose} className={btnStyles.ContinueBtn}>
+          <button onClick={handleModalClose} className={btnStyles.SuccessBtn}>
             Continue to post
           </button>
         }

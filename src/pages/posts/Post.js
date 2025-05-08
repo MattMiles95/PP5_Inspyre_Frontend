@@ -13,6 +13,7 @@ import { Chat, Fire } from "react-bootstrap-icons";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 // CSS
+import btnStyles from "../../styles/Buttons.module.css";
 import styles from "../../styles/Post.module.css";
 import "../../index.css";
 
@@ -20,6 +21,7 @@ import "../../index.css";
 import Asset from "../../components/Asset";
 import Avatar from "../../components/Avatar";
 import CustomDropdown from "../../components/CustomDropdown";
+import Modal from "../../components/Modal";
 
 // React
 import React, { useState } from "react";
@@ -54,13 +56,15 @@ const Post = (props) => {
   const currentUser = useCurrentUser();
   const navigate = useNavigate();
   const [showConfirm, setShowConfirm] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   const handleEdit = () => navigate(`/posts/${id}/edit`);
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/posts/${id}/`);
-      navigate('/');
+      setShowConfirm(false);
+      setShowModal(true);
     } catch (err) {}
   };
 
@@ -94,6 +98,11 @@ const Post = (props) => {
     } catch (err) {}
   };
 
+  const handleModalClose = () => {
+    setShowModal(false);
+    navigate("/");
+  };
+
   const handlePostClick = () => {
     if (isPreview) {
       navigate(`/posts/${id}`);
@@ -101,147 +110,165 @@ const Post = (props) => {
   };
 
   return (
-    <Card
-      className={`${styles.Post} ${isPreview ? styles.PreviewCard : ""}`}
-      onClick={handlePostClick}
-      style={isPreview ? { cursor: "pointer" } : {}}
-    >
-      {/* Header */}
-      <Card.Body>
-        <div className="d-flex align-items-center justify-content-between">
-          <Link
-            to={`/profiles/${profile_id}`}
-            className="d-flex align-items-center text-reset text-decoration-none"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Avatar src={profile_image} height={55} />
-            <span className="ml-2 font-weight-bold">{owner}</span>
-          </Link>
-
-          {is_owner && postPage && (
-            <CustomDropdown
-              handleEdit={handleEdit}
-              handleDelete={() => setShowConfirm(true)}
-            />
-          )}
-        </div>
-        <div className="text-muted small mt-1 text-right">{updated_at}</div>
-      </Card.Body>
-
-      {/* Content */}
-      <Card.Body className={styles.MediaContainer}>
-        {title && <Card.Title className="text-center">{title}</Card.Title>}
-
-        {image && (
-          <div className={styles.ImageWrapper}>
-            <Card.Img src={image} alt={title} className={styles.PostImage} />
-          </div>
-        )}
-
-        {content && (
-          <div
-            className={`ql-editor mt-3 ${isPreview ? styles.TextPreview : ""}`}
-            dangerouslySetInnerHTML={{
-              __html: isPreview
-                ? truncateText(stripHtmlTags(content), 50)
-                : content,
-            }}
-          />
-        )}
-
-        {!image && !content && <Asset spinner />}
-
-        {post_tags?.length > 0 && (
-          <div className={`${styles.Tags} mt-3`}>
-            {post_tags.map((tag, index) => (
-              <span key={index} className={styles.Tag}>
-                #{tag.name}
-              </span>
-            ))}
-          </div>
-        )}
-      </Card.Body>
-
-      {/* Interactions */}
-      {!isPreview && (
+    <>
+      <Card
+        className={`${styles.Post} ${isPreview ? styles.PreviewCard : ""}`}
+        onClick={handlePostClick}
+        style={isPreview ? { cursor: "pointer" } : {}}
+      >
+        {/* Header */}
         <Card.Body>
-          <div className={styles.PostBar}>
-            {is_owner ? (
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip>You can't like your own post!</Tooltip>}
-              >
-                <div className={styles.IconWithCount}>
-                  <Fire className={styles.OwnerFlame} size={20} />
-                  <span>{likes_count}</span>
-                </div>
-              </OverlayTrigger>
-            ) : like_id ? (
-              <div onClick={handleUnlike} className={styles.IconWithCount}>
-                <Fire className={styles.LikedFlame} size={20} />
-                <span>{likes_count}</span>
-              </div>
-            ) : currentUser ? (
-              <div onClick={handleLike} className={styles.IconWithCount}>
-                <Fire className={styles.UnlikedFlame} size={20} />
-                <span>{likes_count}</span>
-              </div>
-            ) : (
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip>Log in to like posts!</Tooltip>}
-              >
-                <div className={styles.IconWithCount}>
-                  <Fire className={styles.OwnerFlame} size={20} />
-                  <span>{likes_count}</span>
-                </div>
-              </OverlayTrigger>
-            )}
-
-            <div
-              className={styles.IconWithCount}
+          <div className="d-flex align-items-center justify-content-between">
+            <Link
+              to={`/profiles/${profile_id}`}
+              className="d-flex align-items-center text-reset text-decoration-none"
               onClick={(e) => e.stopPropagation()}
             >
-              <Chat size={20} />
-              <span>{comments_count}</span>
-            </div>
+              <Avatar src={profile_image} height={55} />
+              <span className="ml-2 font-weight-bold">{owner}</span>
+            </Link>
 
-            {original_author && (
-              <div className={styles.OriginalIndicator}>
-                <i className="fa-solid fa-lightbulb"></i>
-                <span>Original</span>
-              </div>
+            {is_owner && postPage && (
+              <CustomDropdown
+                handleEdit={handleEdit}
+                handleDelete={() => setShowConfirm(true)}
+              />
             )}
           </div>
+          <div className="text-muted small mt-1 text-right">{updated_at}</div>
         </Card.Body>
-      )}
 
-      {/* Delete Confirmation */}
-      {showConfirm && (
-        <div className={styles.ConfirmationOverlay}>
-          <div className={styles.ConfirmBox}>
-            <p>
-              Are you sure you want to delete this post? This action cannot be
-              undone.
-            </p>
-            <div className={styles.ConfirmButtons}>
-              <button
-                className={`${styles.ConfirmDeleteBtn} btn btn-danger`}
-                onClick={handleDelete}
+        {/* Content */}
+        <Card.Body className={styles.MediaContainer}>
+          {title && <Card.Title className="text-center">{title}</Card.Title>}
+
+          {image && (
+            <div className={styles.ImageWrapper}>
+              <Card.Img src={image} alt={title} className={styles.PostImage} />
+            </div>
+          )}
+
+          {content && (
+            <div
+              className={`ql-editor mt-3 ${
+                isPreview ? styles.TextPreview : ""
+              }`}
+              dangerouslySetInnerHTML={{
+                __html: isPreview
+                  ? truncateText(stripHtmlTags(content), 50)
+                  : content,
+              }}
+            />
+          )}
+
+          {!image && !content && <Asset spinner />}
+
+          {post_tags?.length > 0 && (
+            <div className={`${styles.Tags} mt-3`}>
+              {post_tags.map((tag, index) => (
+                <span key={index} className={styles.Tag}>
+                  #{tag.name}
+                </span>
+              ))}
+            </div>
+          )}
+        </Card.Body>
+
+        {/* Interactions */}
+        {!isPreview && (
+          <Card.Body>
+            <div className={styles.PostBar}>
+              {is_owner ? (
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>You can't like your own post!</Tooltip>}
+                >
+                  <div className={styles.IconWithCount}>
+                    <Fire className={styles.OwnerFlame} size={20} />
+                    <span>{likes_count}</span>
+                  </div>
+                </OverlayTrigger>
+              ) : like_id ? (
+                <div onClick={handleUnlike} className={styles.IconWithCount}>
+                  <Fire className={styles.LikedFlame} size={20} />
+                  <span>{likes_count}</span>
+                </div>
+              ) : currentUser ? (
+                <div onClick={handleLike} className={styles.IconWithCount}>
+                  <Fire className={styles.UnlikedFlame} size={20} />
+                  <span>{likes_count}</span>
+                </div>
+              ) : (
+                <OverlayTrigger
+                  placement="top"
+                  overlay={<Tooltip>Log in to like posts!</Tooltip>}
+                >
+                  <div className={styles.IconWithCount}>
+                    <Fire className={styles.OwnerFlame} size={20} />
+                    <span>{likes_count}</span>
+                  </div>
+                </OverlayTrigger>
+              )}
+
+              <div
+                className={styles.IconWithCount}
+                onClick={(e) => e.stopPropagation()}
               >
-                Delete Post
-              </button>
-              <button
-                className={`${styles.CancelDeleteBtn} btn btn-secondary`}
-                onClick={() => setShowConfirm(false)}
-              >
-                Cancel
-              </button>
+                <Chat size={20} />
+                <span>{comments_count}</span>
+              </div>
+
+              {original_author && (
+                <div className={styles.OriginalIndicator}>
+                  <i className="fa-solid fa-lightbulb"></i>
+                  <span>Original</span>
+                </div>
+              )}
+            </div>
+          </Card.Body>
+        )}
+
+        {/* Delete Confirmation */}
+        {showConfirm && (
+          <div className={styles.ConfirmationOverlay}>
+            <div className={styles.ConfirmBox}>
+              <p>
+                Are you sure you want to delete this post? This action cannot be
+                undone.
+              </p>
+              <div className={styles.ConfirmButtons}>
+                <button
+                  className={`${styles.ConfirmDeleteBtn} btn btn-danger`}
+                  onClick={handleDelete}
+                >
+                  Delete Post
+                </button>
+                <button
+                  className={`${styles.CancelDeleteBtn} btn btn-secondary`}
+                  onClick={() => setShowConfirm(false)}
+                >
+                  Cancel
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-    </Card>
+        )}
+      </Card>
+
+      {/* Success Modal */}
+      <Modal
+        isOpen={showModal}
+        onClose={handleModalClose}
+        title="Post Deleted"
+        customFooter={
+          <button onClick={handleModalClose} className={btnStyles.SuccessBtn}>
+            Return to Home
+          </button>
+        }
+      >
+        <p>Your post was successfully deleted.</p>
+      </Modal>
+    </>
   );
 };
 
