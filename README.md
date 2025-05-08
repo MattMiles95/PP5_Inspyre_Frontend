@@ -1191,7 +1191,11 @@ Replacing the current custom-built messaging system with a plug-and-play solutio
 
 - Message deletion/editing
 
+- Message notifications and 'un/read' status\*
+
 This will elevate Inspyre’s messaging experience to match modern standards.
+
+\* The current DirectMessage model does provide for 'un/read' status implementation with the frontend. At this time, however, this feature has not been implemented, as it was not deemed to be of significant enough value to the final product to be included in this iteration. As such, this feature could be implemented in the short term, prior to a full scale shift to a plug-and-play solution at a later iteration.
 
 <br>
 
