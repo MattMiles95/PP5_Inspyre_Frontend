@@ -979,19 +979,32 @@ This system reinforces Inspyre’s ethos of creative connection: you follow the 
 
 <br>
 
+<details>
+<summary> Chat Unread Message Indicator </summary>
+
+<br>
+
+![Chat Unread Message Indicator](./_README_docs/images/chat-unread-messages.png)
+
+</details>
+
+<br>
+
 To support deeper connection and collaboration, Inspyre includes a built-in Direct Messaging feature. This system allows users to communicate in a one-on-one format - whether to exchange feedback, ask questions, or simply connect beyond public comments.
 
 #### Key Features:
 
 - Accessible via the speech bubbles icon in the navbar, which leads to a dedicated messaging interface.
 
-- Users can view existing conversations or start a new conversation by searching for a profile in the searchbar. Alternatively, new conversations can be created directly from another user's profile page (as discussed above)
+- Users can view existing conversations or start a new conversation by searching for a profile in the search bar. Alternatively, new conversations can be created directly from another user's profile page (as discussed above).
 
-- When starting a new conversation, a friednly 'wave' emoji is automatically sent to break the ice and get the conversation flowing.
+- When starting a new conversation, a friendly 'wave' emoji is automatically sent to break the ice and get the conversation flowing.
+
+- Conversations include a visual indicator for unread messages, allowing users to easily spot which conversations contain unread content. Once a conversation is opened, any unread messages are automatically marked as read, and the indicator is removed.
 
 - Messages appear in a clean, chat-style format, designed to emulate other popular messaging apps such as WhatsApp and Facebook Messenger. This gives the direct messaging feature a modern and polished feel.
 
-Direct Messaging is designed to complement the broader community experience - fostering genuine interaction without disrupting the visual and creative flow of the platform.
+Direct Messaging is designed to complement the broader community experience – fostering genuine interaction without disrupting the visual and creative flow of the platform.
 
 #### Limitations & Technical Notes
 
@@ -1191,11 +1204,9 @@ Replacing the current custom-built messaging system with a plug-and-play solutio
 
 - Message deletion/editing
 
-- Message notifications and 'un/read' status\*
+- Message notifications
 
 This will elevate Inspyre’s messaging experience to match modern standards.
-
-\* The current DirectMessage model does provide for 'un/read' status implementation with the frontend. At this time, however, this feature has not been implemented, as it was not deemed to be of significant enough value to the final product to be included in this iteration. As such, this feature could be implemented in the short term, prior to a full scale shift to a plug-and-play solution at a later iteration.
 
 <br>
 
@@ -1282,7 +1293,7 @@ I used GitHub Issues and Projects to manage the above-mentioned process. Each is
 - [Chrome Eye Dropper](https://chromewebstore.google.com/detail/eye-dropper/hmdcmlfkchdmnmnmheododdhjedfccka) - Colour sampling extension.
 - [Git](https://git-scm.com/) - Version control system.
 - [GitHub](https://github.com/) - Online repository storage and project management.
-- [Heroku](https://www.heroku.com/home) - App deployment platform.  
+- [Heroku](https://www.heroku.com/home) - App deployment platform.
 - [Google Fonts](https://fonts.google.com/) - Open-source font library.
 - [Photopea](https://www.photopea.com/) - Online photo editing software.
 - [Visual Studio Code](https://code.visualstudio.com/) - IDE.

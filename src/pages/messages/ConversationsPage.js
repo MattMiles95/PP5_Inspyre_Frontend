@@ -52,7 +52,7 @@ const ConversationsPage = () => {
     };
 
     fetchConversations();
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(async () => {
@@ -210,6 +210,8 @@ const ConversationsPage = () => {
               const otherUser = conversation.other_user;
               if (!otherUser) return null;
 
+              const hasUnreadMessages = conversation.has_unread_messages;
+
               return (
                 <div
                   className={styles.ConversationWrapper}
@@ -221,6 +223,9 @@ const ConversationsPage = () => {
                       className={styles.ConversationLink}
                     >
                       <strong>{otherUser.username}</strong>
+                      {hasUnreadMessages && (
+                        <span className={styles.UnreadIndicator}></span>
+                      )}
                       <br />
                       <small className="text-muted">
                         {conversation.latest_message?.preview ||

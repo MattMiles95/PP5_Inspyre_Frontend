@@ -375,17 +375,19 @@ Extensive manual testing was conducted on each feature of this project to ensure
 
 #### Chat
 
-| **Feature**            | **Expected Outcome**                                                                                                     | **Result** |
-| ---------------------- | ------------------------------------------------------------------------------------------------------------------------ | ---------- |
-| Back Button            | Given the User clicks the 'Back' button, they are navigated back to the ConversationsPage.                               | Pass       |
-| User Link              | Given the User clicks the other user's profile link, they are navigated to that user's profile page.                     | Pass       |
-| Messages List          | A list of messages in the conversation is displayed in reverse order (most recent at the bottom).                        | Pass       |
-| No Messages State      | If there are no messages in the conversation, the message list displays a "No messages yet" state.                       | Pass       |
-| Message Bubble Styling | Messages from the current user are styled as sender bubbles, and messages from the other user as receiver bubbles.       | Pass       |
-| Auto Scroll            | When a new message is sent or received, the message list automatically scrolls to the most recent message.               | Pass       |
-| Message Input          | Given the User types a message in the input field, the content is controlled by the state and updates as the User types. | Pass       |
-| Send Message Button    | Given the User clicks the send button, a new message is created and displayed in the message list.                       | Pass       |
-| Sending Indicator      | While a message is being sent, the send button displays a loading spinner.                                               | Pass       |
+| **Feature**              | **Expected Outcome**                                                                                                     | **Result** |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| Back Button              | Given the User clicks the 'Back' button, they are navigated back to the ConversationsPage.                               | Pass       |
+| User Link                | Given the User clicks the other user's profile link, they are navigated to that user's profile page.                     | Pass       |
+| Messages List            | A list of messages in the conversation is displayed in reverse order (most recent at the bottom).                        | Pass       |
+| No Messages State        | If there are no messages in the conversation, the message list displays a "No messages yet" state.                       | Pass       |
+| Message Bubble Styling   | Messages from the current user are styled as sender bubbles, and messages from the other user as receiver bubbles.       | Pass       |
+| Auto Scroll              | When a new message is sent or received, the message list automatically scrolls to the most recent message.               | Pass       |
+| Message Input            | Given the User types a message in the input field, the content is controlled by the state and updates as the User types. | Pass       |
+| Send Message Button      | Given the User clicks the send button, a new message is created and displayed in the message list.                       | Pass       |
+| Sending Indicator        | While a message is being sent, the send button displays a loading spinner.                                               | Pass       |
+| Unread Message Indicator | Given the User has a chat with an unread message, a visual indicator is displayed, notifying them of this.               | Pass       |
+| Auto-Read Messages       | Given the User opens a chat with an unread message, the message is marked as 'read' and the visual indicator is removed. | Pass       |
 
 <br>
 
