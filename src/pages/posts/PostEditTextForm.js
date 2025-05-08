@@ -90,7 +90,7 @@ const PostEditTextForm = ({
 
       <Form.Group className="mt-3">
         <Form.Label className={postEditStyles.FormLabel}>
-          Tags (comma-separated)
+          Tags
         </Form.Label>
         <Form.Control
           type="text"

@@ -130,3 +130,81 @@
   height: 64px;
   width: auto;
 }
+
+@media (max-width: 600px) {
+  .CreateContainer {
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 0 0.5rem;
+  }
+
+  .HeaderSection h1 {
+    font-size: 1.8rem;
+  }
+
+  .HeaderSection h2 {
+    font-size: 1rem;
+  }
+
+  .SelectButton {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .ChoiceDescription {
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .CenteredHeading {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .OriginalAuthorCheckbox {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.85rem;
+    gap: 0.5rem;
+  }
+
+  .FormLabel {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .FormInput {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  .UploadIcon {
+    height: 48px;
+    width: auto;
+  }
+
+  .d-flex.align-items-left.gap-3.mb-2,
+  .d-flex.justify-content-center.gap-3.mt-3 {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+
+  button {
+    width: 100%;
+    margin: 0.2rem 0;
+  }
+
+  .Modal {
+    max-width: 90%;
+    margin: auto;
+  }
+
+  .text-center.mb-4 {
+    margin-bottom: 1rem;
+  }
+
+  .text-center.my-4 {
+    margin: 1.5rem 0;
+  }
+}

@@ -153,7 +153,7 @@ function PostTextForm({ setPostType, postType }) {
 
           <Form.Group className="mb-3">
             <Form.Label className={styles.FormLabel}>
-              Tags (comma-separated)
+              Tags
             </Form.Label>
             <Form.Control
               type="text"

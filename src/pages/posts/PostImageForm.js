@@ -252,7 +252,7 @@ function PostImageForm({ setPostType, postType }) {
 
                   <Form.Group className="mb-4">
                     <Form.Label className={styles.FormLabel}>
-                      Tags (comma-separated)
+                      Tags
                     </Form.Label>
                     <Form.Control
                       type="text"
